@@ -57,8 +57,15 @@ backend/
 - **Config**: `@nestjs/config` for env vars (`DATABASE_URL`, etc.).
 - **Language**: TypeScript strict (policy: TypeScript by default).
 - **Port**: 3001 (webapp is 3003).
-- **CORS**: allow `http://localhost:3003` (webapp dev origin).
+- **CORS**: allow the webapp dev origin (`http://localhost:3003`); origin is
+  configurable via env (`CORS_ORIGIN`) so production can set its public origin.
 - **Health**: `GET /health` returns `{ status: 'ok', db: 'up' }`, including a DB ping.
+
+### Credentials
+
+`POSTGRES_USER` / `POSTGRES_PASSWORD` / `POSTGRES_DB` are not committed — they come
+from the environment (Dokploy env vars in production, `.env` locally). Compose
+substitutes them into `DATABASE_URL` via `${...}` interpolation.
 
 ## Infrastructure
 
@@ -72,15 +79,15 @@ services:
     expose: ["3001"]
     environment:
       NODE_ENV: production
-      DATABASE_URL: postgres://...@db:5432/...
+      DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
     depends_on: [db]
   db:
     image: postgres:16-alpine
     expose: ["5432"]
     environment:
-      POSTGRES_USER: ...
-      POSTGRES_PASSWORD: ...
-      POSTGRES_DB: ...
+      POSTGRES_USER: ${POSTGRES_USER:-poloperator}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB:-poloperator}
     volumes:
       - pgdata:/var/lib/postgresql/data
 volumes:
