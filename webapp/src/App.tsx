@@ -110,13 +110,13 @@ function App() {
         ) : null}
 
         {!summary ? (
-          <p className="text-sm text-neutral-500">
+          <p className="text-sm text-muted">
             {listLoading
               ? 'Chargement des tournois…'
               : 'Choisis un tournoi dans la liste pour voir les arbitres à venir.'}
           </p>
         ) : selected.loading ? (
-          <p className="text-sm text-neutral-400">
+          <p className="text-sm text-muted">
             Chargement de « {summary.name} »…
           </p>
         ) : selected.error ? (
@@ -126,10 +126,10 @@ function App() {
         ) : selected.data ? (
           <div className="space-y-10">
             <div>
-              <h2 className="text-lg font-semibold text-neutral-100">
+              <h2 className="text-lg font-black tracking-tight text-ink">
                 {summary.name}
               </h2>
-              <p className="text-sm text-neutral-400">
+              <p className="text-sm text-muted">
                 {formatTournamentDates(summary)} ·{' '}
                 {selected.data.teams.length} équipes ·{' '}
                 {selected.data.upcomingMatches.length} match à venir
