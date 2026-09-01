@@ -55,11 +55,11 @@ export function RefreshButton({
       type="button"
       onClick={handleClick}
       disabled={loading}
-      className="relative overflow-hidden rounded-lg border border-neutral-700 px-3 py-2 text-sm text-neutral-300 hover:border-teal-500 hover:text-teal-400 disabled:opacity-60"
+      className="relative overflow-hidden rounded-[10px] border-2 border-ink bg-surface px-3 py-2 text-xs font-bold uppercase tracking-[0.1em] text-ink shadow-kit hover:bg-teal disabled:opacity-60"
     >
       <span
         aria-hidden
-        className="absolute inset-y-0 left-0 bg-teal-500/25"
+        className="absolute inset-y-0 left-0 bg-teal"
         style={{ width: `${progress * 100}%` }}
       />
       <span className="relative">
