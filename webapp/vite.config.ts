@@ -9,5 +9,12 @@ export default defineConfig({
     host: true,
     port: 3003,
     strictPort: true,
+    proxy: {
+      '/poloperator': {
+        target: 'https://poloperator.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/poloperator/, ''),
+      },
+    },
   },
 })
