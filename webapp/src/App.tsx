@@ -68,14 +68,14 @@ function App() {
   const summary = selected.summary
 
   return (
-    <main className="min-h-svh bg-neutral-950 text-neutral-50">
+    <main className="min-h-svh bg-bg font-sans text-ink">
       <div className="mx-auto max-w-3xl px-6 py-8">
         <header className="mb-8 flex flex-wrap items-center justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-semibold tracking-tight">
+            <h1 className="text-2xl font-black tracking-tight">
               poloperator-reffing
             </h1>
-            <p className="text-sm text-neutral-400">
+            <p className="text-sm text-muted">
               Anticipe les équipes qui doivent arbitrer, au compteur équilibré.
             </p>
           </div>
@@ -96,7 +96,7 @@ function App() {
               type="button"
               onClick={() => setSettingsOpen(true)}
               aria-label="Configuration"
-              className="rounded-lg border border-neutral-700 px-3 py-2 text-sm text-neutral-300 hover:border-teal-500 hover:text-teal-400"
+              className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-ink bg-surface text-sm text-ink hover:bg-teal"
             >
               ⚙
             </button>
@@ -158,7 +158,7 @@ function App() {
 
 function ErrorBanner({ message }: { message: string }) {
   return (
-    <p className="mb-6 rounded-lg border border-red-900/60 bg-red-950/40 px-4 py-3 text-sm text-red-300">
+    <p className="mb-6 rounded-lg border-2 border-ink bg-pink px-4 py-3 text-sm font-medium text-ink">
       {message}
     </p>
   )
