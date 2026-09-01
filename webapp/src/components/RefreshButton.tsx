@@ -59,7 +59,7 @@ export function RefreshButton({
     >
       <span
         aria-hidden
-        className="absolute inset-y-0 left-0 bg-teal"
+        className="absolute inset-y-0 left-0 bg-teal/60"
         style={{ width: `${progress * 100}%` }}
       />
       <span className="relative">
