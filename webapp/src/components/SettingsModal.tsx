@@ -28,22 +28,22 @@ export function SettingsModal({ open, onClose, settings }: SettingsModalProps) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-ink/60 p-4"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-label="Configuration"
     >
       <div
-        className="w-full max-w-sm rounded-xl border border-neutral-800 bg-neutral-900 p-6"
+        className="w-full max-w-sm rounded-[14px] border-2 border-ink bg-surface p-6 shadow-kit"
         onClick={(e) => e.stopPropagation()}
       >
-        <h2 className="mb-5 text-lg font-semibold text-neutral-100">
+        <h2 className="mb-5 text-lg font-black tracking-tight text-ink">
           Configuration
         </h2>
 
         <label className="flex items-center justify-between gap-4">
-          <span className="text-sm text-neutral-200">
+          <span className="text-sm text-ink">
             Afficher tournoi en cours
           </span>
           <input
@@ -52,12 +52,12 @@ export function SettingsModal({ open, onClose, settings }: SettingsModalProps) {
             onChange={(e) =>
               dispatch(updateSettings({ showLiveOnly: e.target.checked }))
             }
-            className="h-4 w-4 accent-teal-500"
+            className="h-4 w-4 accent-teal"
           />
         </label>
 
         <div className="mt-5 flex items-center justify-between gap-4">
-          <span className="text-sm text-neutral-200">
+          <span className="text-sm text-ink">
             Nombre d'équipes suggérées
           </span>
           <div className="flex items-center gap-2">
@@ -74,11 +74,11 @@ export function SettingsModal({ open, onClose, settings }: SettingsModalProps) {
                   }),
                 )
               }
-              className="h-8 w-8 rounded border border-neutral-700 text-neutral-300 hover:border-teal-500 hover:text-teal-400"
+              className="h-8 w-8 rounded-[10px] border-2 border-ink bg-surface text-ink shadow-kit hover:bg-teal"
             >
               −
             </button>
-            <span className="w-8 text-center text-sm text-neutral-100">
+            <span className="w-8 text-center text-sm font-bold text-ink">
               {settings.suggestedTeamCount}
             </span>
             <button
@@ -94,14 +94,14 @@ export function SettingsModal({ open, onClose, settings }: SettingsModalProps) {
                   }),
                 )
               }
-              className="h-8 w-8 rounded border border-neutral-700 text-neutral-300 hover:border-teal-500 hover:text-teal-400"
+              className="h-8 w-8 rounded-[10px] border-2 border-ink bg-surface text-ink shadow-kit hover:bg-teal"
             >
               +
             </button>
           </div>
         </div>
 
-        <label className="mt-5 block text-sm text-neutral-200">
+        <label className="mt-5 block text-sm text-ink">
           Continent
           <select
             value={settings.continent}
@@ -112,7 +112,7 @@ export function SettingsModal({ open, onClose, settings }: SettingsModalProps) {
                 }),
               )
             }
-            className="mt-1 w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-100 outline-none focus:border-teal-500"
+            className="mt-1 w-full rounded-lg border-2 border-ink bg-surface px-3 py-2 text-sm text-ink outline-none focus:border-teal"
           >
             <option value="ALL">Tous les continents</option>
             {CONTINENTS.map(([code, label]) => (
@@ -127,7 +127,7 @@ export function SettingsModal({ open, onClose, settings }: SettingsModalProps) {
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg border border-neutral-700 px-4 py-2 text-sm text-neutral-300 hover:border-teal-500 hover:text-teal-400"
+            className="rounded-[10px] border-2 border-ink bg-surface px-4 py-2 text-xs font-bold uppercase tracking-[0.1em] text-ink shadow-kit hover:bg-teal"
           >
             Fermer
           </button>
