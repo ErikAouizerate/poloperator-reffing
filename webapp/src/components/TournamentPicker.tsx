@@ -33,9 +33,9 @@ export function TournamentPicker({
 
   return (
     <div className="flex items-center gap-3">
-      <label className="text-sm text-neutral-400">Tournoi</label>
+      <label className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted">Tournoi</label>
       <select
-        className="min-w-64 rounded-lg border border-neutral-700 bg-neutral-900 px-3 py-2 text-sm text-neutral-100 outline-none focus:border-teal-500"
+        className="min-w-64 rounded-lg border-2 border-ink bg-surface px-3 py-2 text-sm text-ink outline-none focus:border-teal"
         value={selectedSlug ?? ''}
         onChange={(e) => {
           const summary = sorted.find((t) => t.slug === e.target.value)
@@ -54,7 +54,7 @@ export function TournamentPicker({
         ))}
       </select>
       {tournaments !== null && tournaments.length === 0 ? (
-        <p className="text-xs text-neutral-500">
+        <p className="text-xs text-muted">
           Aucun tournoi ne correspond aux filtres.
         </p>
       ) : null}
