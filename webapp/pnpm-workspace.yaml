@@ -1,0 +1,9 @@
+# Supply-chain hardening (pnpm policy — scope: webapp)
+minimumReleaseAge: 10080
+minimumReleaseAgeStrict: true
+blockExoticSubdeps: true
+strictDepBuilds: true
+
+# Allow build scripts only for vetted packages (run `pnpm approve-builds` to add)
+allowBuilds:
+  esbuild: true

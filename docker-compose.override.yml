@@ -1,0 +1,15 @@
+# Dev-only additions — auto-merged on top of docker-compose.yml by
+# `docker compose up` with no -f flags. Never applied on the Dokploy host.
+services:
+  app:
+    build:
+      context: ./webapp
+      target: dev
+    command: pnpm dev
+    volumes:
+      - ./webapp:/workspace
+      - /workspace/node_modules
+    ports:
+      - "3003:3003"
+    environment:
+      NODE_ENV: development

@@ -1,0 +1,5 @@
+# Dev-only bind-mount targets for named compose volumes (see deploy policy)
+volumes/
+
+node_modules/
+dist/
