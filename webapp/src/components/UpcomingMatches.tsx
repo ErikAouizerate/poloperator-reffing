@@ -9,6 +9,12 @@ interface UpcomingMatchesProps {
 
 const TIER_LABEL: Record<number, string> = { 1: 'T+2', 2: 'proche', 3: 'repli' }
 
+const TIER_BG: Record<number, string> = {
+  1: 'bg-teal',
+  2: 'bg-yellow',
+  3: 'bg-orange',
+}
+
 function formatMatchDate(iso: string): string {
   const date = new Date(iso)
   return date.toLocaleDateString('fr-FR', {
@@ -33,7 +39,7 @@ export function UpcomingMatches({
 }: UpcomingMatchesProps) {
   if (matches.length === 0) {
     return (
-      <p className="text-sm text-neutral-500">
+      <p className="text-sm text-muted">
         Aucun match à venir — tournoi terminé ou planning indisponible.
       </p>
     )
@@ -43,47 +49,47 @@ export function UpcomingMatches({
 
   return (
     <section>
-      <h2 className="mb-3 text-lg font-semibold text-neutral-100">
+      <h2 className="mb-3 text-lg font-black tracking-tight text-ink">
         Matchs à venir & arbitres suggérés
       </h2>
       <ul className="space-y-3">
         {sorted.map((match) => (
           <li
             key={match.id}
-            className="rounded-xl border border-neutral-800 bg-neutral-900/60 p-4"
+            className="rounded-[14px] border-2 border-ink bg-surface p-4 shadow-kit"
           >
-            <div className="mb-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-neutral-400">
+            <div className="mb-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted">
               <span>{formatMatchDate(match.startAt)}</span>
-              <span className="font-medium text-neutral-300">
+              <span className="font-medium text-ink">
                 {formatMatchTime(match.startAt)}
               </span>
               {match.courtName ? (
-                <span className="rounded bg-neutral-800 px-2 py-0.5">
+                <span className="rounded-md border-2 border-ink bg-chip px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.08em] text-ink">
                   {match.courtName}
                 </span>
               ) : null}
             </div>
-            <div className="flex items-center gap-2 text-sm font-medium text-neutral-100">
+            <div className="flex items-center gap-2 text-sm font-medium text-ink">
               <span>{teamNameById(match.teamAId)}</span>
-              <span className="text-neutral-500">vs</span>
+              <span className="text-muted">vs</span>
               <span>{teamNameById(match.teamBId)}</span>
             </div>
             <div className="mt-3">
-              <p className="mb-1 text-xs text-neutral-500">Arbitres suggérés</p>
+              <p className="mb-1 text-[11px] uppercase tracking-[0.14em] text-muted">Arbitres suggérés</p>
               <ol className="space-y-1">
                 {(suggestionsByMatch[match.id] ?? []).slice(0, suggestionLimit).map((s, i) => (
                   <li
                     key={s.teamId}
                     className="flex items-center gap-2 text-sm"
                   >
-                    <span className="w-5 text-center text-xs text-neutral-500">
+                    <span className="w-5 text-center text-xs text-muted">
                       {i + 1}.
                     </span>
-                    <span className="text-neutral-200">{s.teamName}</span>
-                    <span className="rounded bg-neutral-800 px-1.5 py-0.5 text-[10px] text-neutral-400">
+                    <span className="text-ink">{s.teamName}</span>
+                    <span className={`rounded-md border-2 border-ink px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-[0.08em] text-ink ${TIER_BG[s.tier]}`}>
                       {TIER_LABEL[s.tier]}
                     </span>
-                    <span className="text-xs text-neutral-500">
+                    <span className="text-xs text-muted">
                       {s.refereeCount} arbitrage{s.refereeCount > 1 ? 's' : ''}
                     </span>
                   </li>
