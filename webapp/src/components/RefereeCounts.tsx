@@ -9,22 +9,22 @@ export function RefereeCounts({ counts }: RefereeCountsProps) {
 
   return (
     <section>
-      <h2 className="mb-3 text-lg font-semibold text-neutral-100">
+      <h2 className="mb-3 text-lg font-black tracking-tight text-ink">
         Compteurs d'arbitrage
       </h2>
       <ul className="space-y-1.5">
         {counts.map((entry) => (
           <li key={entry.teamId} className="flex items-center gap-3 text-sm">
-            <span className="w-40 truncate text-neutral-200">
+            <span className="w-40 truncate text-ink">
               {entry.teamName}
             </span>
-            <div className="h-2.5 flex-1 overflow-hidden rounded-full bg-neutral-800">
+            <div className="h-2.5 flex-1 overflow-hidden rounded-full bg-chip">
               <div
-                className="h-full rounded-full bg-teal-500/70"
+                className="h-full rounded-full bg-teal"
                 style={{ width: `${(entry.count / max) * 100}%` }}
               />
             </div>
-            <span className="w-8 text-right tabular-nums text-neutral-400">
+            <span className="w-8 text-right tabular-nums text-muted">
               {entry.count}
             </span>
           </li>
