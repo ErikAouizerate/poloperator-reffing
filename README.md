@@ -26,10 +26,12 @@ This project uses a devcontainer + Docker Compose setup.
 ```sh
 cd webapp
 pnpm install
-pnpm dev        # http://localhost:3000
+pnpm dev        # http://localhost:3003 (Vite, strictPort)
+pnpm test       # vitest — prediction engine, RSC parser, replay validation
 pnpm run build
 pnpm run lint
 ```
 
 Async data flows follow the `*_REQUESTED` → `*_START` / `*_SUCCESS` / `*_ERROR`
-action pattern via `src/store/apiMiddleware.ts`.
+action pattern via `src/store/apiMiddleware.ts`. See the design doc at
+`docs/superpowers/specs/2026-09-01-poloperator-reffing-design.md`.

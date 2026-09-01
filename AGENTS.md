@@ -8,9 +8,10 @@ Communication with the user is in French; all code, documentation, and tests are
 ## Commands (run inside `webapp/`)
 - `pnpm install` — lockfile is `pnpm-lock.yaml`; keep it in sync (Docker builds with `--frozen-lockfile`).
 - `pnpm dev` — Vite dev server, **port 3003** (`strictPort`; README's "localhost:3000" is stale).
+- `pnpm test` — **vitest** (prediction engine, RSC parser, replay validation). Vitest 4.1, `vitest.config.ts`, node environment.
 - `pnpm run build` — `tsc -b && vite build`: **typecheck is part of build**.
 - `pnpm run lint` — **oxlint** (not ESLint); config `.oxlintrc.json`.
-- No test framework or test script is configured.
+- No other test framework.
 
 ## Architecture & conventions
 - Redux is **classic**: `combineReducers` in `src/store/rootReducer.ts`, RTK used only for `configureStore` (`src/store/store.ts`, thunks disabled). Do not introduce `createSlice`.
