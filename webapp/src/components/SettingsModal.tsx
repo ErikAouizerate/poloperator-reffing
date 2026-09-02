@@ -123,6 +123,22 @@ export function SettingsModal({ open, onClose, settings }: SettingsModalProps) {
           </select>
         </label>
 
+        <label className="mt-5 block text-sm text-ink">
+          Temps de rafraîchissement (secondes)
+          <input
+            type="number"
+            min={15}
+            max={3600}
+            value={settings.refreshIntervalSeconds}
+            onChange={(e) => {
+              const value = e.target.value === '' ? 15 : Number(e.target.value)
+              if (!Number.isFinite(value)) return
+              dispatch(updateSettings({ refreshIntervalSeconds: value }))
+            }}
+            className="mt-1 w-full rounded-lg border-2 border-ink bg-surface px-3 py-2 text-sm text-ink outline-none focus:border-teal"
+          />
+        </label>
+
         <div className="mt-6 flex justify-end">
           <button
             type="button"
