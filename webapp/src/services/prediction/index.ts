@@ -159,6 +159,7 @@ export function suggestForSlot(
         tier,
         refereeCount: counts.get(team.id) ?? 0,
         nextMatchSlotIndex,
+        lastPlayedSlotIndex: null,
         lastRefSlotIndex: lastRef.get(team.id) ?? null,
       }
     })
@@ -187,6 +188,7 @@ export function refereeCounts(
       return {
         teamId,
         teamName: team?.name ?? teamId,
+        playerNames: [],
         count,
       }
     })

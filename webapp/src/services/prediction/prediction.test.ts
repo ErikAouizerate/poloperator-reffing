@@ -126,6 +126,7 @@ describe('suggestForSlot (synthetic, rule correctness)', () => {
     id: name,
     name,
     playerIds: players(name).map((p) => p.playerId),
+    playerNames: [],
   }))
 
   const matches: Match[] = [

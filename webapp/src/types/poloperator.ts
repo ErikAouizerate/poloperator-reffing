@@ -28,6 +28,7 @@ export interface Team {
   id: string
   name: string
   playerIds: string[]
+  playerNames: string[]
 }
 
 export interface Match {
@@ -56,12 +57,14 @@ export interface RefereeSuggestion {
   tier: 1 | 2 | 3
   refereeCount: number
   nextMatchSlotIndex: number | null
+  lastPlayedSlotIndex: number | null
   lastRefSlotIndex: number | null
 }
 
 export interface RefereeCountEntry {
   teamId: string
   teamName: string
+  playerNames: string[]
   count: number
 }
 

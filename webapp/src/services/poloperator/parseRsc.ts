@@ -128,6 +128,7 @@ function normalizeTeam(obj: RawObject): Team {
     id: String(obj.id),
     name: String(obj.name).trim(),
     playerIds,
+    playerNames: [],
   }
 }
 
