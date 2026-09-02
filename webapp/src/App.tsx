@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import type { TournamentSummary } from './types/poloperator'
 import { useAppDispatch, useAppSelector } from './hooks'
 import {
@@ -10,7 +10,11 @@ import { UpcomingMatches } from './components/UpcomingMatches'
 import { RefereeCounts } from './components/RefereeCounts'
 import { RefreshButton } from './components/RefreshButton'
 import { SettingsModal } from './components/SettingsModal'
-import { filterTournaments } from './services/poloperator/filter'
+import { resolvePickerList } from './services/poloperator/filter'
+import {
+  parseSlugFromSearch,
+  syncTournamentSlug,
+} from './utils/urlTournament'
 
 function formatTournamentDates(summary: TournamentSummary): string {
   const parts: string[] = []
@@ -37,14 +41,38 @@ function App() {
   const settings = useAppSelector((s) => s.settings)
   const [settingsOpen, setSettingsOpen] = useState(false)
 
-  const filteredList = useMemo(
-    () => (list ? filterTournaments(list, settings) : null),
-    [list, settings],
+  const summary = selected.summary
+
+  const [urlSlug] = useState(() =>
+    typeof window === 'undefined'
+      ? null
+      : parseSlugFromSearch(window.location.search),
+  )
+  const urlHandledRef = useRef(false)
+
+  const selectedSlug = useMemo(() => {
+    if (summary?.slug) return summary.slug
+    if (!urlSlug || !list) return null
+    return list.some((t) => t.slug === urlSlug) ? urlSlug : null
+  }, [summary, urlSlug, list])
+
+  const pickerList = useMemo(
+    () => resolvePickerList(list, settings, selectedSlug),
+    [list, settings, selectedSlug],
   )
 
   useEffect(() => {
     dispatch(loadTournamentsRequested())
   }, [dispatch])
+
+  useEffect(() => {
+    if (urlHandledRef.current) return
+    if (!urlSlug || !list || selected.loading || selected.summary) return
+    const summary = list.find((t) => t.slug === urlSlug)
+    urlHandledRef.current = true
+    if (!summary) return
+    dispatch(loadTournamentRequested({ slug: urlSlug, summary }))
+  }, [urlSlug, list, selected.loading, selected.summary, dispatch])
 
   const teamNameById = useMemo(() => {
     const map = new Map<string, string>()
@@ -65,7 +93,10 @@ function App() {
     }
   }
 
-  const summary = selected.summary
+  const handleSelect = (t: TournamentSummary) => {
+    dispatch(loadTournamentRequested({ slug: t.slug, summary: t }))
+    syncTournamentSlug(t.slug)
+  }
 
   return (
     <main className="min-h-svh bg-bg font-sans text-ink">
@@ -81,12 +112,10 @@ function App() {
           </div>
           <div className="flex flex-wrap items-center gap-3">
             <TournamentPicker
-              tournaments={filteredList}
+              tournaments={pickerList}
               loading={listLoading}
-              selectedSlug={summary?.slug ?? null}
-              onSelect={(t) =>
-                dispatch(loadTournamentRequested({ slug: t.slug, summary: t }))
-              }
+              selectedSlug={selectedSlug}
+              onSelect={handleSelect}
             />
             <RefreshButton
               loading={listLoading || selected.loading}
