@@ -1,54 +1,54 @@
-import { useEffect, useRef, useState } from 'react'
-import { startCountdown } from '../utils/countdown'
+import { useEffect, useRef, useState } from "react";
+import { startCountdown } from "../utils/countdown";
 
 interface RefreshButtonProps {
-  loading: boolean
-  onRefresh: () => void
-  intervalMs?: number
+  loading: boolean;
+  onRefresh: () => void;
+  intervalMs?: number;
 }
 
-const TICK_MS = 250
+const TICK_MS = 250;
 
 export function RefreshButton({
   loading,
   onRefresh,
-  intervalMs = 60_000,
+  intervalMs = 240_000,
 }: RefreshButtonProps) {
-  const [remainingMs, setRemainingMs] = useState(intervalMs)
-  const stopRef = useRef<(() => void) | null>(null)
-  const onRefreshRef = useRef(onRefresh)
+  const [remainingMs, setRemainingMs] = useState(intervalMs);
+  const stopRef = useRef<(() => void) | null>(null);
+  const onRefreshRef = useRef(onRefresh);
 
   useEffect(() => {
-    onRefreshRef.current = onRefresh
-  }, [onRefresh])
+    onRefreshRef.current = onRefresh;
+  }, [onRefresh]);
 
   useEffect(() => {
-    stopRef.current?.()
+    stopRef.current?.();
     const stop = startCountdown({
       durationMs: intervalMs,
       intervalMs: TICK_MS,
       onTick: setRemainingMs,
       onComplete: () => onRefreshRef.current(),
-    })
-    stopRef.current = stop
-    return () => stop()
-  }, [intervalMs])
+    });
+    stopRef.current = stop;
+    return () => stop();
+  }, [intervalMs]);
 
-  const progress = 1 - remainingMs / intervalMs
-  const seconds = Math.ceil(remainingMs / 1000)
+  const progress = 1 - remainingMs / intervalMs;
+  const seconds = Math.ceil(remainingMs / 1000);
 
   const handleClick = () => {
-    if (loading) return
-    onRefreshRef.current()
-    stopRef.current?.()
-    setRemainingMs(intervalMs)
+    if (loading) return;
+    onRefreshRef.current();
+    stopRef.current?.();
+    setRemainingMs(intervalMs);
     stopRef.current = startCountdown({
       durationMs: intervalMs,
       intervalMs: TICK_MS,
       onTick: setRemainingMs,
       onComplete: () => onRefreshRef.current(),
-    })
-  }
+    });
+  };
 
   return (
     <button
@@ -64,11 +64,11 @@ export function RefreshButton({
       />
       <span className="relative">
         {loading ? (
-          'Rafraîchir…'
+          "Rafraîchir…"
         ) : (
           <>
-            Rafraîchir ·{' '}
-            <span className="inline-block w-[2ch] text-left tabular-nums tracking-[0]">
+            Rafraîchir ·{" "}
+            <span className="inline-block w-[4ch] text-left tabular-nums tracking-[0]">
               {seconds}
             </span>
             s
@@ -76,5 +76,5 @@ export function RefreshButton({
         )}
       </span>
     </button>
-  )
+  );
 }
