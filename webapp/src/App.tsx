@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { TournamentSummary } from "./types/poloperator";
-import { useAppDispatch, useAppSelector } from "./hooks";
+import { useAppDispatch, useAppSelector, useAutoRefresh } from "./hooks";
 import {
   loadTournamentRequested,
   loadTournamentsRequested,
@@ -115,6 +115,12 @@ function App() {
     }
   };
 
+  const refreshIntervalMs = settings.refreshIntervalSeconds * 1000;
+  const { remainingMs, restart } = useAutoRefresh({
+    intervalMs: refreshIntervalMs,
+    onRefresh: handleRefresh,
+  });
+
   const handleSelect = (t: TournamentSummary) => {
     dispatch(loadTournamentRequested({ slug: t.slug, summary: t }));
     syncTournamentSlug(t.slug);
@@ -123,7 +129,7 @@ function App() {
   return (
     <main className="min-h-svh bg-bg font-sans text-ink">
       <header className="border-b-2 border-ink bg-surface">
-        <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 px-6 py-3">
+        <div className="flex items-center justify-between gap-4 px-6 py-3 md:grid md:grid-cols-[1fr_auto_1fr]">
           <div className="flex items-center gap-3">
             <span className="flex items-center gap-2 rounded-[10px] border-2 border-ink px-3 py-1.5 shadow-kit">
               <span
@@ -140,9 +146,12 @@ function App() {
           </div>
           <RefreshButton
             loading={listLoading || selected.loading}
-            onRefresh={handleRefresh}
+            remainingMs={remainingMs}
+            intervalMs={refreshIntervalMs}
+            onClick={restart}
+            className="hidden md:block"
           />
-          <div className="flex items-center justify-self-end gap-2">
+          <div className="flex items-center gap-2 md:justify-self-end">
             <button
               type="button"
               onClick={handleShare}
@@ -172,6 +181,15 @@ function App() {
             selectedSlug={selectedSlug}
             onSelect={handleSelect}
           />
+          <div className="mt-3 md:hidden">
+            <RefreshButton
+              loading={listLoading || selected.loading}
+              remainingMs={remainingMs}
+              intervalMs={refreshIntervalMs}
+              onClick={restart}
+              className="w-full"
+            />
+          </div>
         </div>
 
         {listError ? (
