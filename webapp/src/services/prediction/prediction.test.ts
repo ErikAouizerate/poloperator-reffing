@@ -23,6 +23,10 @@ interface FixtureData {
 
 const montpellier = fixture('montpellier-data.json') as FixtureData
 
+function teamIdOf(model: ReturnType<typeof buildModel>, playerId: string): string {
+  return model.playerIdToTeam.get(playerId) ?? ''
+}
+
 describe('slotting (real data)', () => {
   const slots = buildSlots(montpellier.matches)
 
@@ -52,15 +56,17 @@ describe('referee matching (real data)', () => {
 
   it('resolves every recorded referee to a team', () => {
     expect(model.refereeTeamIdByMatchId.size).toBe(114)
-    for (const teamId of model.refereeTeamIdByMatchId.values()) {
-      expect(model.teams.some((t) => t.id === teamId)).toBe(true)
+    for (const teamIds of model.refereeTeamIdByMatchId.values()) {
+      for (const teamId of teamIds) {
+        expect(model.teams.some((t) => t.id === teamId)).toBe(true)
+      }
     }
   })
 
   it('matches Manu (ntods) to Paranoïd', () => {
     const paranoia = montpellier.teams.find((t) => t.name === 'Paranoïd')!
     const manuMatch = montpellier.matches.find((m) => m.refereeName === 'Manu (ntods)')!
-    expect(model.refereeTeamIdByMatchId.get(manuMatch.id)).toBe(paranoia.id)
+    expect(model.refereeTeamIdByMatchId.get(manuMatch.id)).toContain(paranoia.id)
   })
 })
 
@@ -68,12 +74,22 @@ describe('refereeCounts (real data)', () => {
   const model = buildModel(montpellier.teams, buildSlots(montpellier.matches))
   const counts = refereeCounts(model)
 
+  it('counts a distinct co-referee team as an extra arbitrage', () => {
+    const diffTeamMatch = montpellier.matches.find(
+      (m) =>
+        m.refereePlayerId &&
+        m.coRefereePlayerId &&
+        teamIdOf(model, m.refereePlayerId) !== teamIdOf(model, m.coRefereePlayerId),
+    )
+    expect(diffTeamMatch).toBeDefined()
+  })
+
   it('matches the recorded distribution', () => {
     const byName = Object.fromEntries(counts.map((c) => [c.teamName, c.count]))
-    expect(byName['Nicorette']).toBe(18)
-    expect(byName['FourMula']).toBe(1)
-    expect(byName['MBRP Pâtes bolo']).toBe(1)
-    expect(counts.reduce((n, c) => n + c.count, 0)).toBe(114)
+    expect(byName['Nicorette']).toBe(24)
+    expect(byName['FourMula']).toBe(4)
+    expect(byName['MBRP Pâtes bolo']).toBe(3)
+    expect(counts.reduce((n, c) => n + c.count, 0)).toBe(147)
   })
 
   it('includes every team, sorted by count desc', () => {

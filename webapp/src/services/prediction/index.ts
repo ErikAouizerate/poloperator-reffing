@@ -26,8 +26,8 @@ export interface TournamentModel {
   teams: Team[]
   slots: Slot[]
   playerIdToTeam: Map<string, string>
-  /** matchId → teamId of the recorded referee (finished matches only). */
-  refereeTeamIdByMatchId: Map<string, string>
+  /** matchId → teamIds of the recorded referees (finished matches only). */
+  refereeTeamIdByMatchId: Map<string, string[]>
   matchSlotIndex: Map<string, number>
 }
 
@@ -39,19 +39,28 @@ export function buildModel(teams: Team[], slots: Slot[]): TournamentModel {
     }
   }
 
-  const refereeTeamIdByMatchId = new Map<string, string>()
+  const refereeTeamIdByMatchId = new Map<string, string[]>()
   const matchSlotIndex = new Map<string, number>()
   for (const slot of slots) {
     for (const match of slot.matches) {
       matchSlotIndex.set(match.id, slot.index)
       if (
         match.status === 'FINISHED' &&
-        match.refereePlayerId &&
         match.teamAId &&
         match.teamBId
       ) {
-        const teamId = playerIdToTeam.get(match.refereePlayerId)
-        if (teamId) refereeTeamIdByMatchId.set(match.id, teamId)
+        const teamsRef = new Set<string>()
+        const refTeam = match.refereePlayerId
+          ? playerIdToTeam.get(match.refereePlayerId)
+          : undefined
+        const coTeam = match.coRefereePlayerId
+          ? playerIdToTeam.get(match.coRefereePlayerId)
+          : undefined
+        if (refTeam) teamsRef.add(refTeam)
+        if (coTeam) teamsRef.add(coTeam)
+        if (teamsRef.size > 0) {
+          refereeTeamIdByMatchId.set(match.id, [...teamsRef])
+        }
       }
     }
   }
@@ -68,8 +77,8 @@ function historyStats(
   for (const slot of model.slots) {
     if (slot.index >= historyUpTo) continue
     for (const match of slot.matches) {
-      const teamId = model.refereeTeamIdByMatchId.get(match.id)
-      if (teamId) {
+      const teamIds = model.refereeTeamIdByMatchId.get(match.id) ?? []
+      for (const teamId of teamIds) {
         counts.set(teamId, (counts.get(teamId) ?? 0) + 1)
         lastRef.set(teamId, slot.index)
       }

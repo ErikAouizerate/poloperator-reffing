@@ -37,13 +37,15 @@ describe('replay validation (real data)', () => {
   const simulation = simulate(model, slots.length)
   const actualStdDev = stdDev(
     Object.values(
-      [...model.refereeTeamIdByMatchId.values()].reduce(
-        (acc, teamId) => {
-          acc[teamId] = (acc[teamId] ?? 0) + 1
-          return acc
-        },
-        {} as Record<string, number>,
-      ),
+      [...model.refereeTeamIdByMatchId.values()]
+        .flat()
+        .reduce(
+          (acc, teamId) => {
+            acc[teamId] = (acc[teamId] ?? 0) + 1
+            return acc
+          },
+          {} as Record<string, number>,
+        ),
     ),
   )
 
@@ -94,10 +96,10 @@ function runReplay(model: ReturnType<typeof buildModel>, slotCount: number) {
     if (distinct !== usedTeams.size) badSlots += 1
     for (const [matchId, list] of suggestionsByMatch) {
       const actual = model.refereeTeamIdByMatchId.get(matchId)
-      if (!actual || list.length === 0) continue
+      if (!actual || actual.length === 0 || list.length === 0) continue
       total += 1
-      if (list[0].teamId === actual) top1Hits += 1
-      if (list.some((s) => s.teamId === actual)) inTop3 += 1
+      if (list[0].teamId === actual[0]) top1Hits += 1
+      if (list.some((s) => actual.includes(s.teamId))) inTop3 += 1
     }
   }
   return {

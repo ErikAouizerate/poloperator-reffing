@@ -203,7 +203,9 @@
    "scoreA": 1,
    "scoreB": 6,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtckhdys025am1lc05lj8ngb",
@@ -216,7 +218,9 @@
    "scoreA": 0,
    "scoreB": 7,
    "refereePlayerId": "cmnj80tay0000v15ym78x9e4x",
-   "refereeName": "Manu (ntods)"
+   "refereeName": "Manu (ntods)",
+   "coRefereePlayerId": "cmohc4zxe00bixb9pp85we3l9",
+   "coRefereeName": "Yann Pivot"
   },
   {
    "id": "cmtckhdyl0256m1lc0tcqqpym",
@@ -229,7 +233,9 @@
    "scoreA": 1,
    "scoreB": 2,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtckhdyv025cm1lcske6udv5",
@@ -242,7 +248,9 @@
    "scoreA": 5,
    "scoreB": 5,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtckhdyx025em1lc7mq69cqf",
@@ -255,7 +263,9 @@
    "scoreA": 4,
    "scoreB": 0,
    "refereePlayerId": "cmnr1rspk0006w1d26z92phiy",
-   "refereeName": "Ella"
+   "refereeName": "Ella",
+   "coRefereePlayerId": "cmnd2ceo2000elkucx92ligi2",
+   "coRefereeName": "Caro Paulette"
   },
   {
    "id": "cmtcm9v2f02a7m1lcfe9p0iqj",
@@ -268,7 +278,9 @@
    "scoreA": 2,
    "scoreB": 4,
    "refereePlayerId": "cmqm76gfd00m412qney7aaz8r",
-   "refereeName": "Gregory Bouet -Greygooz-"
+   "refereeName": "Gregory Bouet -Greygooz-",
+   "coRefereePlayerId": "cmo91m5sr0008vy1j6o8aqs8q",
+   "coRefereeName": "Benoît Bop’s"
   },
   {
    "id": "cmtcm9v2i02a9m1lc37nxqcf9",
@@ -281,7 +293,9 @@
    "scoreA": 3,
    "scoreB": 4,
    "refereePlayerId": "cmnj80tay0000v15ym78x9e4x",
-   "refereeName": "Manu (ntods)"
+   "refereeName": "Manu (ntods)",
+   "coRefereePlayerId": "cmohc4zxe00bixb9pp85we3l9",
+   "coRefereeName": "Yann Pivot"
   },
   {
    "id": "cmtcm9v2k02abm1lcw9qdtd9e",
@@ -294,7 +308,9 @@
    "scoreA": 1,
    "scoreB": 2,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtcm9v2n02afm1lcqi2qqxgv",
@@ -307,7 +323,9 @@
    "scoreA": 6,
    "scoreB": 0,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtcm9v2l02adm1lci41hi61l",
@@ -320,7 +338,9 @@
    "scoreA": 8,
    "scoreB": 1,
    "refereePlayerId": "cmqm76gfd00m412qney7aaz8r",
-   "refereeName": "Gregory Bouet -Greygooz-"
+   "refereeName": "Gregory Bouet -Greygooz-",
+   "coRefereePlayerId": "cmo91m5sr0008vy1j6o8aqs8q",
+   "coRefereeName": "Benoît Bop’s"
   },
   {
    "id": "cmtco1t7z02dym1lcgy8sf740",
@@ -333,7 +353,9 @@
    "scoreA": 4,
    "scoreB": 1,
    "refereePlayerId": "cmn6ol3us0000p8usmyi89zxh",
-   "refereeName": "Étienne Braud"
+   "refereeName": "Étienne Braud",
+   "coRefereePlayerId": "cmrtrlh1m02zk57urevfrcwmn",
+   "coRefereeName": "Lanza Bertucci-Domergue"
   },
   {
    "id": "cmtco1t7w02dwm1lczo1fjlcm",
@@ -346,7 +368,9 @@
    "scoreA": 4,
    "scoreB": 1,
    "refereePlayerId": "cmnfw5olw000051xj4r44rp30",
-   "refereeName": "Capucine "
+   "refereeName": "Capucine ",
+   "coRefereePlayerId": "cmnnejpu90000wsycfoxzui7c",
+   "coRefereeName": "Donatien"
   },
   {
    "id": "cmtco1t7r02dum1lcekhbm2vo",
@@ -359,7 +383,9 @@
    "scoreA": 1,
    "scoreB": 1,
    "refereePlayerId": "cmqm76gfd00m412qney7aaz8r",
-   "refereeName": "Gregory Bouet -Greygooz-"
+   "refereeName": "Gregory Bouet -Greygooz-",
+   "coRefereePlayerId": "cmo91m5sr0008vy1j6o8aqs8q",
+   "coRefereeName": "Benoît Bop’s"
   },
   {
    "id": "cmtco1t8102e0m1lc5eem40w4",
@@ -372,7 +398,9 @@
    "scoreA": 3,
    "scoreB": 1,
    "refereePlayerId": "cmqm76gfd00m412qney7aaz8r",
-   "refereeName": "Gregory Bouet -Greygooz-"
+   "refereeName": "Gregory Bouet -Greygooz-",
+   "coRefereePlayerId": "cmo91m5sr0008vy1j6o8aqs8q",
+   "coRefereeName": "Benoît Bop’s"
   },
   {
    "id": "cmtco1t8402e2m1lcxfs7rboy",
@@ -385,7 +413,9 @@
    "scoreA": 2,
    "scoreB": 3,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtcpsuqw02kom1lchvyxqywt",
@@ -398,7 +428,9 @@
    "scoreA": 1,
    "scoreB": 1,
    "refereePlayerId": "cmnagk7qu0000g762ktffuxqa",
-   "refereeName": "Mathias Lou"
+   "refereeName": "Mathias Lou",
+   "coRefereePlayerId": "cmnj8nny4000ic6t1swolnrxi",
+   "coRefereeName": "Zoé"
   },
   {
    "id": "cmtcpsuqz02kqm1lcc1eyi67h",
@@ -411,7 +443,9 @@
    "scoreA": 7,
    "scoreB": 1,
    "refereePlayerId": "cmnqf3kjf0002v9gle20440po",
-   "refereeName": "Remile"
+   "refereeName": "Remile",
+   "coRefereePlayerId": "cmnxncapk0000thj2vtfvhq5k",
+   "coRefereeName": "Piernok"
   },
   {
    "id": "cmtcpsuqr02kmm1lcyqss75j9",
@@ -424,7 +458,9 @@
    "scoreA": 3,
    "scoreB": 3,
    "refereePlayerId": "cmqm76gfd00m412qney7aaz8r",
-   "refereeName": "Gregory Bouet -Greygooz-"
+   "refereeName": "Gregory Bouet -Greygooz-",
+   "coRefereePlayerId": "cmqqm5651023q12qnmcvp3bqj",
+   "coRefereeName": "Vicky"
   },
   {
    "id": "cmtcpsur202ksm1lc2vgzvo25",
@@ -437,7 +473,9 @@
    "scoreA": 5,
    "scoreB": 2,
    "refereePlayerId": "cmn9a68kc0000bc98tjwb6nde",
-   "refereeName": "Clément "
+   "refereeName": "Clément ",
+   "coRefereePlayerId": "cmnagbxvx00004xvg9673hopz",
+   "coRefereeName": "Jason en Velo"
   },
   {
    "id": "cmtcpsur402kum1lcer7pol3c",
@@ -450,7 +488,9 @@
    "scoreA": 4,
    "scoreB": 2,
    "refereePlayerId": "cmnagk7qu0000g762ktffuxqa",
-   "refereeName": "Mathias Lou"
+   "refereeName": "Mathias Lou",
+   "coRefereePlayerId": "cmnj8nny4000ic6t1swolnrxi",
+   "coRefereeName": "Zoé"
   },
   {
    "id": "cmtcrphvg02qtm1lc5gctf47c",
@@ -463,7 +503,9 @@
    "scoreA": 6,
    "scoreB": 2,
    "refereePlayerId": "cmnqe6f8400005jx75d07ecaf",
-   "refereeName": "Justine G"
+   "refereeName": "Justine G",
+   "coRefereePlayerId": "cmnagbxvx00004xvg9673hopz",
+   "coRefereeName": "Jason en Velo"
   },
   {
    "id": "cmtcrphvk02qvm1lcio3t9t6j",
@@ -476,7 +518,9 @@
    "scoreA": 3,
    "scoreB": 2,
    "refereePlayerId": "cmnxncapk0000thj2vtfvhq5k",
-   "refereeName": "Piernok "
+   "refereeName": "Piernok ",
+   "coRefereePlayerId": "cmokdy4rf005zlf8h88lw7jhl",
+   "coRefereeName": "Mac fly"
   },
   {
    "id": "cmtcrphvn02qxm1lc8sttl524",
@@ -489,7 +533,9 @@
    "scoreA": 3,
    "scoreB": 2,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtcrphvr02r1m1lcbwyil6s7",
@@ -502,7 +548,9 @@
    "scoreA": 3,
    "scoreB": 0,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtcrphvp02qzm1lcbfitwby8",
@@ -515,7 +563,9 @@
    "scoreA": 1,
    "scoreB": 2,
    "refereePlayerId": "cmn6bycht0006zorepbwp00jp",
-   "refereeName": "Florent Dubois (Woods)"
+   "refereeName": "Florent Dubois (Woods)",
+   "coRefereePlayerId": "cmnqe6f8400005jx75d07ecaf",
+   "coRefereeName": "Justine G"
   },
   {
    "id": "cmtctl9me02xhm1lcdnmtgch2",
@@ -528,7 +578,9 @@
    "scoreA": 1,
    "scoreB": 3,
    "refereePlayerId": "cmnqgalv5000c3bhybzsm1acu",
-   "refereeName": "Anaïs La Ducasse"
+   "refereeName": "Anaïs La Ducasse",
+   "coRefereePlayerId": "cmn73kkcj0000ng48jdva0qhl",
+   "coRefereeName": "Pab’s"
   },
   {
    "id": "cmtctl9mc02xfm1lc44w2jnxg",
@@ -541,7 +593,9 @@
    "scoreA": 6,
    "scoreB": 1,
    "refereePlayerId": "cmnr7q0d100004b908zkk207x",
-   "refereeName": "Alexis Cazeaux"
+   "refereeName": "Alexis Cazeaux",
+   "coRefereePlayerId": "cmnomyeav0002c6t6uhg9tcv2",
+   "coRefereeName": "Laura G"
   },
   {
    "id": "cmtctl9mg02xjm1lc1akrne4e",
@@ -554,7 +608,9 @@
    "scoreA": 4,
    "scoreB": 0,
    "refereePlayerId": "cmpiwgfp00021jgrya1kwyfmg",
-   "refereeName": "Mass"
+   "refereeName": "Mass",
+   "coRefereePlayerId": "cmq7wpzjg008hpbzveypewvt2",
+   "coRefereeName": "quimey"
   },
   {
    "id": "cmtctl9ml02xnm1lc1hjmuzuv",
@@ -567,7 +623,9 @@
    "scoreA": 0,
    "scoreB": 0,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtctl9mi02xlm1lcvcsc6slo",
@@ -580,7 +638,9 @@
    "scoreA": 3,
    "scoreB": 7,
    "refereePlayerId": "cmnr7q0d100004b908zkk207x",
-   "refereeName": "Alexis Cazeaux"
+   "refereeName": "Alexis Cazeaux",
+   "coRefereePlayerId": "cmnomyeav0002c6t6uhg9tcv2",
+   "coRefereeName": "Laura G"
   },
   {
    "id": "cmtcw2pie033nm1lcj6qc6496",
@@ -593,7 +653,9 @@
    "scoreA": 2,
    "scoreB": 4,
    "refereePlayerId": "cmnr7q0d100004b908zkk207x",
-   "refereeName": "Alexis Cazeaux"
+   "refereeName": "Alexis Cazeaux",
+   "coRefereePlayerId": "cmolx0sc500bmlf8h4a6w9tje",
+   "coRefereeName": "Loïc Lucho"
   },
   {
    "id": "cmtcw2pil033rm1lclajsbuar",
@@ -606,7 +668,9 @@
    "scoreA": 5,
    "scoreB": 1,
    "refereePlayerId": "cmn73kkcj0000ng48jdva0qhl",
-   "refereeName": "Pab’s"
+   "refereeName": "Pab’s",
+   "coRefereePlayerId": "cmq5epfgg02jx12ms4zyzpvx1",
+   "coRefereeName": "Stouph"
   },
   {
    "id": "cmtcw2pii033pm1lclmq317gj",
@@ -619,7 +683,9 @@
    "scoreA": 5,
    "scoreB": 2,
    "refereePlayerId": "cmnr4nkjh000429nim8862bjb",
-   "refereeName": "Romain Thouin "
+   "refereeName": "Romain Thouin ",
+   "coRefereePlayerId": "cmq7wpzjg008hpbzveypewvt2",
+   "coRefereeName": "quimey"
   },
   {
    "id": "cmtcw2piq033vm1lcq1wa595m",
@@ -632,7 +698,9 @@
    "scoreA": 0,
    "scoreB": 0,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtcw2pio033tm1lcicvdp0dv",
@@ -645,7 +713,9 @@
    "scoreA": 5,
    "scoreB": 1,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtcxwbml038am1lcu4kls1vk",
@@ -658,7 +728,9 @@
    "scoreA": 1,
    "scoreB": 6,
    "refereePlayerId": "cmofwoct901jea4fbp1imvk3k",
-   "refereeName": "Giovanna Molina"
+   "refereeName": "Giovanna Molina",
+   "coRefereePlayerId": "cmngko8o7000411r8x0auzmgm",
+   "coRefereeName": "Maxence Corbeau"
   },
   {
    "id": "cmtcxwbmt038em1lcsrfpd7y6",
@@ -671,7 +743,9 @@
    "scoreA": 4,
    "scoreB": 0,
    "refereePlayerId": "cmnfnlesc00001170bze2wlxd",
-   "refereeName": "laurent Trichereau"
+   "refereeName": "laurent Trichereau",
+   "coRefereePlayerId": "cmn6kbz0x000214m2ja0ute1u",
+   "coRefereeName": "Jean-Baptiste Blondeau"
   },
   {
    "id": "cmtcxwbmq038cm1lcu2jlnn91",
@@ -684,7 +758,9 @@
    "scoreA": 3,
    "scoreB": 3,
    "refereePlayerId": "cmnd8p3mv00007ymkk8bjel54",
-   "refereeName": "Flavien"
+   "refereeName": "Flavien",
+   "coRefereePlayerId": "cmoa2hwjc00009wojlxi3n2ot",
+   "coRefereeName": "Anaïs"
   },
   {
    "id": "cmtcxwbmx038im1lc9hopympl",
@@ -697,7 +773,9 @@
    "scoreA": 0,
    "scoreB": 0,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtcxwbmv038gm1lcjunfccqv",
@@ -710,7 +788,9 @@
    "scoreA": 5,
    "scoreB": 3,
    "refereePlayerId": "cmngko8o7000411r8x0auzmgm",
-   "refereeName": "Maxence Corbeau"
+   "refereeName": "Maxence Corbeau",
+   "coRefereePlayerId": "cmofwoct901jea4fbp1imvk3k",
+   "coRefereeName": "Giovanna Molina"
   },
   {
    "id": "cmtcztivw03ism1lcxz4ikgf3",
@@ -723,7 +803,9 @@
    "scoreA": 4,
    "scoreB": 3,
    "refereePlayerId": "cmngko8o7000411r8x0auzmgm",
-   "refereeName": "Maxence Corbeau"
+   "refereeName": "Maxence Corbeau",
+   "coRefereePlayerId": "cmnfynyo60006nq5q9y7wh7oo",
+   "coRefereeName": "Olivier"
   },
   {
    "id": "cmtcztivz03ium1lcmawgpuos",
@@ -736,7 +818,9 @@
    "scoreA": 1,
    "scoreB": 3,
    "refereePlayerId": "cmnx62pp50004kiclq6f4xjhn",
-   "refereeName": "Kostia Puchaux"
+   "refereeName": "Kostia Puchaux",
+   "coRefereePlayerId": "cmnfnlesc00001170bze2wlxd",
+   "coRefereeName": "laurent Trichereau"
   },
   {
    "id": "cmtcztiw003iwm1lcz6hn2m84",
@@ -749,7 +833,9 @@
    "scoreA": 5,
    "scoreB": 2,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtcztiw403j0m1lcut2dm5hl",
@@ -762,7 +848,9 @@
    "scoreA": 0,
    "scoreB": 0,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtcztiw103iym1lct0luzveo",
@@ -775,7 +863,9 @@
    "scoreA": 2,
    "scoreB": 2,
    "refereePlayerId": "cmnqjsjeb0000bt1yoaaz80yu",
-   "refereeName": "Parcim"
+   "refereeName": "Parcim",
+   "coRefereePlayerId": "cmohne7ff0020xoyzixttbq79",
+   "coRefereeName": "LA GAK"
   },
   {
    "id": "cmtd1se2j03oem1lcdkc5552h",
@@ -788,7 +878,9 @@
    "scoreA": 5,
    "scoreB": 2,
    "refereePlayerId": "cmng07rwr0000fp0xz0gvdcnt",
-   "refereeName": "Eriko zerty"
+   "refereeName": "Eriko zerty",
+   "coRefereePlayerId": "cmrtrlh1m02zk57urevfrcwmn",
+   "coRefereeName": "Lanza Bertucci-Domergue"
   },
   {
    "id": "cmtd1se2m03ogm1lczpeou6f2",
@@ -801,7 +893,9 @@
    "scoreA": 2,
    "scoreB": 2,
    "refereePlayerId": "cmnof8q0200001089k7huuvw2",
-   "refereeName": "Mehdi Zainoune"
+   "refereeName": "Mehdi Zainoune",
+   "coRefereePlayerId": "cmrkcf872009q9tiwa2ibeebe",
+   "coRefereeName": "Gonzalo"
   },
   {
    "id": "cmtd1se2e03ocm1lchpjzpd22",
@@ -814,7 +908,9 @@
    "scoreA": 7,
    "scoreB": 1,
    "refereePlayerId": "cmn71wmtj0000n56dd5xcj0ax",
-   "refereeName": "Quentin Bouchard"
+   "refereeName": "Quentin Bouchard",
+   "coRefereePlayerId": "cmohne7ff0020xoyzixttbq79",
+   "coRefereeName": "LA GAK"
   },
   {
    "id": "cmtd1se2r03okm1lci9g1qpn9",
@@ -827,7 +923,9 @@
    "scoreA": 0,
    "scoreB": 0,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtd1se2o03oim1lcg3qid64a",
@@ -840,7 +938,9 @@
    "scoreA": 5,
    "scoreB": 0,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtdy0l0x051mm1lcqjby6hi1",
@@ -853,7 +953,9 @@
    "scoreA": 5,
    "scoreB": 3,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtdy0l11051om1lcfp9288ep",
@@ -866,7 +968,9 @@
    "scoreA": 0,
    "scoreB": 3,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtdy0l13051qm1lc6ennharp",
@@ -879,7 +983,9 @@
    "scoreA": 5,
    "scoreB": 1,
    "refereePlayerId": "cmnqf3kjf0002v9gle20440po",
-   "refereeName": "Remile"
+   "refereeName": "Remile",
+   "coRefereePlayerId": "cmnd8p3mv00007ymkk8bjel54",
+   "coRefereeName": "Flavien"
   },
   {
    "id": "cmtdy0l18051um1lcwc09g27g",
@@ -892,7 +998,9 @@
    "scoreA": 3,
    "scoreB": 3,
    "refereePlayerId": "cmpiwgfp00021jgrya1kwyfmg",
-   "refereeName": "Mass"
+   "refereeName": "Mass",
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtdy0l16051sm1lcnzmvjxhc",
@@ -905,7 +1013,9 @@
    "scoreA": 1,
    "scoreB": 7,
    "refereePlayerId": "cmnqe6f8400005jx75d07ecaf",
-   "refereeName": "Justine G"
+   "refereeName": "Justine G",
+   "coRefereePlayerId": "cmnagbxvx00004xvg9673hopz",
+   "coRefereeName": "Jason en Velo"
   },
   {
    "id": "cmtdy0l1d051wm1lcyw2o38ha",
@@ -918,7 +1028,9 @@
    "scoreA": 2,
    "scoreB": 1,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtdy0l1f051ym1lc4wu1swnn",
@@ -931,7 +1043,9 @@
    "scoreA": 1,
    "scoreB": 0,
    "refereePlayerId": "cmn71wmtj0000n56dd5xcj0ax",
-   "refereeName": "Quentin Bouchard"
+   "refereeName": "Quentin Bouchard",
+   "coRefereePlayerId": "cmofomwn101csa4fbvcr27xcc",
+   "coRefereeName": "Le rems"
   },
   {
    "id": "cmtdy0l1h0520m1lcv39ibtf5",
@@ -944,7 +1058,9 @@
    "scoreA": 3,
    "scoreB": 0,
    "refereePlayerId": "cmt74b2nz087aedgc4j21kmba",
-   "refereeName": "Cathal"
+   "refereeName": "Cathal",
+   "coRefereePlayerId": "cmqqm5651023q12qnmcvp3bqj",
+   "coRefereeName": "Vicky"
   },
   {
    "id": "cmtdy0l1j0522m1lccrtgsmdt",
@@ -957,7 +1073,9 @@
    "scoreA": 3,
    "scoreB": 2,
    "refereePlayerId": "cmn6kbz0x000214m2ja0ute1u",
-   "refereeName": "Jean-Baptiste Blondeau"
+   "refereeName": "Jean-Baptiste Blondeau",
+   "coRefereePlayerId": "cmqs71ckq02ce12qn0lw8ura6",
+   "coRefereeName": "Gaspard"
   },
   {
    "id": "cmtdy0l1l0524m1lc9pe2fqbz",
@@ -970,7 +1088,9 @@
    "scoreA": 0,
    "scoreB": 0,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmte313fg05kam1lc36qbzmcw",
@@ -983,7 +1103,9 @@
    "scoreA": 3,
    "scoreB": 3,
    "refereePlayerId": "cmn6ol3us0000p8usmyi89zxh",
-   "refereeName": "Étienne Braud"
+   "refereeName": "Étienne Braud",
+   "coRefereePlayerId": "cmrtrlh1m02zk57urevfrcwmn",
+   "coRefereeName": "Lanza Bertucci-Domergue"
   },
   {
    "id": "cmte313fc05k8m1lce0k7s62d",
@@ -996,7 +1118,9 @@
    "scoreA": 2,
    "scoreB": 2,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmte313fj05kcm1lcmn3x0t89",
@@ -1009,7 +1133,9 @@
    "scoreA": 3,
    "scoreB": 1,
    "refereePlayerId": "cmqs71ckq02ce12qn0lw8ura6",
-   "refereeName": "Gaspard  "
+   "refereeName": "Gaspard  ",
+   "coRefereePlayerId": "cmofwoct901jea4fbp1imvk3k",
+   "coRefereeName": "Giovanna Molina"
   },
   {
    "id": "cmte313fq05kim1lcdggxrw1f",
@@ -1022,7 +1148,9 @@
    "scoreA": 0,
    "scoreB": 4,
    "refereePlayerId": "cmnd2zm1c0000qlyeiro74k21",
-   "refereeName": "Chloé "
+   "refereeName": "Chloé ",
+   "coRefereePlayerId": "cmn6ol3us0000p8usmyi89zxh",
+   "coRefereeName": "Étienne Braud"
   },
   {
    "id": "cmte313fo05kgm1lcf1d5ti8l",
@@ -1035,7 +1163,9 @@
    "scoreA": 1,
    "scoreB": 1,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmte313fl05kem1lcoblnaxma",
@@ -1048,7 +1178,9 @@
    "scoreA": 3,
    "scoreB": 3,
    "refereePlayerId": "cmp52amxq008mdqx0notil6fa",
-   "refereeName": "Choko"
+   "refereeName": "Choko",
+   "coRefereePlayerId": "cmpu7ffwr00by2vsu1ki7b0wb",
+   "coRefereeName": "slin shady"
   },
   {
    "id": "cmte313fu05kmm1lcvz4downo",
@@ -1061,7 +1193,9 @@
    "scoreA": 3,
    "scoreB": 2,
    "refereePlayerId": "cmng3lj0r0000smoy19xejwq5",
-   "refereeName": "Morgan Hidalgo"
+   "refereeName": "Morgan Hidalgo",
+   "coRefereePlayerId": "cmn81dwo40000mki35s0q5i92",
+   "coRefereeName": "Alejandro"
   },
   {
    "id": "cmte313fv05kom1lczd367unk",
@@ -1074,7 +1208,9 @@
    "scoreA": 1,
    "scoreB": 0,
    "refereePlayerId": "cmnhbvhsr0004124acfc3wn72",
-   "refereeName": "Paco salemi"
+   "refereeName": "Paco salemi",
+   "coRefereePlayerId": "cmnd2ceo2000elkucx92ligi2",
+   "coRefereeName": "Caro Paulette"
   },
   {
    "id": "cmte313fs05kkm1lcwlnkt6ri",
@@ -1087,7 +1223,9 @@
    "scoreA": 7,
    "scoreB": 1,
    "refereePlayerId": "cmnqe6f8400005jx75d07ecaf",
-   "refereeName": "Justine G"
+   "refereeName": "Justine G",
+   "coRefereePlayerId": "cmrjg5oyl00009tiwx8xo4s6u",
+   "coRefereeName": "Maria"
   },
   {
    "id": "cmte313fx05kqm1lcokk2qhqs",
@@ -1100,7 +1238,9 @@
    "scoreA": 0,
    "scoreB": 0,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmte5xx0505yzm1lcoerenimu",
@@ -1113,7 +1253,9 @@
    "scoreA": 6,
    "scoreB": 1,
    "refereePlayerId": "cmnagk7qu0000g762ktffuxqa",
-   "refereeName": "Mathias Lou"
+   "refereeName": "Mathias Lou",
+   "coRefereePlayerId": "cmqie9qc0002zafpmxeq5sgwq",
+   "coRefereeName": "Bernard Hickman"
   },
   {
    "id": "cmte5xx0405yxm1lc542tedko",
@@ -1126,7 +1268,9 @@
    "scoreA": 7,
    "scoreB": 2,
    "refereePlayerId": "cmokdy4rf005zlf8h88lw7jhl",
-   "refereeName": "Mac fly"
+   "refereeName": "Mac fly",
+   "coRefereePlayerId": "cmohc4zxe00bixb9pp85we3l9",
+   "coRefereeName": "Yann Pivot"
   },
   {
    "id": "cmte5xx0105yvm1lc9oy2878u",
@@ -1139,7 +1283,9 @@
    "scoreA": 5,
    "scoreB": 3,
    "refereePlayerId": "cmnfw5olw000051xj4r44rp30",
-   "refereeName": "Capucine "
+   "refereeName": "Capucine ",
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmte5xx0805z3m1lcum4v1fkz",
@@ -1152,7 +1298,9 @@
    "scoreA": 3,
    "scoreB": 4,
    "refereePlayerId": "cmqs71ckq02ce12qn0lw8ura6",
-   "refereeName": "Gaspard  "
+   "refereeName": "Gaspard  ",
+   "coRefereePlayerId": "cmngko8o7000411r8x0auzmgm",
+   "coRefereeName": "Maxence Corbeau"
   },
   {
    "id": "cmte5xx0a05z5m1lc765qxt4i",
@@ -1165,7 +1313,9 @@
    "scoreA": 3,
    "scoreB": 2,
    "refereePlayerId": "cmnqf3kjf0002v9gle20440po",
-   "refereeName": "Remile"
+   "refereeName": "Remile",
+   "coRefereePlayerId": "cmo91m5sr0008vy1j6o8aqs8q",
+   "coRefereeName": "Benoît Bop’s"
   },
   {
    "id": "cmte5xx0705z1m1lc2xmoeecw",
@@ -1178,7 +1328,9 @@
    "scoreA": 3,
    "scoreB": 1,
    "refereePlayerId": "cmn73kkcj0000ng48jdva0qhl",
-   "refereeName": "Pab’s"
+   "refereeName": "Pab’s",
+   "coRefereePlayerId": "cmndh4drl0004q34wczyo2h46",
+   "coRefereeName": "Rolllin's Alex"
   },
   {
    "id": "cmte5xx0d05z9m1lc7vfzf22p",
@@ -1191,7 +1343,9 @@
    "scoreA": 1,
    "scoreB": 1,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmte5xx0e05zbm1lcpc5ofx28",
@@ -1204,7 +1358,9 @@
    "scoreA": 4,
    "scoreB": 1,
    "refereePlayerId": "cmnr7bmuw0000ofp3qsf47yq1",
-   "refereeName": "Daf"
+   "refereeName": "Daf",
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmte5xx0c05z7m1lck488bfsx",
@@ -1217,7 +1373,9 @@
    "scoreA": 2,
    "scoreB": 0,
    "refereePlayerId": "cmn81dwo40000mki35s0q5i92",
-   "refereeName": "Alejandro"
+   "refereeName": "Alejandro",
+   "coRefereePlayerId": "cmn72ehvn0000da4wcak5i8r7",
+   "coRefereeName": "Alphonse Coindard"
   },
   {
    "id": "cmte5xx0g05zdm1lcc7u95agy",
@@ -1230,7 +1388,9 @@
    "scoreA": 1,
    "scoreB": 0,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmte97s3w06fam1lc9gtw9c5o",
@@ -1243,7 +1403,9 @@
    "scoreA": 5,
    "scoreB": 2,
    "refereePlayerId": "cmnr7bmuw0000ofp3qsf47yq1",
-   "refereeName": "Daf"
+   "refereeName": "Daf",
+   "coRefereePlayerId": "cmn73kkcj0000ng48jdva0qhl",
+   "coRefereeName": "Pab’s"
   },
   {
    "id": "cmte97s3u06f8m1lccl1wqdvi",
@@ -1256,7 +1418,9 @@
    "scoreA": 6,
    "scoreB": 1,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmte97s3s06f6m1lcg088m8e9",
@@ -1269,7 +1433,9 @@
    "scoreA": 3,
    "scoreB": 1,
    "refereePlayerId": "cmn81dwo40000mki35s0q5i92",
-   "refereeName": "Alejandro"
+   "refereeName": "Alejandro",
+   "coRefereePlayerId": "cmrjg5oyl00009tiwx8xo4s6u",
+   "coRefereeName": "Maria"
   },
   {
    "id": "cmte97s3y06fem1lcc3pla2nf",
@@ -1282,7 +1448,9 @@
    "scoreA": 2,
    "scoreB": 1,
    "refereePlayerId": "cmnqf3kjf0002v9gle20440po",
-   "refereeName": "Remile"
+   "refereeName": "Remile",
+   "coRefereePlayerId": "cmnj8nny4000ic6t1swolnrxi",
+   "coRefereeName": "Zoé"
   },
   {
    "id": "cmte97s3z06fgm1lc15hejue0",
@@ -1295,7 +1463,9 @@
    "scoreA": 4,
    "scoreB": 1,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmte97s3x06fcm1lcuhbmsk2n",
@@ -1308,7 +1478,9 @@
    "scoreA": 5,
    "scoreB": 2,
    "refereePlayerId": "cmng07rwr0000fp0xz0gvdcnt",
-   "refereeName": "Eriko zerty"
+   "refereeName": "Eriko zerty",
+   "coRefereePlayerId": "cmq82q2r600qkpbzv10og193h",
+   "coRefereeName": "thibaut r"
   },
   {
    "id": "cmte97s4106fkm1lce7fsn5cv",
@@ -1321,7 +1493,9 @@
    "scoreA": 5,
    "scoreB": 4,
    "refereePlayerId": "cmnr7q0d100004b908zkk207x",
-   "refereeName": "Alexis Cazeaux"
+   "refereeName": "Alexis Cazeaux",
+   "coRefereePlayerId": "cmnomljad0000c6t6kfuklny4",
+   "coRefereeName": "Mélissa L"
   },
   {
    "id": "cmte97s4106fmm1lc8b6vdsf0",
@@ -1334,7 +1508,9 @@
    "scoreA": 5,
    "scoreB": 0,
    "refereePlayerId": "cmnj80tay0000v15ym78x9e4x",
-   "refereeName": "Manu (ntods)"
+   "refereeName": "Manu (ntods)",
+   "coRefereePlayerId": "cmohc4zxe00bixb9pp85we3l9",
+   "coRefereeName": "Yann Pivot"
   },
   {
    "id": "cmte97s4006fim1lcr7z1kz3b",
@@ -1347,7 +1523,9 @@
    "scoreA": 6,
    "scoreB": 0,
    "refereePlayerId": "cmn6bycht0006zorepbwp00jp",
-   "refereeName": "Florent Dubois (Woods)"
+   "refereeName": "Florent Dubois (Woods)",
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmte97s4206fom1lc0hj7r8j6",
@@ -1360,7 +1538,9 @@
    "scoreA": 1,
    "scoreB": 0,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtech6mx075sm1lc30qf676l",
@@ -1373,7 +1553,9 @@
    "scoreA": 4,
    "scoreB": 3,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtech6mt075om1lcphjbh0uy",
@@ -1386,7 +1568,9 @@
    "scoreA": 7,
    "scoreB": 2,
    "refereePlayerId": "cmn6ol3us0000p8usmyi89zxh",
-   "refereeName": "Étienne Braud"
+   "refereeName": "Étienne Braud",
+   "coRefereePlayerId": "cmrtrlh1m02zk57urevfrcwmn",
+   "coRefereeName": "Lanza Bertucci-Domergue"
   },
   {
    "id": "cmtech6mv075qm1lchph014l3",
@@ -1399,7 +1583,9 @@
    "scoreA": 4,
    "scoreB": 1,
    "refereePlayerId": "cmo91m5sr0008vy1j6o8aqs8q",
-   "refereeName": "Benoît Bop’s"
+   "refereeName": "Benoît Bop’s",
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtech6n2075ym1lc9jljmk7h",
@@ -1412,7 +1598,9 @@
    "scoreA": 2,
    "scoreB": 2,
    "refereePlayerId": "cmod0y0yr0000102avcv8jz2g",
-   "refereeName": "Allan"
+   "refereeName": "Allan",
+   "coRefereePlayerId": "cmq82q2r600qkpbzv10og193h",
+   "coRefereeName": "thibaut r"
   },
   {
    "id": "cmtech6n0075wm1lck3j0izws",
@@ -1425,7 +1613,9 @@
    "scoreA": 2,
    "scoreB": 0,
    "refereePlayerId": "cmpiwgfp00021jgrya1kwyfmg",
-   "refereeName": "Mass"
+   "refereeName": "Mass",
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtech6my075um1lcoro6ppby",
@@ -1438,7 +1628,9 @@
    "scoreA": 6,
    "scoreB": 0,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtech6n30760m1lcisfz0qzd",
@@ -1451,7 +1643,9 @@
    "scoreA": 3,
    "scoreB": 1,
    "refereePlayerId": "cmn9a68kc0000bc98tjwb6nde",
-   "refereeName": "Clément "
+   "refereeName": "Clément ",
+   "coRefereePlayerId": "cmnagbxvx00004xvg9673hopz",
+   "coRefereeName": "Jason en Velo"
   },
   {
    "id": "cmtech6n50762m1lct0m5b5mz",
@@ -1464,7 +1658,9 @@
    "scoreA": 2,
    "scoreB": 2,
    "refereePlayerId": "cmpu7ffwr00by2vsu1ki7b0wb",
-   "refereeName": "slin shady "
+   "refereeName": "slin shady ",
+   "coRefereePlayerId": "cmp52amxq008mdqx0notil6fa",
+   "coRefereeName": "Choko"
   },
   {
    "id": "cmtech6n60764m1lccgewxtsb",
@@ -1477,7 +1673,9 @@
    "scoreA": 2,
    "scoreB": 1,
    "refereePlayerId": "cmofomwn101csa4fbvcr27xcc",
-   "refereeName": "Le rems"
+   "refereeName": "Le rems",
+   "coRefereePlayerId": "cmnqjsjeb0000bt1yoaaz80yu",
+   "coRefereeName": "Parcim"
   },
   {
    "id": "cmtech6n70766m1lc3we3jxur",
@@ -1490,7 +1688,9 @@
    "scoreA": 1,
    "scoreB": 0,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtefexis07jvm1lct8wdpdvr",
@@ -1503,7 +1703,9 @@
    "scoreA": 6,
    "scoreB": 4,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtefexiw07jzm1lcu9591ecw",
@@ -1516,7 +1718,9 @@
    "scoreA": 5,
    "scoreB": 0,
    "refereePlayerId": "cmng07rwr0000fp0xz0gvdcnt",
-   "refereeName": "Eriko zerty"
+   "refereeName": "Eriko zerty",
+   "coRefereePlayerId": "cmq82q2r600qkpbzv10og193h",
+   "coRefereeName": "thibaut r"
   },
   {
    "id": "cmtefexiu07jxm1lcnff4t3pi",
@@ -1529,7 +1733,9 @@
    "scoreA": 4,
    "scoreB": 1,
    "refereePlayerId": "cmn6kbz0x000214m2ja0ute1u",
-   "refereeName": "Jean-Baptiste Blondeau"
+   "refereeName": "Jean-Baptiste Blondeau",
+   "coRefereePlayerId": "cmnfnlesc00001170bze2wlxd",
+   "coRefereeName": "laurent Trichereau"
   },
   {
    "id": "cmtefexix07k1m1lcwkjzh0gs",
@@ -1542,7 +1748,9 @@
    "scoreA": 5,
    "scoreB": 3,
    "refereePlayerId": "cmnx62pp50004kiclq6f4xjhn",
-   "refereeName": "Kostia Puchaux"
+   "refereeName": "Kostia Puchaux",
+   "coRefereePlayerId": "cmpdr59i0001d32d1eie3g0cv",
+   "coRefereeName": "Vazzi"
   },
   {
    "id": "cmtefexiz07k5m1lco5w3pkl2",
@@ -1555,7 +1763,9 @@
    "scoreA": 8,
    "scoreB": 2,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtefexiy07k3m1lc7kg7zdjc",
@@ -1568,7 +1778,9 @@
    "scoreA": 0,
    "scoreB": 2,
    "refereePlayerId": "cmolx0sc500bmlf8h4a6w9tje",
-   "refereeName": "Loïc Lucho"
+   "refereeName": "Loïc Lucho",
+   "coRefereePlayerId": "cmnomljad0000c6t6kfuklny4",
+   "coRefereeName": "Mélissa L"
   },
   {
    "id": "cmtefexj007k7m1lcc1vn7j6f",
@@ -1581,7 +1793,9 @@
    "scoreA": 5,
    "scoreB": 2,
    "refereePlayerId": "cmnx62pp50004kiclq6f4xjhn",
-   "refereeName": "Kostia Puchaux"
+   "refereeName": "Kostia Puchaux",
+   "coRefereePlayerId": "cmpdr59i0001d32d1eie3g0cv",
+   "coRefereeName": "Vazzi"
   },
   {
    "id": "cmtefexj207kbm1lc4whf8i2c",
@@ -1594,7 +1808,9 @@
    "scoreA": 8,
    "scoreB": 1,
    "refereePlayerId": "cmq82q2r600qkpbzv10og193h",
-   "refereeName": "thibaut r"
+   "refereeName": "thibaut r",
+   "coRefereePlayerId": "cmpgrjgiq000aih591iqg8rp6",
+   "coRefereeName": "Ines"
   },
   {
    "id": "cmtefexj107k9m1lcza6rl7e5",
@@ -1607,7 +1823,9 @@
    "scoreA": 3,
    "scoreB": 2,
    "refereePlayerId": "cmpiwgfp00021jgrya1kwyfmg",
-   "refereeName": "Mass"
+   "refereeName": "Mass",
+   "coRefereePlayerId": "cmnj8nny4000ic6t1swolnrxi",
+   "coRefereeName": "Zoé"
   },
   {
    "id": "cmtefexj207kdm1lc193u7nb1",
@@ -1620,7 +1838,9 @@
    "scoreA": 1,
    "scoreB": 0,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmteientf07xfm1lczidig1sw",
@@ -1633,7 +1853,9 @@
    "scoreA": 4,
    "scoreB": 1,
    "refereePlayerId": "cmnr7bmuw0000ofp3qsf47yq1",
-   "refereeName": "Daf"
+   "refereeName": "Daf",
+   "coRefereePlayerId": "cmnof8q0200001089k7huuvw2",
+   "coRefereeName": "Mehdi Zainoune"
   },
   {
    "id": "cmteient407xdm1lc34tq1cgx",
@@ -1646,7 +1868,9 @@
    "scoreA": 4,
    "scoreB": 2,
    "refereePlayerId": "cmnhbvhsr0004124acfc3wn72",
-   "refereeName": "Paco salemi"
+   "refereeName": "Paco salemi",
+   "coRefereePlayerId": "cmnr1rspk0006w1d26z92phiy",
+   "coRefereeName": "Ella"
   },
   {
    "id": "cmteiensz07xbm1lcooom5lnn",
@@ -1659,7 +1883,9 @@
    "scoreA": 7,
    "scoreB": 4,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmteientk07xjm1lcieubdkxw",
@@ -1672,7 +1898,9 @@
    "scoreA": 5,
    "scoreB": 5,
    "refereePlayerId": "cmnnejpu90000wsycfoxzui7c",
-   "refereeName": "Donatien "
+   "refereeName": "Donatien ",
+   "coRefereePlayerId": "cmnfw5olw000051xj4r44rp30",
+   "coRefereeName": "Capucine"
   },
   {
    "id": "cmteienth07xhm1lc7ktha7em",
@@ -1685,7 +1913,9 @@
    "scoreA": 4,
    "scoreB": 2,
    "refereePlayerId": "cmqie9qc0002zafpmxeq5sgwq",
-   "refereeName": "Bernard Hickman"
+   "refereeName": "Bernard Hickman",
+   "coRefereePlayerId": "cmng07rwr0000fp0xz0gvdcnt",
+   "coRefereeName": "Eriko zerty"
   },
   {
    "id": "cmteientx07xlm1lcjofj9xbp",
@@ -1698,7 +1928,9 @@
    "scoreA": 8,
    "scoreB": 1,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmteienu307xnm1lc895xytsc",
@@ -1711,7 +1943,9 @@
    "scoreA": 8,
    "scoreB": 2,
    "refereePlayerId": "cmngko8o7000411r8x0auzmgm",
-   "refereeName": "Maxence Corbeau"
+   "refereeName": "Maxence Corbeau",
+   "coRefereePlayerId": "cmnfynyo60006nq5q9y7wh7oo",
+   "coRefereeName": "Olivier"
   },
   {
    "id": "cmteienu807xrm1lcm61rk8vw",
@@ -1724,7 +1958,9 @@
    "scoreA": 4,
    "scoreB": 1,
    "refereePlayerId": "cmnd2zm1c0000qlyeiro74k21",
-   "refereeName": "Chloé "
+   "refereeName": "Chloé ",
+   "coRefereePlayerId": "cmn6ol3us0000p8usmyi89zxh",
+   "coRefereeName": "Étienne Braud"
   },
   {
    "id": "cmteienu507xpm1lc6ufmsybg",
@@ -1737,7 +1973,9 @@
    "scoreA": 3,
    "scoreB": 1,
    "refereePlayerId": "cmosd1h6e01hrlf8hu2l11uci",
-   "refereeName": "Julien Thouin"
+   "refereeName": "Julien Thouin",
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmteienua07xtm1lcsj1p8i72",
@@ -1750,7 +1988,9 @@
    "scoreA": 1,
    "scoreB": 0,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtfiiztm08v5m1lc4tu1bks9",
@@ -1763,7 +2003,9 @@
    "scoreA": 6,
    "scoreB": 2,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtfiiztp08v7m1lc1p1580kk",
@@ -1776,7 +2018,9 @@
    "scoreA": 5,
    "scoreB": 0,
    "refereePlayerId": "cmnr7bmuw0000ofp3qsf47yq1",
-   "refereeName": "Daf"
+   "refereeName": "Daf",
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtfiiztr08v9m1lc2uz95lgn",
@@ -1789,7 +2033,9 @@
    "scoreA": 7,
    "scoreB": 5,
    "refereePlayerId": "cmp1ftr6202ualf8h8z3jd8ue",
-   "refereeName": "Schlotti"
+   "refereeName": "Schlotti",
+   "coRefereePlayerId": "cmn7h4gvt00004u7nt7lytu4z",
+   "coRefereeName": "Jenny Victoire"
   },
   {
    "id": "cmtfiiztw08vfm1lcmz8subw6",
@@ -1802,7 +2048,9 @@
    "scoreA": 6,
    "scoreB": 2,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtfiiztt08vdm1lc2odpc3kw",
@@ -1815,7 +2063,9 @@
    "scoreA": 4,
    "scoreB": 1,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtfiizts08vbm1lc4q2qpawh",
@@ -1828,7 +2078,9 @@
    "scoreA": 1,
    "scoreB": 0,
    "refereePlayerId": "cmpu7ffwr00by2vsu1ki7b0wb",
-   "refereeName": "slin shady "
+   "refereeName": "slin shady ",
+   "coRefereePlayerId": "cmnfw5olw000051xj4r44rp30",
+   "coRefereeName": "Capucine"
   },
   {
    "id": "cmtfiizty08vjm1lck0kcau8b",
@@ -1841,7 +2093,9 @@
    "scoreA": 1,
    "scoreB": 4,
    "refereePlayerId": "cmnqe6f8400005jx75d07ecaf",
-   "refereeName": "Justine G"
+   "refereeName": "Justine G",
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtfiiztz08vlm1lcnyz74anh",
@@ -1854,7 +2108,9 @@
    "scoreA": 4,
    "scoreB": 1,
    "refereePlayerId": "cmnfynyo60006nq5q9y7wh7oo",
-   "refereeName": "Olivier"
+   "refereeName": "Olivier",
+   "coRefereePlayerId": "cmofwoct901jea4fbp1imvk3k",
+   "coRefereeName": "Giovanna Molina"
   },
   {
    "id": "cmtfiiztx08vhm1lcal4lsgur",
@@ -1867,7 +2123,9 @@
    "scoreA": 4,
    "scoreB": 0,
    "refereePlayerId": "cmn9a68kc0000bc98tjwb6nde",
-   "refereeName": "Clément "
+   "refereeName": "Clément ",
+   "coRefereePlayerId": "cmn6bycht0006zorepbwp00jp",
+   "coRefereeName": "Florent Dubois (Woods)"
   },
   {
    "id": "cmtfiizu008vnm1lc4w8kgw7s",
@@ -1880,7 +2138,9 @@
    "scoreA": 1,
    "scoreB": 0,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtflp0ko098rm1lcxjmsybs4",
@@ -1893,7 +2153,9 @@
    "scoreA": 6,
    "scoreB": 3,
    "refereePlayerId": "cmqm76gfd00m412qney7aaz8r",
-   "refereeName": "Gregory Bouet -Greygooz-"
+   "refereeName": "Gregory Bouet -Greygooz-",
+   "coRefereePlayerId": "cmp52amxq008mdqx0notil6fa",
+   "coRefereeName": "Choko"
   },
   {
    "id": "cmtflp0ks098tm1lc7k2e8hq8",
@@ -1906,7 +2168,9 @@
    "scoreA": 5,
    "scoreB": 0,
    "refereePlayerId": "cmnr7bmuw0000ofp3qsf47yq1",
-   "refereeName": "Daf"
+   "refereeName": "Daf",
+   "coRefereePlayerId": "cmqqm5651023q12qnmcvp3bqj",
+   "coRefereeName": "Vicky"
   },
   {
    "id": "cmtflp0kv098vm1lc0vz115k1",
@@ -1919,7 +2183,9 @@
    "scoreA": 4,
    "scoreB": 2,
    "refereePlayerId": "cmn7h4gvt00004u7nt7lytu4z",
-   "refereeName": "Jenny Victoire"
+   "refereeName": "Jenny Victoire",
+   "coRefereePlayerId": "cmod0y0yr0000102avcv8jz2g",
+   "coRefereeName": "Allan"
   },
   {
    "id": "cmtflp0l40991m1lcqfn9fw3a",
@@ -1932,7 +2198,9 @@
    "scoreA": 3,
    "scoreB": 0,
    "refereePlayerId": "cmngko8o7000411r8x0auzmgm",
-   "refereeName": "Maxence Corbeau"
+   "refereeName": "Maxence Corbeau",
+   "coRefereePlayerId": "cmn6ol3us0000p8usmyi89zxh",
+   "coRefereeName": "Étienne Braud"
   },
   {
    "id": "cmtflp0l1098zm1lcjuf2267x",
@@ -1945,7 +2213,9 @@
    "scoreA": 3,
    "scoreB": 2,
    "refereePlayerId": "cmokdy4rf005zlf8h88lw7jhl",
-   "refereeName": "Mac fly"
+   "refereeName": "Mac fly",
+   "coRefereePlayerId": "cmnd8p3mv00007ymkk8bjel54",
+   "coRefereeName": "Flavien"
   },
   {
    "id": "cmtflp0ky098xm1lc19z1ov0o",
@@ -1958,7 +2228,9 @@
    "scoreA": 4,
    "scoreB": 1,
    "refereePlayerId": "cmqm76gfd00m412qney7aaz8r",
-   "refereeName": "Gregory Bouet -Greygooz-"
+   "refereeName": "Gregory Bouet -Greygooz-",
+   "coRefereePlayerId": "cmn6aa09j0000tf1hdbhknwjy",
+   "coRefereeName": "tristan puchaux"
   },
   {
    "id": "cmtflp0lc0997m1lcwqo2j9n2",
@@ -1971,7 +2243,9 @@
    "scoreA": 5,
    "scoreB": 3,
    "refereePlayerId": "cmn6kbz0x000214m2ja0ute1u",
-   "refereeName": "Jean-Baptiste Blondeau"
+   "refereeName": "Jean-Baptiste Blondeau",
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtflp0la0995m1lcmnv4atwg",
@@ -1984,7 +2258,9 @@
    "scoreA": 6,
    "scoreB": 1,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtflp0l70993m1lcod24gzlr",
@@ -1997,7 +2273,9 @@
    "scoreA": 7,
    "scoreB": 2,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtflp0le0999m1lc5oqgyl9c",
@@ -2010,7 +2288,9 @@
    "scoreA": 1,
    "scoreB": 0,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtfoz3ur09pwm1lczgzx7644",
@@ -2023,7 +2303,9 @@
    "scoreA": 1,
    "scoreB": 3,
    "refereePlayerId": "cmngko8o7000411r8x0auzmgm",
-   "refereeName": "Maxence Corbeau"
+   "refereeName": "Maxence Corbeau",
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtfox71x09ojm1lcc057d2ly",
@@ -2036,7 +2318,9 @@
    "scoreA": 0,
    "scoreB": 0,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtfox71z09olm1lcrluv90ry",
@@ -2049,7 +2333,9 @@
    "scoreA": 0,
    "scoreB": 0,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtfox71t09ohm1lcc7gkoues",
@@ -2062,7 +2348,9 @@
    "scoreA": 0,
    "scoreB": 0,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtfox72109onm1lcyfg7j42l",
@@ -2075,7 +2363,9 @@
    "scoreA": 0,
    "scoreB": 0,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtfox72409orm1lcdsh1sd2o",
@@ -2088,7 +2378,9 @@
    "scoreA": 0,
    "scoreB": 0,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtfox72209opm1lcci5113ds",
@@ -2101,7 +2393,9 @@
    "scoreA": 0,
    "scoreB": 0,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtfoz3v609q4m1lcqe3cy4n0",
@@ -2114,7 +2408,9 @@
    "scoreA": 2,
    "scoreB": 4,
    "refereePlayerId": "cmqm76gfd00m412qney7aaz8r",
-   "refereeName": "Gregory Bouet -Greygooz-"
+   "refereeName": "Gregory Bouet -Greygooz-",
+   "coRefereePlayerId": "cmpiwgfp00021jgrya1kwyfmg",
+   "coRefereeName": "Mass"
   },
   {
    "id": "cmtfoz3vb09q8m1lc5zteeimm",
@@ -2127,7 +2423,9 @@
    "scoreA": 4,
    "scoreB": 2,
    "refereePlayerId": "cmn6bycht0006zorepbwp00jp",
-   "refereeName": "Florent Dubois (Woods)"
+   "refereeName": "Florent Dubois (Woods)",
+   "coRefereePlayerId": "cmnagk7qu0000g762ktffuxqa",
+   "coRefereeName": "Mathias Lou"
   },
   {
    "id": "cmtfox72609otm1lclds242yy",
@@ -2140,7 +2438,9 @@
    "scoreA": 0,
    "scoreB": 0,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtfox72909oxm1lc93qzayrt",
@@ -2153,7 +2453,9 @@
    "scoreA": 0,
    "scoreB": 0,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtfox72709ovm1lcbn51updy",
@@ -2166,7 +2468,9 @@
    "scoreA": 0,
    "scoreB": 0,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtfoz3vh09qem1lcte8kwkrp",
@@ -2179,7 +2483,9 @@
    "scoreA": 4,
    "scoreB": 0,
    "refereePlayerId": "cmnr7q0d100004b908zkk207x",
-   "refereeName": "Alexis Cazeaux"
+   "refereeName": "Alexis Cazeaux",
+   "coRefereePlayerId": "cmng07rwr0000fp0xz0gvdcnt",
+   "coRefereeName": "Eriko zerty"
   },
   {
    "id": "cmtfoz3vf09qcm1lcmu1b8qb2",
@@ -2192,7 +2498,9 @@
    "scoreA": 5,
    "scoreB": 4,
    "refereePlayerId": "cmosd1h6e01hrlf8hu2l11uci",
-   "refereeName": "Julien Thouin"
+   "refereeName": "Julien Thouin",
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtfoz3v409q2m1lcvkimcm7y",
@@ -2205,7 +2513,9 @@
    "scoreA": 8,
    "scoreB": 3,
    "refereePlayerId": "cmng07rwr0000fp0xz0gvdcnt",
-   "refereeName": "Eriko zerty"
+   "refereeName": "Eriko zerty",
+   "coRefereePlayerId": "cmp1ftr6202ualf8h8z3jd8ue",
+   "coRefereeName": "Schlotti"
   },
   {
    "id": "cmtfox72a09ozm1lcckntjtb6",
@@ -2218,7 +2528,9 @@
    "scoreA": 0,
    "scoreB": 0,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtfoz3vj09qgm1lc2bhw050z",
@@ -2231,7 +2543,9 @@
    "scoreA": 4,
    "scoreB": 1,
    "refereePlayerId": "cmp52amxq008mdqx0notil6fa",
-   "refereeName": "Choko"
+   "refereeName": "Choko",
+   "coRefereePlayerId": "cmnnejpu90000wsycfoxzui7c",
+   "coRefereeName": "Donatien"
   },
   {
    "id": "cmtfoz3v909q6m1lcybguci6m",
@@ -2244,7 +2558,9 @@
    "scoreA": 4,
    "scoreB": 2,
    "refereePlayerId": null,
-   "refereeName": null
+   "refereeName": null,
+   "coRefereePlayerId": null,
+   "coRefereeName": null
   },
   {
    "id": "cmtfoz3vd09qam1lcb7waxkfg",
@@ -2257,7 +2573,9 @@
    "scoreA": 3,
    "scoreB": 1,
    "refereePlayerId": "cmnfnlesc00001170bze2wlxd",
-   "refereeName": "laurent Trichereau"
+   "refereeName": "laurent Trichereau",
+   "coRefereePlayerId": "cmpu7ffwr00by2vsu1ki7b0wb",
+   "coRefereeName": "slin shady"
   },
   {
    "id": "cmtfoz3v109q0m1lcl84ezzal",
@@ -2270,7 +2588,9 @@
    "scoreA": 4,
    "scoreB": 2,
    "refereePlayerId": "cmn6bycht0006zorepbwp00jp",
-   "refereeName": "Florent Dubois (Woods)"
+   "refereeName": "Florent Dubois (Woods)",
+   "coRefereePlayerId": "cmnagk7qu0000g762ktffuxqa",
+   "coRefereeName": "Mathias Lou"
   },
   {
    "id": "cmtfoz3ux09pym1lct25k0tk2",
@@ -2283,7 +2603,9 @@
    "scoreA": 4,
    "scoreB": 3,
    "refereePlayerId": "cmpiwgfp00021jgrya1kwyfmg",
-   "refereeName": "Mass"
+   "refereeName": "Mass",
+   "coRefereePlayerId": "cmofomwn101csa4fbvcr27xcc",
+   "coRefereeName": "Le rems"
   },
   {
    "id": "cmtfoz3vk09qim1lccme2veep",
@@ -2296,7 +2618,9 @@
    "scoreA": 3,
    "scoreB": 2,
    "refereePlayerId": "cmqm76gfd00m412qney7aaz8r",
-   "refereeName": "Gregory Bouet -Greygooz-"
+   "refereeName": "Gregory Bouet -Greygooz-",
+   "coRefereePlayerId": "cmnagk7qu0000g762ktffuxqa",
+   "coRefereeName": "Mathias Lou"
   },
   {
    "id": "cmtfoz3vo09qmm1lcb60mhe8v",
@@ -2309,7 +2633,9 @@
    "scoreA": 5,
    "scoreB": 3,
    "refereePlayerId": "cmq5epfgg02jx12ms4zyzpvx1",
-   "refereeName": "Stouph"
+   "refereeName": "Stouph",
+   "coRefereePlayerId": "cmnj8nny4000ic6t1swolnrxi",
+   "coRefereeName": "Zoé"
   },
   {
    "id": "cmtfoz3vm09qkm1lc5mmiupuu",
@@ -2322,7 +2648,9 @@
    "scoreA": 3,
    "scoreB": 1,
    "refereePlayerId": "cmnof8q0200001089k7huuvw2",
-   "refereeName": "Mehdi Zainoune"
+   "refereeName": "Mehdi Zainoune",
+   "coRefereePlayerId": "cmnj8nny4000ic6t1swolnrxi",
+   "coRefereeName": "Zoé"
   },
   {
    "id": "cmtfoz3vq09qom1lcld47kxqa",
@@ -2335,7 +2663,9 @@
    "scoreA": 3,
    "scoreB": 1,
    "refereePlayerId": "cmqm76gfd00m412qney7aaz8r",
-   "refereeName": "Gregory Bouet -Greygooz-"
+   "refereeName": "Gregory Bouet -Greygooz-",
+   "coRefereePlayerId": "cmnagk7qu0000g762ktffuxqa",
+   "coRefereeName": "Mathias Lou"
   },
   {
    "id": "cmtfoz3vr09qqm1lcwypid2lg",
@@ -2348,7 +2678,9 @@
    "scoreA": 3,
    "scoreB": 2,
    "refereePlayerId": "cmqm76gfd00m412qney7aaz8r",
-   "refereeName": "Gregory Bouet -Greygooz-"
+   "refereeName": "Gregory Bouet -Greygooz-",
+   "coRefereePlayerId": "cmnagk7qu0000g762ktffuxqa",
+   "coRefereeName": "Mathias Lou"
   },
   {
    "id": "cmtfoz3vt09qsm1lc0thbcior",
@@ -2361,7 +2693,9 @@
    "scoreA": 1,
    "scoreB": 2,
    "refereePlayerId": "cmqm76gfd00m412qney7aaz8r",
-   "refereeName": "Gregory Bouet -Greygooz-"
+   "refereeName": "Gregory Bouet -Greygooz-",
+   "coRefereePlayerId": "cmnagk7qu0000g762ktffuxqa",
+   "coRefereeName": "Mathias Lou"
   },
   {
    "id": "cmtfoz3vv09qum1lcuqzvnvof",
@@ -2374,7 +2708,9 @@
    "scoreA": 1,
    "scoreB": 2,
    "refereePlayerId": "cmqm76gfd00m412qney7aaz8r",
-   "refereeName": "Gregory Bouet -Greygooz-"
+   "refereeName": "Gregory Bouet -Greygooz-",
+   "coRefereePlayerId": "cmnagk7qu0000g762ktffuxqa",
+   "coRefereeName": "Mathias Lou"
   },
   {
    "id": "cmtfoz3vx09qwm1lc2eyo0vql",
@@ -2387,7 +2723,9 @@
    "scoreA": 1,
    "scoreB": 4,
    "refereePlayerId": "cmqm76gfd00m412qney7aaz8r",
-   "refereeName": "Gregory Bouet -Greygooz-"
+   "refereeName": "Gregory Bouet -Greygooz-",
+   "coRefereePlayerId": "cmnagk7qu0000g762ktffuxqa",
+   "coRefereeName": "Mathias Lou"
   }
  ]
 }
