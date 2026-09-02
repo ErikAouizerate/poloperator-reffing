@@ -18,8 +18,11 @@ upcoming matches, keeping referee duties balanced across teams.
   1. **Tier 1** — teams whose next match is exactly at T+2, fewest referee
      duties first.
   2. **Tier 2** — teams whose next match is in [T+1, T+3], fewest duties first.
-  3. **Tier 3** — any team not playing the slot, fewest duties first, then
-     longest without refereeing.
+  3. **Tier 3** — any team not playing the slot (no known next match): first
+     teams whose most recent match was at T−2 (duty rotation with rest), then
+     teams that played earlier (incl. eliminated / done for the day), then
+     teams that just played at T−1. Within each group, fewest duties first,
+     then longest without refereeing.
 - The app **proposes** (an ordered list per match); the organizer decides.
 
 ## Data source
@@ -55,6 +58,9 @@ src/
   store/                           — classic Redux + apiMiddleware registry
   components/                       — TournamentPicker, UpcomingMatches, RefereeCounts
 ```
+
+- Roster player names are extracted by `parseRsc` (`Team.playerNames`) and shown
+  under the team name in the counts table (`RefereeCounts`).
 
 - **CORS is blocked** on poloperator.com (no `Access-Control-Allow-Origin`), so
   the app calls a same-origin path `/poloperator/...` that is proxied:
