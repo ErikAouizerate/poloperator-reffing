@@ -21,5 +21,7 @@ export function resolvePickerList(
   if (list === null) return null
   const filtered = filterTournaments(list, settings)
   if (!selectedSlug) return filtered
-  return filtered.some((t) => t.slug === selectedSlug) ? filtered : list
+  if (filtered.some((t) => t.slug === selectedSlug)) return filtered
+  const selected = list.find((t) => t.slug === selectedSlug)
+  return selected ? [...filtered, selected] : filtered
 }

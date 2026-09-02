@@ -32,10 +32,10 @@ export function TournamentPicker({
   }, [tournaments])
 
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex flex-wrap items-center gap-3">
       <label className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted">Tournoi</label>
       <select
-        className="min-w-64 rounded-lg border-2 border-ink bg-surface px-3 py-2 text-sm text-ink outline-none focus:border-teal"
+        className="w-full min-w-0 max-w-full truncate rounded-lg border-2 border-ink bg-surface px-3 py-2 text-sm text-ink outline-none focus:border-teal sm:w-auto sm:min-w-64"
         value={selectedSlug ?? ''}
         onChange={(e) => {
           const summary = sorted.find((t) => t.slug === e.target.value)

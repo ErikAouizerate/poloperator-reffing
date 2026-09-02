@@ -63,7 +63,17 @@ export function RefreshButton({
         style={{ width: `${progress * 100}%` }}
       />
       <span className="relative">
-        {loading ? 'Rafraîchir…' : `Rafraîchir · ${seconds}s`}
+        {loading ? (
+          'Rafraîchir…'
+        ) : (
+          <>
+            Rafraîchir ·{' '}
+            <span className="inline-block w-[2ch] text-left tabular-nums tracking-[0]">
+              {seconds}
+            </span>
+            s
+          </>
+        )}
       </span>
     </button>
   )

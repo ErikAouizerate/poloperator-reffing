@@ -73,8 +73,9 @@ describe('resolvePickerList', () => {
     expect(out).toEqual([liveEu])
   })
 
-  it('falls back to the full list when the selected tournament is hidden by the filters', () => {
-    const out = resolvePickerList([liveEu, liveNa], baseSettings, 'b')
+  it('keeps filters active and appends the selected tournament when it is hidden', () => {
+    const list = [liveEu, liveNa, finishedEu, futureEu]
+    const out = resolvePickerList(list, baseSettings, 'b')
     expect(out).toEqual([liveEu, liveNa])
   })
 })
