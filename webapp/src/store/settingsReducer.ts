@@ -7,6 +7,10 @@ function clampCount(value: number): number {
   return Math.min(8, Math.max(1, Math.round(value)))
 }
 
+function clampSeconds(value: number): number {
+  return Math.min(3600, Math.max(15, Math.round(value)))
+}
+
 export const settingsReducer: Reducer<Settings> = (
   state: Settings = loadSettings(),
   action: AnyAction,
@@ -21,6 +25,10 @@ export const settingsReducer: Reducer<Settings> = (
           typeof partial.suggestedTeamCount === 'number'
             ? clampCount(partial.suggestedTeamCount)
             : state.suggestedTeamCount,
+        refreshIntervalSeconds:
+          typeof partial.refreshIntervalSeconds === 'number'
+            ? clampSeconds(partial.refreshIntervalSeconds)
+            : state.refreshIntervalSeconds,
       }
       saveSettings(next)
       return next

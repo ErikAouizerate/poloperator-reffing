@@ -51,6 +51,21 @@ describe('settingsReducer', () => {
     expect(low.suggestedTeamCount).toBe(1)
   })
 
+  it('clamps refreshIntervalSeconds to [15, 3600]', () => {
+    __setStorage(makeStorage())
+    const state = settingsReducer(undefined, { type: 'INIT' })
+    const high = settingsReducer(
+      state,
+      updateSettings({ refreshIntervalSeconds: 99999 }),
+    )
+    expect(high.refreshIntervalSeconds).toBe(3600)
+    const low = settingsReducer(
+      state,
+      updateSettings({ refreshIntervalSeconds: 2 }),
+    )
+    expect(low.refreshIntervalSeconds).toBe(15)
+  })
+
   it('returns DEFAULT_SETTINGS when stored JSON is corrupted', () => {
     const storage = makeStorage()
     storage.setItem('poloperator:settings:v1', '{not json')

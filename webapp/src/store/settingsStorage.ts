@@ -23,6 +23,10 @@ function clampCount(value: number): number {
   return Math.min(8, Math.max(1, Math.round(value)))
 }
 
+function clampSeconds(value: number): number {
+  return Math.min(3600, Math.max(15, Math.round(value)))
+}
+
 function normalizeContinent(value: unknown): Settings['continent'] {
   if (value === 'ALL') return 'ALL'
   return isContinentCode(value) ? value : DEFAULT_SETTINGS.continent
@@ -46,6 +50,11 @@ export function loadSettings(): Settings {
           ? clampCount(parsed.suggestedTeamCount)
           : DEFAULT_SETTINGS.suggestedTeamCount,
       continent: normalizeContinent(parsed.continent),
+      refreshIntervalSeconds:
+        typeof parsed.refreshIntervalSeconds === 'number' &&
+        Number.isFinite(parsed.refreshIntervalSeconds)
+          ? clampSeconds(parsed.refreshIntervalSeconds)
+          : DEFAULT_SETTINGS.refreshIntervalSeconds,
     }
   } catch {
     return DEFAULT_SETTINGS

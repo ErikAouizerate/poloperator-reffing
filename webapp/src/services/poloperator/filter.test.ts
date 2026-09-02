@@ -25,6 +25,7 @@ const baseSettings: Settings = {
   showLiveOnly: true,
   suggestedTeamCount: 4,
   continent: 'EU',
+  refreshIntervalSeconds: 240,
 }
 
 const liveEu = makeTournament({ id: 'a', slug: 'a', status: 'LIVE', continentCode: 'EU' })
