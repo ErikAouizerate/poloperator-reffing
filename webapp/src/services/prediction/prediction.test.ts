@@ -185,3 +185,61 @@ describe('suggestForSlot (synthetic, rule correctness)', () => {
     expect(Object.keys(result.suggestionsByMatch).sort()).toEqual(['m3', 'm4', 'm5'])
   })
 })
+
+describe('suggestForSlot (end of round, future unknown)', () => {
+  const teams: Team[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'].map((name) => ({
+    id: name,
+    name,
+    playerIds: [`${name}-p1`, `${name}-p2`],
+    playerNames: [`Player ${name}`],
+  }))
+
+  const matches: Match[] = [
+    m(0, 's0', 'A', 'B', null),
+    m(1, 's1', 'C', 'D', null),
+    m(2, 's2', 'E', 'F', null),
+    m(3, 's3', 'G', 'H', null),
+  ]
+
+  function m(slot: number, id: string, a: string, b: string, refOf: string | null): Match {
+    return {
+      id,
+      startAt: `2026-09-02T0${slot}:00:00.000Z`,
+      courtName: 'Court 1',
+      status: slot === 3 ? 'SCHEDULED' : 'FINISHED',
+      phase: 'STAGE',
+      teamAId: a,
+      teamBId: b,
+      scoreA: null,
+      scoreB: null,
+      refereePlayerId: refOf ? `${refOf}-p1` : null,
+      refereeName: refOf ? `ref-of-${refOf}` : null,
+    }
+  }
+
+  const slots = buildSlots(matches)
+  const model = buildModel(teams, slots)
+
+  it('ranks teams that played at t−2 first, then older, then t−1 (all tier 3)', () => {
+    const { suggestionsByMatch } = suggestForSlot(model, 3)
+    const list = suggestionsByMatch.get('s3')!
+    expect(list.every((s) => s.tier === 3)).toBe(true)
+    expect(list[0].teamId).toBe('C')
+    expect(list[1].teamId).toBe('D')
+    expect(list[2].teamId).toBe('A')
+    expect(list[3].teamId).toBe('B')
+    expect(list[4].teamId).toBe('E')
+    expect(list[5].teamId).toBe('F')
+  })
+
+  it('breaks ties within the t−2 group by fewest referee duties', () => {
+    const refs = matches.map((x) =>
+      x.id === 's2' ? { ...x, refereePlayerId: 'D-p1', refereeName: 'ref-D' } : x,
+    )
+    const model2 = buildModel(teams, buildSlots(refs))
+    const { suggestionsByMatch } = suggestForSlot(model2, 3)
+    const list = suggestionsByMatch.get('s3')!
+    expect(list[0].teamId).toBe('C')
+    expect(list[1].teamId).toBe('D')
+  })
+})

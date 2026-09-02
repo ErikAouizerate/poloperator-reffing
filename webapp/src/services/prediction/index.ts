@@ -14,6 +14,12 @@ import { buildSlots } from './slots'
  * running in parallel): a team that plays at slot T referees two slots before,
  * at T-2, and rests at T-1. When several teams are eligible, prefer the ones
  * with the fewest referee duties so counts stay balanced.
+ *
+ * Tiers 1-2 are based on the candidate's next known match (T+2 / [T+1, T+3]).
+ * Tier 3 covers candidates with no known next match (end of a Swiss round, end
+ * of the day, eliminated teams). Within tier 3, prefer the teams whose most
+ * recent match was at T-2 (they are due to referee and keep a rest slot), then
+ * teams that played earlier, and last the teams that just played at T-1.
  */
 
 export interface TournamentModel {
@@ -96,8 +102,46 @@ function nextMatchSlot(
   return next
 }
 
-function compareSuggestions(a: RefereeSuggestion, b: RefereeSuggestion): number {
+/** Most recent slot index < target where each team played. */
+function lastPlayedSlot(
+  model: TournamentModel,
+  targetSlotIndex: number,
+): Map<string, number> {
+  const last = new Map<string, number>()
+  for (const slot of model.slots) {
+    if (slot.index >= targetSlotIndex) continue
+    for (const match of slot.matches) {
+      if (!match.teamAId || !match.teamBId) continue
+      if (match.teamAId) last.set(match.teamAId, slot.index)
+      if (match.teamBId) last.set(match.teamBId, slot.index)
+    }
+  }
+  return last
+}
+
+/**
+ * Rest group for tier-3 candidates: how far back the team last played relative
+ * to the target slot. 0 = played at T-2 (due now, keeps a rest slot), 1 = played
+ * earlier (or never), 2 = played at T-1 (just played, no rest). Tiers 1-2 are
+ * ordered only by the future-based criteria, so this never applies to them.
+ */
+function restGroup(lastPlayed: number | null, targetSlotIndex: number): number {
+  if (lastPlayed === targetSlotIndex - 2) return 0
+  if (lastPlayed === targetSlotIndex - 1) return 2
+  return 1
+}
+
+function compareSuggestions(
+  a: RefereeSuggestion,
+  b: RefereeSuggestion,
+  targetSlotIndex: number,
+): number {
   if (a.tier !== b.tier) return a.tier - b.tier
+  if (a.tier === 3) {
+    const ga = restGroup(a.lastPlayedSlotIndex, targetSlotIndex)
+    const gb = restGroup(b.lastPlayedSlotIndex, targetSlotIndex)
+    if (ga !== gb) return ga - gb
+  }
   if (a.refereeCount !== b.refereeCount) return a.refereeCount - b.refereeCount
   const aLast = a.lastRefSlotIndex ?? -1
   const bLast = b.lastRefSlotIndex ?? -1
@@ -126,6 +170,7 @@ export function suggestForSlot(
     ? history
     : historyStats(model, targetSlotIndex)
   const next = nextMatchSlot(model, targetSlotIndex)
+  const last = lastPlayedSlot(model, targetSlotIndex)
 
   const playingTeams = new Set<string>()
   for (const match of targetSlot.matches) {
@@ -159,11 +204,11 @@ export function suggestForSlot(
         tier,
         refereeCount: counts.get(team.id) ?? 0,
         nextMatchSlotIndex,
-        lastPlayedSlotIndex: null,
+        lastPlayedSlotIndex: last.get(team.id) ?? null,
         lastRefSlotIndex: lastRef.get(team.id) ?? null,
       }
     })
-    scored.sort(compareSuggestions)
+    scored.sort((x, y) => compareSuggestions(x, y, targetSlotIndex))
 
     suggestionsByMatch.set(match.id, scored)
     const top = scored[0]
