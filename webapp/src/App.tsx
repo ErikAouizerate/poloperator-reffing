@@ -95,6 +95,15 @@ function App() {
     return (teamId: string | null) => (teamId ? (map.get(teamId) ?? "?") : "?");
   }, [selected.data]);
 
+  const playerNamesById = useMemo(() => {
+    const map = new Map<string, string[]>();
+    for (const team of selected.data?.teams ?? []) {
+      map.set(team.id, team.playerNames);
+    }
+    return (teamId: string | null) =>
+      teamId ? (map.get(teamId) ?? []) : [];
+  }, [selected.data]);
+
   const timeline = selected.data
     ? classifyMatches(
         selected.data.slots,
@@ -271,6 +280,7 @@ function App() {
               matches={timeline.upcoming}
               suggestionsByMatch={selected.data.suggestionsByMatch}
               teamNameById={teamNameById}
+              playerNamesById={playerNamesById}
               suggestionLimit={settings.suggestedTeamCount}
             />
             <LiveMatches

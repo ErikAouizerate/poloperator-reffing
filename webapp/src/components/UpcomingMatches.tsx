@@ -6,6 +6,7 @@ interface UpcomingMatchesProps {
   matches: UpcomingWithHorizon[];
   suggestionsByMatch: Record<string, RefereeSuggestion[]>;
   teamNameById: (teamId: string | null) => string;
+  playerNamesById: (teamId: string | null) => string[];
   suggestionLimit: number;
 }
 
@@ -72,9 +73,15 @@ export function UpcomingMatches({
   matches,
   suggestionsByMatch,
   teamNameById,
+  playerNamesById,
   suggestionLimit,
 }: UpcomingMatchesProps) {
   const [expanded, setExpanded] = useState(false);
+
+  const participants = (teamId: string | null) => {
+    const names = playerNamesById(teamId);
+    return names.length > 0 ? names.join(" · ") : undefined;
+  };
 
   if (matches.length === 0) {
     return (
@@ -127,9 +134,13 @@ export function UpcomingMatches({
               ) : null}
             </div>
             <div className="flex items-center gap-2 text-sm font-medium text-ink">
-              <span>{teamNameById(entry.match.teamAId)}</span>
+              <span title={participants(entry.match.teamAId)}>
+                {teamNameById(entry.match.teamAId)}
+              </span>
               <span className="text-muted">vs</span>
-              <span>{teamNameById(entry.match.teamBId)}</span>
+              <span title={participants(entry.match.teamBId)}>
+                {teamNameById(entry.match.teamBId)}
+              </span>
             </div>
             <div className="mt-3">
               <p className="mb-1 text-[11px] uppercase tracking-[0.14em] text-muted">
