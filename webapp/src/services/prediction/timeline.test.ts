@@ -19,6 +19,8 @@ function makeMatch(
     scoreB: null,
     refereePlayerId: null,
     refereeName: null,
+    coRefereePlayerId: null,
+    coRefereeName: null,
     ...overrides,
   }
 }
