@@ -15,9 +15,19 @@ export function RefereeCounts({ counts }: RefereeCountsProps) {
       <ul className="space-y-1.5">
         {counts.map((entry) => (
           <li key={entry.teamId} className="flex items-center gap-3 text-sm">
-            <span className="w-40 truncate text-ink">
-              {entry.teamName}
-            </span>
+            <div className="w-44 min-w-0">
+              <p className="truncate text-sm font-medium text-ink">
+                {entry.teamName}
+              </p>
+              {entry.playerNames.length > 0 ? (
+                <p
+                  className="truncate text-xs text-muted"
+                  title={entry.playerNames.join(' · ')}
+                >
+                  {entry.playerNames.join(' · ')}
+                </p>
+              ) : null}
+            </div>
             <div className="h-2.5 flex-1 overflow-hidden rounded-full bg-chip">
               <div
                 className="h-full rounded-full bg-teal"

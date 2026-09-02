@@ -233,7 +233,7 @@ export function refereeCounts(
       return {
         teamId,
         teamName: team?.name ?? teamId,
-        playerNames: [],
+        playerNames: team?.playerNames ?? [],
         count,
       }
     })
