@@ -1,3 +1,4 @@
+import { useState } from "react";
 import type { RefereeSuggestion } from "../types/poloperator";
 import type { UpcomingWithHorizon } from "../services/prediction/timeline";
 
@@ -44,6 +45,8 @@ export function UpcomingMatches({
   teamNameById,
   suggestionLimit,
 }: UpcomingMatchesProps) {
+  const [expanded, setExpanded] = useState(false);
+
   if (matches.length === 0) {
     return (
       <p className="text-sm text-muted">
@@ -56,13 +59,27 @@ export function UpcomingMatches({
     a.match.startAt.localeCompare(b.match.startAt),
   );
 
+  const visibleMatches = expanded
+    ? sorted
+    : sorted.filter((entry) => entry.horizon <= 2);
+  const hasMoreWaves = sorted.some((entry) => entry.horizon > 2);
+
   return (
     <section>
       <h2 className="font-display mb-3 text-xl font-bold tracking-tight text-ink">
         Matchs à venir & arbitres suggérés
       </h2>
+      {hasMoreWaves ? (
+        <button
+          type="button"
+          onClick={() => setExpanded((v) => !v)}
+          className="mb-3 rounded-[10px] border-2 border-ink bg-surface px-3 py-1.5 text-xs font-bold uppercase tracking-[0.1em] text-ink shadow-kit hover:bg-teal"
+        >
+          {expanded ? "Replier" : "Déplier"}
+        </button>
+      ) : null}
       <ul className="space-y-3">
-        {sorted.map((entry) => (
+        {visibleMatches.map((entry) => (
           <li
             key={entry.match.id}
             className="rounded-[14px] border-2 border-ink bg-surface p-4 shadow-kit"
