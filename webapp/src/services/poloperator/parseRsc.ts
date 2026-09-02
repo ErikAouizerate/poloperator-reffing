@@ -101,6 +101,10 @@ function normalizeMatch(obj: RawObject): Match {
     isRecord(obj.referee) && typeof obj.referee.name === 'string'
       ? obj.referee.name
       : null
+  const coReferee =
+    isRecord(obj.coReferee) && typeof obj.coReferee.name === 'string'
+      ? obj.coReferee.name
+      : null
   return {
     id: String(obj.id ?? ''),
     startAt: toIsoDate(obj.startAt) ?? '',
@@ -113,6 +117,8 @@ function normalizeMatch(obj: RawObject): Match {
     scoreB: toNullableNumber(obj.scoreB),
     refereePlayerId: toNullableString(obj.refereePlayerId),
     refereeName: toNullableString(referee),
+    coRefereePlayerId: toNullableString(obj.coRefereePlayerId),
+    coRefereeName: toNullableString(coReferee),
   }
 }
 

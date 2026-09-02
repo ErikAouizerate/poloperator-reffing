@@ -43,6 +43,8 @@ export interface Match {
   scoreB: number | null
   refereePlayerId: string | null
   refereeName: string | null
+  coRefereePlayerId: string | null
+  coRefereeName: string | null
 }
 
 export interface Slot {

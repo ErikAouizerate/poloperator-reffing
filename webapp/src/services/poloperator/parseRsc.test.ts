@@ -108,6 +108,37 @@ describe('extractTournamentRosters (real payload)', () => {
 })
 
 describe('extractTournamentRosters (synthetic)', () => {
+  it('parses the coReferee alongside the referee', () => {
+    const stream = [
+      '0:["tree",{"children":["__PAGE__",{}]}]',
+      '1:' +
+        JSON.stringify([
+          'Jroot',
+          [
+            null,
+            {
+              id: 'm1',
+              teamAId: 'ta',
+              teamBId: 'tb',
+              startAt: '$D2026-09-01T10:00:00.000Z',
+              courtName: 'Court 1',
+              status: 'FINISHED',
+              scoreA: 2,
+              scoreB: 1,
+              refereePlayerId: 'p1',
+              referee: { id: 'p1', name: 'Yann Pivot' },
+              coRefereePlayerId: 'p2',
+              coReferee: { id: 'p2', name: 'Caro Paulette' },
+            },
+            { id: 'ta', name: 'Team A', players: [{ playerId: 'p1' }] },
+          ],
+        ]),
+    ].join('\n')
+    const { matches } = extractTournamentRosters(parseRscStream(stream))
+    expect(matches[0].coRefereeName).toBe('Caro Paulette')
+    expect(matches[0].coRefereePlayerId).toBe('p2')
+  })
+
   it('finds matches and teams in a hand-crafted chunk', () => {
     const stream = [
       '0:["tree",{"children":["__PAGE__",{}]}]',
