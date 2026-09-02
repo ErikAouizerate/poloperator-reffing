@@ -11,13 +11,15 @@ no router — all state lives in classic Redux. Today the selected tournament ca
 shared: the URL is always the bare app URL.
 
 This spec adds the selected tournament as a URL query parameter so a URL can be
-shared: `?tournament=<slug>`. If the tournament named in the URL is hidden by the
-current filters, the filters are bypassed (the picker falls back to the full list)
-until a tournament within the filters is chosen.
+shared: `?tournament=<slug>`. The filters stay active at all times: if the
+tournament selected from the URL does not match the current filters, it is kept in
+the picker options (appended to the filtered list) so the shared URL still works
+without ever disabling the configuration.
 
 Decisions locked with the user:
-- **Fallback semantics**: when the URL tournament is hidden by the filters, the
-  picker shows the full (unfiltered) list until a filtered tournament is picked.
+- **Filter behavior**: filters stay active at all times; if the selected tournament
+  (URL or manual) is hidden by the filters, it is appended to the picker options so
+  it remains selectable — never a full-list fallback, so configuration always works.
 - **URL sync**: `history.replaceState` (no history spam; back button does not walk
   through every selection).
 - No router, no new dependency: `URLSearchParams` + `history.replaceState`.
@@ -39,17 +41,19 @@ Decisions locked with the user:
   set, and after a load error).
 - Unknown / malformed slug: ignored; no auto-load; URL left untouched.
 
-### Filter bypass
+### Filter behavior
 - New pure function `resolvePickerList(list, settings, selectedSlug)`:
   - `list === null` → `null`.
-  - Compute `filtered = filterTournaments(list, settings)`.
-  - If the selected slug is not present in `filtered`, return the full `list`.
-  - Otherwise return `filtered`.
+  - Compute `filtered = filterTournaments(list, settings)` — **filters always apply**.
+  - If the selected slug is present in `filtered` (or there is no selection), return
+    `filtered`.
+  - Otherwise append the selected tournament (looked up in the full `list`) to
+    `filtered` so it stays selectable while the filters remain active.
 - Invariant: the picker always shows a list containing the selected tournament, so a
   shared URL works regardless of filter state and the `<select>` never holds a value
   absent from its options.
-- When the user later picks a tournament that *is* within the filters, the filtered
-  list is used again automatically.
+- Config changes (continent, live-only) always take effect on the picker; the
+  selected tournament is merely kept visible even when it no longer matches.
 - `TournamentPicker` itself is unchanged.
 
 ### App wiring
@@ -108,10 +112,11 @@ browser globals. `parseSlugFromSearch` / `buildSearchWithSlug` are pure and take
   - `buildSearchWithSlug` — add when empty, add preserving other params, replace
     existing, remove when clearing, remove preserving other params.
 - `filter.test.ts` (`resolvePickerList`):
-  - selected slug within filters → filtered list.
-  - selected slug outside filters → full list.
-  - no selected slug → filtered list.
   - `list === null` → `null`.
+  - no selected slug → filtered list.
+  - selected slug within filters → filtered list.
+  - selected slug outside filters → filtered list + selected tournament appended
+    (filters stay active).
 
 ## Out of scope
 

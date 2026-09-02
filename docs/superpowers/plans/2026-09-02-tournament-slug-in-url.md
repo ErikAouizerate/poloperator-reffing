@@ -4,7 +4,7 @@
 
 **Goal:** Mettre le slug du tournoi sélectionné dans l'URL (`?tournament=<slug>`) pour partager facilement, avec auto-chargement depuis l'URL et bascule « filtres désactivés » quand le tournoi de l'URL est masqué par les filtres.
 
-**Architecture:** Pas de routeur. Helpers URL purs (`parseSlugFromSearch` / `buildSearchWithSlug`) + wrapper navigateur gardé `syncTournamentSlug` (pattern `settingsStorage`). Nouvelle fonction pure `resolvePickerList` qui retombe sur la liste complète si le tournoi sélectionné est absent de la liste filtrée. `App.tsx` lit le slug une fois, auto-charge le tournoi à la fin du chargement de la liste, et écrit le slug dans l'URL via `history.replaceState` à chaque sélection.
+**Architecture:** Pas de routeur. Helpers URL purs (`parseSlugFromSearch` / `buildSearchWithSlug`) + wrapper navigateur gardé `syncTournamentSlug` (pattern `settingsStorage`). Nouvelle fonction pure `resolvePickerList` qui garde les filtres actifs et ajoute le tournoi sélectionné s'il est masqué par le filtre. `App.tsx` lit le slug une fois, auto-charge le tournoi à la fin du chargement de la liste, et écrit le slug dans l'URL via `history.replaceState` à chaque sélection.
 
 **Tech Stack:** React 19 + Vite + TypeScript + Tailwind CSS v4 + Redux classic + Vitest (node env, pas de jsdom).
 
@@ -144,7 +144,7 @@ git commit -m "feat: add url helpers for tournament slug param"
 
 ---
 
-### Task 2: `resolvePickerList` (fallback liste complète)
+### Task 2: `resolvePickerList` (filtres actifs + tournoi forcé)
 
 **Files:**
 - Modify: `webapp/src/services/poloperator/filter.ts`
@@ -153,6 +153,7 @@ git commit -m "feat: add url helpers for tournament slug param"
 **Interfaces:**
 - Consumes: `filterTournaments` existant, `Settings`, `TournamentSummary`.
 - Produces: `resolvePickerList(list: TournamentSummary[] | null, settings: Settings, selectedSlug: string | null): TournamentSummary[] | null`. Utilisé par App (Task 3).
+- Comportement (validé par l'utilisateur après revue) : les filtres **restent toujours actifs** ; si le tournoi sélectionné est masqué par les filtres, il est **ajouté à la fin** de la liste filtrée pour rester sélectionnable. Pas de retour à la liste complète.
 
 - [ ] **Step 1: Write the failing test**
 
@@ -174,9 +175,12 @@ describe('resolvePickerList', () => {
     expect(out).toEqual([liveEu])
   })
 
-  it('falls back to the full list when the selected tournament is hidden by the filters', () => {
-    const out = resolvePickerList([liveEu, liveNa], baseSettings, 'b')
+  it('keeps filters active and appends the selected tournament when it is hidden', () => {
+    const list = [liveEu, liveNa, finishedEu, futureEu]
+    const out = resolvePickerList(list, baseSettings, 'b')
     expect(out).toEqual([liveEu, liveNa])
+  })
+})
   })
 })
 ```
@@ -199,7 +203,9 @@ export function resolvePickerList(
   if (list === null) return null
   const filtered = filterTournaments(list, settings)
   if (!selectedSlug) return filtered
-  return filtered.some((t) => t.slug === selectedSlug) ? filtered : list
+  if (filtered.some((t) => t.slug === selectedSlug)) return filtered
+  const selected = list.find((t) => t.slug === selectedSlug)
+  return selected ? [...filtered, selected] : filtered
 }
 ```
 
@@ -214,7 +220,7 @@ Run: `pnpm run build` — expected PASS.
 
 ```bash
 git add webapp/src/services/poloperator/filter.ts webapp/src/services/poloperator/filter.test.ts
-git commit -m "feat: fall back to full tournament list when selection is hidden by filters"
+git commit -m "feat: keep filters active and force selected tournament into picker"
 ```
 
 ---
@@ -345,7 +351,7 @@ Expected: PASS.
 Run: `pnpm dev` (port 3003), vérifier dans le navigateur :
 - Sélectionner un tournoi → l'URL devient `…?tournament=<slug>` sans rechargement.
 - Copier l'URL, l'ouvrir dans un nouvel onglet → le tournoi se charge automatiquement.
-- Avec un filtre qui masque le tournoi de l'URL (ex. `continent=EU` mais tournoi NA, ou `showLiveOnly` qui l'exclut) : le picker affiche la liste complète tant que le tournoi d'URL est sélectionné ; choisir ensuite un tournoi dans les filtres → la liste filtrée revient.
+- Avec un filtre qui masque le tournoi de l'URL (ex. `continent=EU` mais tournoi NA, ou `showLiveOnly` qui l'exclut) : le picker affiche la liste filtrée + le tournoi d'URL en fin de liste ; changer le filtre dans Config a bien un effet sur la liste affichée, le tournoi sélectionné restant toujours présent.
 - Slug inconnu (`?tournament=zzz`) → rien n'est sélectionné, pas d'erreur, l'URL reste telle quelle.
 - Refresh (60s / bouton) → le tournoi sélectionné est conservé et rechargé, l'URL reste cohérente.
 
