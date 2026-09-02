@@ -39,6 +39,35 @@ function formatMatchTime(iso: string): string {
   });
 }
 
+function ChevronToggle({
+  expanded,
+  onToggle,
+}: {
+  expanded: boolean;
+  onToggle: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onToggle}
+      aria-label={expanded ? "Replier" : "Déplier"}
+      title={expanded ? "Replier" : "Déplier"}
+      className="flex h-8 w-8 items-center justify-center rounded-[10px] border-2 border-ink bg-surface text-ink shadow-kit hover:bg-teal"
+    >
+      <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden>
+        <path
+          d={expanded ? "M4 10l4-4 4 4" : "M4 6l4 4 4-4"}
+          stroke="currentColor"
+          strokeWidth="2"
+          fill="none"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </button>
+  );
+}
+
 export function UpcomingMatches({
   matches,
   suggestionsByMatch,
@@ -66,18 +95,17 @@ export function UpcomingMatches({
 
   return (
     <section>
-      <h2 className="font-display mb-3 text-xl font-bold tracking-tight text-ink">
-        Matchs à venir & arbitres suggérés
-      </h2>
-      {hasMoreWaves ? (
-        <button
-          type="button"
-          onClick={() => setExpanded((v) => !v)}
-          className="mb-3 rounded-[10px] border-2 border-ink bg-surface px-3 py-1.5 text-xs font-bold uppercase tracking-[0.1em] text-ink shadow-kit hover:bg-teal"
-        >
-          {expanded ? "Replier" : "Déplier"}
-        </button>
-      ) : null}
+      <div className="mb-3 flex items-center justify-between gap-3">
+        <h2 className="font-display text-xl font-bold tracking-tight text-ink">
+          Matchs à venir & arbitres suggérés
+        </h2>
+        {hasMoreWaves ? (
+          <ChevronToggle
+            expanded={expanded}
+            onToggle={() => setExpanded((v) => !v)}
+          />
+        ) : null}
+      </div>
       <ul className="space-y-3">
         {visibleMatches.map((entry) => (
           <li
@@ -135,6 +163,14 @@ export function UpcomingMatches({
           </li>
         ))}
       </ul>
+      {hasMoreWaves ? (
+        <div className="mt-3 flex justify-end">
+          <ChevronToggle
+            expanded={expanded}
+            onToggle={() => setExpanded((v) => !v)}
+          />
+        </div>
+      ) : null}
     </section>
   );
 }
