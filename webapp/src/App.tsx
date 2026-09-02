@@ -157,9 +157,39 @@ function App() {
               onClick={handleShare}
               aria-label="Copier le lien"
               title="Copier le lien du tournoi"
-              className="flex h-9 items-center justify-center rounded-full border-2 border-ink bg-surface px-3 text-xs font-bold uppercase tracking-[0.1em] text-ink hover:bg-teal"
+              className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-ink bg-surface text-ink hover:bg-teal"
             >
-              {copied ? "Copié" : "Partager"}
+              {copied ? (
+                <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden>
+                  <path
+                    d="M20 6L9 17l-5-5"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              ) : (
+                <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden>
+                  <path
+                    d="M12 3v13m0 0l-4-4m4 4l4-4"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M5 13v6h14v-6"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              )}
             </button>
             <button
               type="button"
@@ -215,7 +245,7 @@ function App() {
         ) : selected.data ? (
           <div className="space-y-10">
             <div>
-              <div className="flex flex-wrap items-center gap-3">
+              <div className="flex flex-wrap items-center justify-between gap-3">
                 <h2 className="font-display text-2xl font-bold tracking-tight text-ink">
                   {summary.name}
                 </h2>
@@ -228,7 +258,7 @@ function App() {
                   Voir sur Poloperator ↗
                 </a>
               </div>
-              <p className="mt-1 text-sm text-muted">
+              <p className="mt-3 text-sm text-muted">
                 {formatTournamentDates(summary)} · {selected.data.teams.length}{" "}
                 équipes · {timeline.upcoming.length} match à venir
                 {timeline.upcoming.length > 1 ? "s" : ""}
