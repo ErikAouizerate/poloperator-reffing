@@ -118,17 +118,23 @@ function normalizeMatch(obj: RawObject): Match {
 
 function normalizeTeam(obj: RawObject): Team {
   const playerIds: string[] = []
+  const playerNames: string[] = []
   for (const entry of obj.players as unknown[]) {
-    if (isRecord(entry)) {
-      if (typeof entry.playerId === 'string') playerIds.push(entry.playerId)
-      else if (typeof entry.id === 'string') playerIds.push(entry.id)
-    }
+    if (!isRecord(entry)) continue
+    if (typeof entry.playerId === 'string') playerIds.push(entry.playerId)
+    else if (typeof entry.id === 'string') playerIds.push(entry.id)
+    // The roster entry embeds the full player object; the display name lives on it.
+    const name =
+      isRecord(entry.player) && typeof entry.player.name === 'string'
+        ? entry.player.name.trim()
+        : ''
+    playerNames.push(name)
   }
   return {
     id: String(obj.id),
     name: String(obj.name).trim(),
     playerIds,
-    playerNames: [],
+    playerNames,
   }
 }
 

@@ -78,6 +78,17 @@ describe('extractTournamentRosters (real payload)', () => {
     for (const team of teams) expect(team.name.trim()).toBe(team.name)
   })
 
+  it('extracts roster player names aligned with player ids', () => {
+    for (const team of teams) {
+      expect(team.playerNames.length).toBe(team.playerIds.length)
+      for (const name of team.playerNames) expect(name.trim().length).toBeGreaterThan(0)
+    }
+    const rapt = teams.find((t) => t.name === 'RAPTUS')
+    expect(rapt!.playerNames).toHaveLength(4)
+    const paranoia = teams.find((t) => t.name === 'Paranoïd')
+    expect(paranoia!.playerNames.some((n) => n.includes('Manu'))).toBe(true)
+  })
+
   it('extracts the 169 matches with normalized fields', () => {
     expect(matches).toHaveLength(169)
     const withReferee = matches.filter((m) => m.refereeName)
