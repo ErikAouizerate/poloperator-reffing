@@ -24,7 +24,7 @@ export function syncTournamentSlug(slug: string | null): void {
   if (typeof window === 'undefined' || typeof history === 'undefined') return
   try {
     const search = buildSearchWithSlug(window.location.search, slug)
-    history.replaceState(null, '', window.location.pathname + search)
+    history.replaceState(null, '', window.location.pathname + search + window.location.hash)
   } catch {
     // URL/history API unavailable — the URL stays as-is.
   }

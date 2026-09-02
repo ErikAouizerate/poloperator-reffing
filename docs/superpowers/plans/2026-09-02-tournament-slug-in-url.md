@@ -333,7 +333,7 @@ Expected: PASS (aucune erreur oxlint).
 - [ ] **Step 2: Tests**
 
 Run: `pnpm test`
-Expected: PASS (tous les tests — 47 attendus : 38 existants + 9 urlTournament, et 4 `resolvePickerList` inclus dans le fichier `filter` déjà compté).
+Expected: PASS (tous les tests — 51 attendus : 38 existants + 9 urlTournament + 4 `resolvePickerList`).
 
 - [ ] **Step 3: Build complet**
 
