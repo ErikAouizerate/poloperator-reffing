@@ -117,24 +117,30 @@ function normalizeMatch(obj: RawObject): Match {
 }
 
 function normalizeTeam(obj: RawObject): Team {
-  const playerIds: string[] = []
-  const playerNames: string[] = []
+  // Collect { id, name } pairs so playerIds and playerNames stay index-aligned:
+  // an entry with no usable id is dropped entirely, never just its name.
+  const players: { id: string; name: string }[] = []
   for (const entry of obj.players as unknown[]) {
     if (!isRecord(entry)) continue
-    if (typeof entry.playerId === 'string') playerIds.push(entry.playerId)
-    else if (typeof entry.id === 'string') playerIds.push(entry.id)
+    const id =
+      typeof entry.playerId === 'string'
+        ? entry.playerId
+        : typeof entry.id === 'string'
+          ? entry.id
+          : null
+    if (!id) continue
     // The roster entry embeds the full player object; the display name lives on it.
     const name =
       isRecord(entry.player) && typeof entry.player.name === 'string'
         ? entry.player.name.trim()
         : ''
-    playerNames.push(name)
+    players.push({ id, name })
   }
   return {
     id: String(obj.id),
     name: String(obj.name).trim(),
-    playerIds,
-    playerNames,
+    playerIds: players.map((p) => p.id),
+    playerNames: players.map((p) => p.name),
   }
 }
 

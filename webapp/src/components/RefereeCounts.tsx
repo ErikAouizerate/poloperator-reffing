@@ -16,7 +16,7 @@ export function RefereeCounts({ counts }: RefereeCountsProps) {
         {counts.map((entry) => (
           <li key={entry.teamId} className="flex items-center gap-3 text-sm">
             <div className="w-44 min-w-0">
-              <p className="truncate text-sm font-medium text-ink">
+              <p className="truncate text-sm font-medium text-ink" title={entry.teamName}>
                 {entry.teamName}
               </p>
               {entry.playerNames.length > 0 ? (
