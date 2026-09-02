@@ -78,4 +78,10 @@ describe('resolvePickerList', () => {
     const out = resolvePickerList(list, baseSettings, 'b')
     expect(out).toEqual([liveEu, liveNa])
   })
+
+  it('never returns an empty list: falls back to the full list when filters match nothing', () => {
+    const asiaOnly: Settings = { ...baseSettings, continent: 'AS' }
+    const out = resolvePickerList([liveEu, liveNa], asiaOnly, null)
+    expect(out).toEqual([liveEu, liveNa])
+  })
 })
