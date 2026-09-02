@@ -80,7 +80,9 @@ describe('replay validation (real data)', () => {
   it('following the suggestions would balance referee duties far better than reality', () => {
     // actual spread is ~[1..18]; a balanced rotation should be much tighter
     expect(simulation.stdDev).toBeLessThan(actualStdDev * 0.5)
-    expect(simulation.max - simulation.min).toBeLessThanOrEqual(3)
+    // The chain rule (tier 4) shrinks the per-wave candidate pool, so the
+    // spread is slightly wider than without it, but still tightly balanced.
+    expect(simulation.max - simulation.min).toBeLessThanOrEqual(5)
     expect(simulation.max).toBeLessThan(18)
   })
 })

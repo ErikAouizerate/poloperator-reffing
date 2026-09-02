@@ -145,24 +145,28 @@ describe('suggestForSlot (synthetic, rule correctness)', () => {
     { playerId: `${teamId}-p1` },
     { playerId: `${teamId}-p2` },
   ]
-  const teams: Team[] = ['A', 'B', 'C', 'D', 'E', 'F'].map((name) => ({
-    id: name,
-    name,
-    playerIds: players(name).map((p) => p.playerId),
-    playerNames: [],
-  }))
+  const teams: Team[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'].map(
+    (name) => ({
+      id: name,
+      name,
+      playerIds: players(name).map((p) => p.playerId),
+      playerNames: [],
+    }),
+  )
 
   const matches: Match[] = [
-    // slot 0: A vs B, refereed by E
-    m(0, 'm1', 'A', 'B', 'E'),
-    // slot 1: C vs D, refereed by F
-    m(1, 'm2', 'C', 'D', 'F'),
-    // slot 2: E vs F (the wave to predict)
-    m(2, 'm3', 'E', 'F', null),
-    // slot 3: A vs B again
-    m(3, 'm4', 'A', 'B', null),
-    // slot 4: C vs D again
-    m(4, 'm5', 'C', 'D', null),
+    // slot 0 (T-2): G vs H — filler history
+    m(0, 'm0', 'G', 'H', null),
+    // slot 1 (T-1): C vs I — C plays the previous wave
+    m(1, 'm1', 'C', 'I', null),
+    // slot 2 (T): E vs F — the wave to predict (target)
+    m(2, 'm2', 'E', 'F', null),
+    // slot 3 (T+1): A vs G — A plays the very next wave
+    m(3, 'm3', 'A', 'G', null),
+    // slot 4 (T+2): B vs H — B plays two waves later (Optimum)
+    m(4, 'm4', 'B', 'H', null),
+    // slot 5 (T+3): D vs I — D plays three waves later (OK)
+    m(5, 'm5', 'D', 'I', null),
   ]
 
   function m(slot: number, id: string, a: string, b: string, refOf: string | null): Match {
@@ -170,7 +174,7 @@ describe('suggestForSlot (synthetic, rule correctness)', () => {
       id,
       startAt: `2026-09-01T0${slot}:00:00.000Z`,
       courtName: 'Court 1',
-      status: refOf ? 'FINISHED' : 'SCHEDULED',
+      status: slot < 2 ? 'FINISHED' : 'SCHEDULED',
       phase: 'STAGE',
       teamAId: a,
       teamBId: b,
@@ -178,34 +182,66 @@ describe('suggestForSlot (synthetic, rule correctness)', () => {
       scoreB: null,
       refereePlayerId: refOf ? `${refOf}-p1` : null,
       refereeName: refOf ? `ref-of-${refOf}` : null,
+      coRefereePlayerId: null,
+      coRefereeName: null,
     }
   }
 
   const slots = buildSlots(matches)
   const model = buildModel(teams, slots)
 
-  it('prefers the teams that play exactly two waves later (T+2)', () => {
+  it('ranks a T+2 team as tier 1 (Optimum)', () => {
     const { suggestionsByMatch } = suggestForSlot(model, 2)
-    const list = suggestionsByMatch.get('m3')!
+    const list = suggestionsByMatch.get('m2')!
+    // B plays at slot 4 = T+2 and has not just played → tier 1
+    expect(list.find((s) => s.teamId === 'B')!.tier).toBe(1)
     expect(list[0].tier).toBe(1)
-    expect(list[0].teamId).toBe('C') // next match at slot 4 = target+2, count 0
-    expect(list[1].teamId).toBe('D')
+    expect(list[0].teamId).toBe('B')
   })
 
-  it('falls back to the lowest referee count when no team is at T+2', () => {
-    const { suggestionsByMatch } = suggestForSlot(model, 3)
-    // target slot 3: A vs B. T+2 = slot 5, which does not exist.
-    const list = suggestionsByMatch.get('m4')!
-    expect(list[0].tier).toBe(2)
-    // candidates not playing: C, D (next 4 = target+1), E, F (no upcoming match)
-    // E refereed at slot 0, F at slot 1 → counts E=1, F=1, C=0, D=0
-    expect(list[0].refereeCount).toBe(0)
+  it('ranks a T+3 team as tier 2 (OK)', () => {
+    const { suggestionsByMatch } = suggestForSlot(model, 2)
+    const list = suggestionsByMatch.get('m2')!
+    // D plays at slot 5 = T+3 → tier 2
+    expect(list.find((s) => s.teamId === 'D')!.tier).toBe(2)
+  })
+
+  it('ranks a never-playing team as tier 3', () => {
+    const { suggestionsByMatch } = suggestForSlot(model, 2)
+    const list = suggestionsByMatch.get('m2')!
+    // J never plays → tier 3 (fallback)
+    expect(list.find((s) => s.teamId === 'J')!.tier).toBe(3)
+  })
+
+  it('demotes a team playing the next wave (T+1) to tier 4 (chain)', () => {
+    const { suggestionsByMatch } = suggestForSlot(model, 2)
+    const list = suggestionsByMatch.get('m2')!
+    // A plays at slot 3 = T+1 → arbitrage→match chain → tier 4 (worst)
+    expect(list.find((s) => s.teamId === 'A')!.tier).toBe(4)
+  })
+
+  it('demotes a team that just played (T-1) to tier 4 (chain)', () => {
+    const { suggestionsByMatch } = suggestForSlot(model, 2)
+    const list = suggestionsByMatch.get('m2')!
+    // C played at slot 1 = T-1 → match→arbitrage chain → tier 4 (worst)
+    expect(list.find((s) => s.teamId === 'C')!.tier).toBe(4)
+  })
+
+  it('sorts tiers ascending and puts chain (4) last', () => {
+    const { suggestionsByMatch } = suggestForSlot(model, 2)
+    const list = suggestionsByMatch.get('m2')!
+    // candidates not playing E,F: A,B,C,D,G,H,I,J
+    expect(list).toHaveLength(8)
+    for (let i = 1; i < list.length; i += 1) {
+      expect(list[i].tier >= list[i - 1].tier).toBe(true)
+    }
+    expect(list[list.length - 1].tier).toBe(4)
   })
 
   it('buildPrediction exposes live suggestions only for scheduled matches', () => {
     const result = buildPrediction(teams, matches)
-    expect(result.upcomingMatches.map((m) => m.id).sort()).toEqual(['m3', 'm4', 'm5'])
-    expect(Object.keys(result.suggestionsByMatch).sort()).toEqual(['m3', 'm4', 'm5'])
+    expect(result.upcomingMatches.map((m) => m.id).sort()).toEqual(['m2', 'm3', 'm4', 'm5'])
+    expect(Object.keys(result.suggestionsByMatch).sort()).toEqual(['m2', 'm3', 'm4', 'm5'])
   })
 })
 
@@ -237,22 +273,39 @@ describe('suggestForSlot (end of round, future unknown)', () => {
       scoreB: null,
       refereePlayerId: refOf ? `${refOf}-p1` : null,
       refereeName: refOf ? `ref-of-${refOf}` : null,
+      coRefereePlayerId: null,
+      coRefereeName: null,
     }
   }
 
   const slots = buildSlots(matches)
   const model = buildModel(teams, slots)
 
-  it('ranks teams that played at t−2 first, then older, then t−1 (all tier 3)', () => {
+  it('ranks t−2 first, then older, and demotes t−1 teams to tier 4', () => {
     const { suggestionsByMatch } = suggestForSlot(model, 3)
     const list = suggestionsByMatch.get('s3')!
-    expect(list.every((s) => s.tier === 3)).toBe(true)
+    // C/D (t−2) first, A/B (older) next — all tier 3
     expect(list[0].teamId).toBe('C')
     expect(list[1].teamId).toBe('D')
     expect(list[2].teamId).toBe('A')
     expect(list[3].teamId).toBe('B')
+    expect(list[0].tier).toBe(3)
+    // E/F played at T−1 → chain → tier 4 (worst, sorted last)
+    expect(list[4].tier).toBe(4)
+    expect(list[5].tier).toBe(4)
     expect(list[4].teamId).toBe('E')
     expect(list[5].teamId).toBe('F')
+  })
+
+  it('marks a team that just played (T-1) as tier 4 (worst)', () => {
+    const { suggestionsByMatch } = suggestForSlot(model, 3)
+    const list = suggestionsByMatch.get('s3')!
+    // E and F played at slot 2 = T-1 → chain match→arbitrage → tier 4
+    expect(list.find((s) => s.teamId === 'E')!.tier).toBe(4)
+    expect(list.find((s) => s.teamId === 'F')!.tier).toBe(4)
+    // C/D played at slot 1 = T-2 → still tier 3, ranked first
+    expect(list[0].teamId).toBe('C')
+    expect(list[1].teamId).toBe('D')
   })
 
   it('breaks ties within the t−2 group by fewest referee duties', () => {

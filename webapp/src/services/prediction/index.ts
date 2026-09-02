@@ -197,8 +197,14 @@ export function suggestForSlot(
     )
     const scored: RefereeSuggestion[] = candidates.map((team) => {
       const nextMatchSlotIndex = next.get(team.id) ?? null
-      let tier: 1 | 2 | 3 = 3
-      if (nextMatchSlotIndex === targetSlotIndex + 2) {
+      const lastPlayedSlotIndex = last.get(team.id) ?? null
+      let tier: 1 | 2 | 3 | 4 = 3
+      const isChain =
+        nextMatchSlotIndex === targetSlotIndex + 1 ||
+        lastPlayedSlotIndex === targetSlotIndex - 1
+      if (isChain) {
+        tier = 4
+      } else if (nextMatchSlotIndex === targetSlotIndex + 2) {
         tier = 1
       } else if (
         nextMatchSlotIndex !== null &&
@@ -213,7 +219,7 @@ export function suggestForSlot(
         tier,
         refereeCount: counts.get(team.id) ?? 0,
         nextMatchSlotIndex,
-        lastPlayedSlotIndex: last.get(team.id) ?? null,
+        lastPlayedSlotIndex,
         lastRefSlotIndex: lastRef.get(team.id) ?? null,
       }
     })

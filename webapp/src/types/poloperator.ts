@@ -56,7 +56,7 @@ export interface Slot {
 export interface RefereeSuggestion {
   teamId: string
   teamName: string
-  tier: 1 | 2 | 3
+  tier: 1 | 2 | 3 | 4
   refereeCount: number
   nextMatchSlotIndex: number | null
   lastPlayedSlotIndex: number | null
