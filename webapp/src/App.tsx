@@ -44,6 +44,18 @@ function App() {
   const settings = useAppSelector((s) => s.settings);
   const [settingsOpen, setSettingsOpen] = useState(false);
 
+  const [copied, setCopied] = useState(false);
+
+  const handleShare = async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch {
+      setCopied(false);
+    }
+  };
+
   const summary = selected.summary;
 
   const [urlSlug] = useState(() =>
@@ -130,14 +142,25 @@ function App() {
             loading={listLoading || selected.loading}
             onRefresh={handleRefresh}
           />
-          <button
-            type="button"
-            onClick={() => setSettingsOpen(true)}
-            aria-label="Configuration"
-            className="flex h-9 w-9 items-center justify-center justify-self-end rounded-full border-2 border-ink bg-surface text-sm text-ink hover:bg-teal"
-          >
-            ⚙
-          </button>
+          <div className="flex items-center justify-self-end gap-2">
+            <button
+              type="button"
+              onClick={handleShare}
+              aria-label="Copier le lien"
+              title="Copier le lien du tournoi"
+              className="flex h-9 items-center justify-center rounded-full border-2 border-ink bg-surface px-3 text-xs font-bold uppercase tracking-[0.1em] text-ink hover:bg-teal"
+            >
+              {copied ? "Copié" : "Partager"}
+            </button>
+            <button
+              type="button"
+              onClick={() => setSettingsOpen(true)}
+              aria-label="Configuration"
+              className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-ink bg-surface text-sm text-ink hover:bg-teal"
+            >
+              ⚙
+            </button>
+          </div>
         </div>
       </header>
 
