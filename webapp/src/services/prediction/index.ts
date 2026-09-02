@@ -125,7 +125,7 @@ function lastPlayedSlot(
  * earlier (or never), 2 = played at T-1 (just played, no rest). Tiers 1-2 are
  * ordered only by the future-based criteria, so this never applies to them.
  */
-function restGroup(lastPlayed: number | null, targetSlotIndex: number): number {
+export function restGroup(lastPlayed: number | null, targetSlotIndex: number): number {
   if (lastPlayed === targetSlotIndex - 2) return 0
   if (lastPlayed === targetSlotIndex - 1) return 2
   return 1

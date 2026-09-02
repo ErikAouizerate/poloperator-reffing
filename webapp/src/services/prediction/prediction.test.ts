@@ -6,6 +6,7 @@ import {
   buildModel,
   buildPrediction,
   refereeCounts,
+  restGroup,
   suggestForSlot,
 } from './index'
 import { buildSlots } from './slots'
@@ -103,12 +104,18 @@ describe('suggestForSlot (real data, invariants)', () => {
     for (const s of suggestions) expect(playing.has(s.teamId)).toBe(false)
   })
 
-  it('sorts by tier then referee count', () => {
+  it('sorts by tier then rest group (tier 3) then referee count', () => {
     for (let i = 1; i < suggestions.length; i += 1) {
       const prev = suggestions[i - 1]
       const cur = suggestions[i]
       expect(cur.tier >= prev.tier).toBe(true)
-      if (cur.tier === prev.tier) expect(cur.refereeCount >= prev.refereeCount).toBe(true)
+      if (cur.tier !== prev.tier) continue
+      const prevGroup = cur.tier === 3 ? restGroup(prev.lastPlayedSlotIndex, target) : 0
+      const curGroup = cur.tier === 3 ? restGroup(cur.lastPlayedSlotIndex, target) : 0
+      expect(curGroup >= prevGroup).toBe(true)
+      if (curGroup === prevGroup) {
+        expect(cur.refereeCount >= prev.refereeCount).toBe(true)
+      }
     }
   })
 
