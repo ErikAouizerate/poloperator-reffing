@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import type { TournamentSummary } from '../../types/poloperator'
 import type { Settings } from '../../store/settings'
-import { filterTournaments } from './filter'
+import { filterTournaments, resolvePickerList } from './filter'
 
 function makeTournament(partial: Partial<TournamentSummary>): TournamentSummary {
   return {
@@ -55,5 +55,26 @@ describe('filterTournaments', () => {
     const list = [finishedEu, liveNa, liveEu]
     const out = filterTournaments(list, { ...baseSettings, showLiveOnly: false, continent: 'ALL' })
     expect(out.map((t) => t.id)).toEqual(['c', 'b', 'a'])
+  })
+})
+
+describe('resolvePickerList', () => {
+  it('returns null when the list is null', () => {
+    expect(resolvePickerList(null, baseSettings, 'a')).toBeNull()
+  })
+
+  it('returns the filtered list when no tournament is selected', () => {
+    const out = resolvePickerList([liveEu, liveNa], baseSettings, null)
+    expect(out).toEqual([liveEu])
+  })
+
+  it('returns the filtered list when the selected tournament is within the filters', () => {
+    const out = resolvePickerList([liveEu, liveNa], baseSettings, 'a')
+    expect(out).toEqual([liveEu])
+  })
+
+  it('falls back to the full list when the selected tournament is hidden by the filters', () => {
+    const out = resolvePickerList([liveEu, liveNa], baseSettings, 'b')
+    expect(out).toEqual([liveEu, liveNa])
   })
 })
