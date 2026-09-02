@@ -123,7 +123,7 @@ function App() {
   return (
     <main className="min-h-svh bg-bg font-sans text-ink">
       <header className="border-b-2 border-ink bg-surface">
-        <div className="mx-auto grid max-w-3xl grid-cols-[1fr_auto_1fr] items-center gap-4 px-6 py-3">
+        <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 px-6 py-3">
           <div className="flex items-center gap-3">
             <span className="flex items-center gap-2 rounded-[10px] border-2 border-ink px-3 py-1.5 shadow-kit">
               <span
@@ -164,7 +164,7 @@ function App() {
         </div>
       </header>
 
-      <div className="mx-auto max-w-3xl px-6 py-8">
+      <div className="mx-auto max-w-5xl px-6 py-8">
         <div className="mb-8">
           <TournamentPicker
             tournaments={pickerList}
