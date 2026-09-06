@@ -11,6 +11,7 @@ import { LiveMatches } from "./components/LiveMatches";
 import { RefereeCounts } from "./components/RefereeCounts";
 import { RefreshButton } from "./components/RefreshButton";
 import { SettingsModal } from "./components/SettingsModal";
+import { HelpModal } from "./components/HelpModal";
 import { resolvePickerList } from "./services/poloperator/filter";
 import { classifyMatches } from "./services/prediction/timeline";
 import { parseSlugFromSearch, syncTournamentSlug } from "./utils/urlTournament";
@@ -43,6 +44,7 @@ function App() {
   const selected = useAppSelector((s) => s.tournament.selected);
   const settings = useAppSelector((s) => s.settings);
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [helpOpen, setHelpOpen] = useState(false);
 
   const [copied, setCopied] = useState(false);
 
@@ -193,6 +195,15 @@ function App() {
             >
               ⚙
             </button>
+            <button
+              type="button"
+              onClick={() => setHelpOpen(true)}
+              aria-label="Aide"
+              title="Aide"
+              className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-ink bg-surface text-sm text-ink hover:bg-teal"
+            >
+              ?
+            </button>
           </div>
         </div>
       </header>
@@ -282,6 +293,7 @@ function App() {
         onClose={() => setSettingsOpen(false)}
         settings={settings}
       />
+      <HelpModal open={helpOpen} onClose={() => setHelpOpen(false)} />
     </main>
   );
 }
