@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { RefereeSuggestion } from "../types/poloperator";
 import type { UpcomingWithHorizon } from "../services/prediction/timeline";
+import { TIER_BG, TIER_LABEL } from "./tierStyles";
 
 interface UpcomingMatchesProps {
   matches: UpcomingWithHorizon[];
@@ -9,20 +10,6 @@ interface UpcomingMatchesProps {
   playerNamesById: (teamId: string | null) => string[];
   suggestionLimit: number;
 }
-
-const TIER_LABEL: Record<number, string> = {
-  1: "Optimum",
-  2: "OK",
-  3: "Moins pire",
-  4: "À éviter",
-};
-
-const TIER_BG: Record<number, string> = {
-  1: "bg-teal",
-  2: "bg-yellow",
-  3: "bg-orange",
-  4: "bg-red",
-};
 
 function formatMatchDate(iso: string): string {
   const date = new Date(iso);
