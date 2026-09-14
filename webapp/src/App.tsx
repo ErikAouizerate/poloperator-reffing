@@ -142,7 +142,11 @@ function App() {
       <header className="border-b-2 border-ink bg-surface">
         <div className="flex items-center justify-between gap-4 px-6 py-3 md:grid md:grid-cols-[1fr_auto_1fr]">
           <div className="flex items-center gap-3">
-            <span className="flex items-center gap-2 px-3 py-1.5">
+            <a
+              href="/"
+              aria-label="Retour à l'accueil"
+              className="flex items-center gap-2 px-3 py-1.5 hover:opacity-80"
+            >
               <span
                 aria-hidden
                 className="h-2.5 w-2.5 rounded-full border-2 border-red"
@@ -150,7 +154,7 @@ function App() {
               <span className="font-display text-[17px] font-bold tracking-tight">
                 poloperator reffing
               </span>
-            </span>
+            </a>
             <span className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted">
               BETA
             </span>
