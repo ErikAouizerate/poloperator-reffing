@@ -15,7 +15,7 @@ services:
       - private
       - proxy
     labels:
-      caddy: poloperator-reffing.localhost
+      caddy: http://poloperator-reffing.localhost
       caddy.reverse_proxy: "{{upstreams 3003}}"
     environment:
       NODE_ENV: development
