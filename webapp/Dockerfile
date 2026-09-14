@@ -1,4 +1,4 @@
-# Stage: dev (used by docker-compose.override.yml / devcontainer)
+# Stage: dev (used by docker-compose.override.yml)
 FROM node:22-alpine AS dev
 RUN corepack enable && corepack prepare pnpm@latest --activate
 WORKDIR /workspace

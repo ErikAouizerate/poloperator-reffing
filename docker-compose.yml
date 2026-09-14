@@ -1,5 +1,5 @@
-# Base compose — used as-is for both the devcontainer's dev image and the
-# production deployment (this is the file Dokploy points to).
+# Base compose — production deployment (this is the file Dokploy points to).
+# Dev-only additions live in docker-compose.override.yml.
 # Never publish host ports here — use `expose:` instead of `ports:`.
 services:
   app:

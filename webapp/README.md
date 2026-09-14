@@ -2,7 +2,7 @@
 
 React 19 + Vite + TypeScript + Tailwind CSS v4 + Redux (classic).
 
-See the root [README](../README.md) for setup, devcontainer, and deployment.
+See the root [README](../README.md) for setup and deployment.
 
 ```sh
 pnpm install

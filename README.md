@@ -5,17 +5,13 @@
 
 ## Development
 
-This project uses a devcontainer + Docker Compose setup.
+This project uses Docker Compose for local development.
 
-- **Launch the devcontainer (VS Code)**: open the repo in VS Code and "Reopen in
-  Container" — VS Code reads `.devcontainer/devcontainer.json` and builds the
-  container from `docker-compose.yml` + `docker-compose.override.yml`.
-- **Launch the devcontainer (CLI)**: install the devcontainer CLI with
-  `npm install -g @devcontainers/cli`, then from the project root run:
-  `devcontainer up --workspace-folder .`.
-- **Local dev without VS Code**: `docker compose up` — automatically merges
-  `docker-compose.override.yml` on top of `docker-compose.yml` (bind-mounted source,
-  hot reload, port `3000` exposed to `localhost`).
+- **Local dev**: from the project root, run `docker compose up`. Compose automatically
+  merges `docker-compose.override.yml` on top of `docker-compose.yml`, including the
+  project bind mount, hot reload, and development settings. The app joins the shared
+  `local-proxy` Caddy network and is reachable at **http://poloperator-reffing.localhost**
+  — no host port is published.
 - **Production (Dokploy)**: Dokploy deploys `docker-compose.yml` as-is. Services use
   `expose` (not `ports`) — Dokploy's reverse proxy (Traefik) handles TLS and public
   routing internally, so no host port is published. Do not add `ports:` mappings to

@@ -1,5 +1,7 @@
 # Dev-only additions — auto-merged on top of docker-compose.yml by
 # `docker compose up` with no -f flags. Never applied on the Dokploy host.
+# Locally the app is published through the shared Caddy `local-proxy` network:
+#   http://poloperator-reffing.localhost  (no host port is published).
 services:
   app:
     build:
@@ -9,7 +11,17 @@ services:
     volumes:
       - ./webapp:/workspace
       - /workspace/node_modules
-    ports:
-      - "3003:3003"
+    networks:
+      - private
+      - proxy
+    labels:
+      caddy: poloperator-reffing.localhost
+      caddy.reverse_proxy: "{{upstreams 3003}}"
     environment:
       NODE_ENV: development
+
+networks:
+  private:
+  proxy:
+    external: true
+    name: local-proxy
