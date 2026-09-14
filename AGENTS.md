@@ -2,7 +2,8 @@
 
 ## Layout
 - `webapp/` — the only app: React 19 + Vite + TypeScript + Tailwind CSS v4 + classic Redux. No backend implemented yet.
-- `docs/superpowers/specs/` + `plans/` — dated superpowers specs/plans. Domain authority is `docs/superpowers/specs/2026-09-01-poloperator-reffing-design.md` (referee-slotting rules, RSC data source/shape). A NestJS + Postgres backend exists only as a draft spec there (`2026-09-01-nestjs-backend-design.md`) — not built.
+- `docs/superpowers/specs/` — dated superpowers specs, committed and authoritative. Domain authority is `docs/superpowers/specs/2026-09-01-poloperator-reffing-design.md` (referee-slotting rules, RSC data source/shape). A NestJS + Postgres backend exists only as a draft spec there (`2026-09-01-nestjs-backend-design.md`) — not built.
+- `docs/superpowers/plans/` and `.superpowers/` — superpowers implementation plans and local execution artifacts, generated per session and **gitignored: never commit them** (specs are the durable record).
 
 ## Data source (why the proxy exists)
 - No API: the app scrapes poloperator.com (Next.js App Router) **RSC flight payloads** — requests need the `rsc: 1` header, RSC dates are prefixed `$D`, ~15 forfeit matches (null `teamBId`) are parsed but excluded from slotting. Details in the design spec above.

@@ -3,3 +3,7 @@ volumes/
 
 node_modules/
 dist/
+
+# superpowers working artifacts — generated locally, never committed
+.superpowers/
+docs/superpowers/plans/
