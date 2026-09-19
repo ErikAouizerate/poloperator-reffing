@@ -1,32 +1,38 @@
-import type { Match } from '../types/poloperator'
+import type { Match } from "../types/poloperator";
+import type { RefereeTeams } from "../services/prediction/refereeTeams";
 
 interface LiveMatchesProps {
-  matches: Match[]
-  teamNameById: (teamId: string | null) => string
+  matches: Match[];
+  teamNameById: (teamId: string | null) => string;
+  refereeTeamsByMatch: (match: Match) => RefereeTeams;
 }
 
 function formatMatchDate(iso: string): string {
-  const date = new Date(iso)
-  return date.toLocaleDateString('fr-FR', {
-    weekday: 'short',
-    day: 'numeric',
-    month: 'short',
-  })
+  const date = new Date(iso);
+  return date.toLocaleDateString("fr-FR", {
+    weekday: "short",
+    day: "numeric",
+    month: "short",
+  });
 }
 
 function formatMatchTime(iso: string): string {
-  return new Date(iso).toLocaleTimeString('fr-FR', {
-    hour: '2-digit',
-    minute: '2-digit',
-  })
+  return new Date(iso).toLocaleTimeString("fr-FR", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
 }
 
-export function LiveMatches({ matches, teamNameById }: LiveMatchesProps) {
-  if (matches.length === 0) return null
+export function LiveMatches({
+  matches,
+  teamNameById,
+  refereeTeamsByMatch,
+}: LiveMatchesProps) {
+  if (matches.length === 0) return null;
 
   const sorted = [...matches].sort((a, b) =>
     a.startAt.localeCompare(b.startAt),
-  )
+  );
 
   return (
     <section>
@@ -35,7 +41,17 @@ export function LiveMatches({ matches, teamNameById }: LiveMatchesProps) {
       </h2>
       <ul className="space-y-3">
         {sorted.map((match) => {
-          const hasScore = match.scoreA !== null || match.scoreB !== null
+          const hasScore = match.scoreA !== null || match.scoreB !== null;
+          const refereeTeamByRole = refereeTeamsByMatch(match);
+          const referees = [
+            { name: match.refereeName, teamName: refereeTeamByRole.referee },
+            {
+              name: match.coRefereeName,
+              teamName: refereeTeamByRole.coReferee,
+            },
+          ].filter((ref): ref is { name: string; teamName: string | null } =>
+            Boolean(ref.name),
+          );
           return (
             <li
               key={match.id}
@@ -65,15 +81,20 @@ export function LiveMatches({ matches, teamNameById }: LiveMatchesProps) {
                   </span>
                 ) : null}
               </div>
-              {match.refereeName ? (
+              {referees.length > 0 ? (
                 <p className="mt-2 text-xs text-muted">
-                  Arbitre : {match.refereeName}
+                  Arbitres :{" "}
+                  {referees
+                    .map((ref) =>
+                      ref.teamName ? `${ref.name} (${ref.teamName})` : ref.name,
+                    )
+                    .join(" · ")}
                 </p>
               ) : null}
             </li>
-          )
+          );
         })}
       </ul>
     </section>
-  )
+  );
 }

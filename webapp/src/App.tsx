@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import type { TournamentSummary } from "./types/poloperator";
+import type { Match, TournamentSummary } from "./types/poloperator";
 import { useAppDispatch, useAppSelector, useAutoRefresh } from "./hooks";
 import {
   loadTournamentRequested,
@@ -14,6 +14,7 @@ import { SettingsModal } from "./components/SettingsModal";
 import { HelpModal } from "./components/HelpModal";
 import { resolvePickerList } from "./services/poloperator/filter";
 import { classifyMatches } from "./services/prediction/timeline";
+import { refereeTeams } from "./services/prediction/refereeTeams";
 import { parseSlugFromSearch, syncTournamentSlug } from "./utils/urlTournament";
 
 function formatTournamentDates(summary: TournamentSummary): string {
@@ -104,6 +105,11 @@ function App() {
     }
     return (teamId: string | null) =>
       teamId ? (map.get(teamId) ?? []) : [];
+  }, [selected.data]);
+
+  const refereeTeamsByMatch = useMemo(() => {
+    const teams = selected.data?.teams ?? [];
+    return (match: Match) => refereeTeams(teams, match);
   }, [selected.data]);
 
   const timeline = selected.data
@@ -286,6 +292,7 @@ function App() {
             <LiveMatches
               matches={timeline.live}
               teamNameById={teamNameById}
+              refereeTeamsByMatch={refereeTeamsByMatch}
             />
             <RefereeCounts counts={selected.data.refereeCounts} />
           </div>
