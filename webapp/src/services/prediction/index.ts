@@ -17,7 +17,8 @@ import { buildSlots } from './slots'
  *
  * Tiers 1-2 are based on the candidate's next known match (T+2 / [T+1, T+3]).
  * Tier 3 covers candidates with no known next match (end of a Swiss round, end
- * of the day, eliminated teams). Within tier 3, prefer the teams whose most
+ * of the day, eliminated teams). Within a tier the fewest referee duties come
+ * first; tier-3 ties are then broken by rest group: prefer the teams whose most
  * recent match was at T-2 (they are due to referee and keep a rest slot), then
  * teams that played earlier, and last the teams that just played at T-1.
  */
@@ -133,6 +134,7 @@ function lastPlayedSlot(
  * to the target slot. 0 = played at T-2 (due now, keeps a rest slot), 1 = played
  * earlier (or never), 2 = played at T-1 (just played, no rest). Tiers 1-2 are
  * ordered only by the future-based criteria, so this never applies to them.
+ * Used as a tie-break once referee counts are equal.
  */
 export function restGroup(lastPlayed: number | null, targetSlotIndex: number): number {
   if (lastPlayed === targetSlotIndex - 2) return 0
@@ -146,12 +148,12 @@ function compareSuggestions(
   targetSlotIndex: number,
 ): number {
   if (a.tier !== b.tier) return a.tier - b.tier
+  if (a.refereeCount !== b.refereeCount) return a.refereeCount - b.refereeCount
   if (a.tier === 3) {
     const ga = restGroup(a.lastPlayedSlotIndex, targetSlotIndex)
     const gb = restGroup(b.lastPlayedSlotIndex, targetSlotIndex)
     if (ga !== gb) return ga - gb
   }
-  if (a.refereeCount !== b.refereeCount) return a.refereeCount - b.refereeCount
   const aLast = a.lastRefSlotIndex ?? -1
   const bLast = b.lastRefSlotIndex ?? -1
   if (aLast !== bLast) return aLast - bLast

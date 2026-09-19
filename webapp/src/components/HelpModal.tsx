@@ -75,9 +75,9 @@ export function HelpModal({ open, onClose }: HelpModalProps) {
               <TierBadge tier={3} />
               <span>
                 Pas de match proche connu (équipe éliminée, fin de journée,
-                prochain match dans 4 vagues ou plus). Les équipes ayant joué
-                il y a exactement 2 vagues passent en premier : c'est leur
-                tour d'arbitrer.
+                prochain match dans 4 vagues ou plus). À compteur d'arbitrages
+                égal, les équipes ayant joué il y a exactement 2 vagues passent
+                en premier : c'est leur tour d'arbitrer.
               </span>
             </li>
             <li className="flex items-start gap-2">
@@ -89,8 +89,10 @@ export function HelpModal({ open, onClose }: HelpModalProps) {
             </li>
           </ul>
           <p className="mt-2 text-sm text-muted">
-            À niveau égal, l'équipe qui a le moins arbitré passe en premier,
-            puis celle qui attend depuis le plus longtemps.
+            Dans un même niveau, l'équipe qui a le moins arbitré passe en
+            premier, puis, à égalité, celle qui est dans son tour d'arbitrage
+            (joué il y a 2 vagues), puis celle qui attend depuis le plus
+            longtemps.
           </p>
         </section>
 

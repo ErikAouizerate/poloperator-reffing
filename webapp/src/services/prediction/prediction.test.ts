@@ -120,18 +120,18 @@ describe('suggestForSlot (real data, invariants)', () => {
     for (const s of suggestions) expect(playing.has(s.teamId)).toBe(false)
   })
 
-  it('sorts by tier then rest group (tier 3) then referee count', () => {
+  it('sorts by tier then referee count, breaking tier-3 ties by rest group', () => {
     for (let i = 1; i < suggestions.length; i += 1) {
       const prev = suggestions[i - 1]
       const cur = suggestions[i]
       expect(cur.tier >= prev.tier).toBe(true)
       if (cur.tier !== prev.tier) continue
-      const prevGroup = cur.tier === 3 ? restGroup(prev.lastPlayedSlotIndex, target) : 0
-      const curGroup = cur.tier === 3 ? restGroup(cur.lastPlayedSlotIndex, target) : 0
+      expect(cur.refereeCount >= prev.refereeCount).toBe(true)
+      if (cur.refereeCount !== prev.refereeCount) continue
+      if (cur.tier !== 3) continue
+      const prevGroup = restGroup(prev.lastPlayedSlotIndex, target)
+      const curGroup = restGroup(cur.lastPlayedSlotIndex, target)
       expect(curGroup >= prevGroup).toBe(true)
-      if (curGroup === prevGroup) {
-        expect(cur.refereeCount >= prev.refereeCount).toBe(true)
-      }
     }
   })
 
@@ -321,14 +321,18 @@ describe('suggestForSlot (end of round, future unknown)', () => {
     expect(list[1].teamId).toBe('D')
   })
 
-  it('breaks ties within the t−2 group by fewest referee duties', () => {
+  it('ranks fewest referee duties first, across rest groups', () => {
     const refs = matches.map((x) =>
       x.id === 's2' ? { ...x, refereePlayerId: 'D-p1', refereeName: 'ref-D' } : x,
     )
     const model2 = buildModel(teams, buildSlots(refs))
     const { suggestionsByMatch } = suggestForSlot(model2, 3)
     const list = suggestionsByMatch.get('s3')!
-    expect(list[0].teamId).toBe('C')
-    expect(list[1].teamId).toBe('D')
+    // D (t−2, 1 duty) is pushed behind every 0-duty team even though it is due
+    // to referee by rest group; C (t−2, 0 duty) still leads the t−2 group.
+    const order = list.map((s) => s.teamId)
+    expect(order[0]).toBe('C')
+    expect(order.indexOf('D')).toBeGreaterThan(order.indexOf('A'))
+    expect(order.indexOf('D')).toBeGreaterThan(order.indexOf('B'))
   })
 })
