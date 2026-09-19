@@ -133,7 +133,7 @@ function App() {
   };
 
   const refreshIntervalMs = settings.refreshIntervalSeconds * 1000;
-  const { remainingMs, restart } = useAutoRefresh({
+  const { remainingMs, refreshNow } = useAutoRefresh({
     intervalMs: refreshIntervalMs,
     onRefresh: handleRefresh,
   });
@@ -169,7 +169,7 @@ function App() {
             loading={listLoading || selected.loading}
             remainingMs={remainingMs}
             intervalMs={refreshIntervalMs}
-            onClick={restart}
+            onClick={refreshNow}
             className="hidden md:block"
           />
           <div className="flex items-center gap-2 md:justify-self-end">
@@ -231,7 +231,7 @@ function App() {
               loading={listLoading || selected.loading}
               remainingMs={remainingMs}
               intervalMs={refreshIntervalMs}
-              onClick={restart}
+              onClick={refreshNow}
               className="w-full"
             />
           </div>

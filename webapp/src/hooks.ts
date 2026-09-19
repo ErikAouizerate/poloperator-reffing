@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import type { AppDispatch, RootState } from './store/store'
-import { startCountdown } from './utils/countdown'
+import { startCountdown, type CountdownController } from './utils/countdown'
 
 export const useAppDispatch = useDispatch.withTypes<AppDispatch>()
 export const useAppSelector = useSelector.withTypes<RootState>()
@@ -25,9 +25,9 @@ export function useAutoRefresh({
 }: {
   intervalMs: number
   onRefresh: () => void
-}): { remainingMs: number; restart: () => void } {
+}): { remainingMs: number; restart: () => void; refreshNow: () => void } {
   const [remainingMs, setRemainingMs] = useState(intervalMs)
-  const stopRef = useRef<(() => void) | null>(null)
+  const controllerRef = useRef<CountdownController | null>(null)
   const onRefreshRef = useRef(onRefresh)
   const intervalMsRef = useRef(intervalMs)
 
@@ -40,9 +40,9 @@ export function useAutoRefresh({
   }, [intervalMs])
 
   const restart = useCallback(() => {
-    stopRef.current?.()
+    controllerRef.current?.stop()
     setRemainingMs(intervalMsRef.current)
-    stopRef.current = startCountdown({
+    controllerRef.current = startCountdown({
       durationMs: intervalMsRef.current,
       intervalMs: TICK_MS,
       onTick: setRemainingMs,
@@ -50,10 +50,19 @@ export function useAutoRefresh({
     })
   }, [])
 
+  const refreshNow = useCallback(() => {
+    if (controllerRef.current) {
+      controllerRef.current.trigger()
+    } else {
+      onRefreshRef.current()
+      restart()
+    }
+  }, [restart])
+
   useEffect(() => {
     restart()
-    return () => stopRef.current?.()
+    return () => controllerRef.current?.stop()
   }, [intervalMs, restart])
 
-  return { remainingMs, restart }
+  return { remainingMs, restart, refreshNow }
 }

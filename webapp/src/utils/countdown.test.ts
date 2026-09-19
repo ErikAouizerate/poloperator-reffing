@@ -40,7 +40,7 @@ describe('startCountdown', () => {
   it('stop() halts the countdown', () => {
     vi.useFakeTimers()
     const ticks: number[] = []
-    const stop = startCountdown({
+    const { stop } = startCountdown({
       durationMs: 1_000,
       intervalMs: 250,
       onTick: (r) => ticks.push(r),
@@ -51,5 +51,54 @@ describe('startCountdown', () => {
     const count = ticks.length
     vi.advanceTimersByTime(1_000)
     expect(ticks.length).toBe(count)
+  })
+
+  it('trigger() fires onComplete immediately and resets the countdown', () => {
+    vi.useFakeTimers()
+    const ticks: number[] = []
+    let completions = 0
+    const { trigger } = startCountdown({
+      durationMs: 1_000,
+      intervalMs: 250,
+      onTick: (r) => ticks.push(r),
+      onComplete: () => {
+        completions += 1
+      },
+    })
+    trigger()
+    expect(completions).toBe(1)
+    expect(ticks[ticks.length - 1]).toBe(1_000)
+  })
+
+  it('trigger() keeps the countdown running afterwards', () => {
+    vi.useFakeTimers()
+    let completions = 0
+    const { trigger } = startCountdown({
+      durationMs: 1_000,
+      intervalMs: 250,
+      onTick: () => {},
+      onComplete: () => {
+        completions += 1
+      },
+    })
+    trigger()
+    vi.advanceTimersByTime(1_000)
+    expect(completions).toBe(2)
+  })
+
+  it('trigger() after stop() is a no-op', () => {
+    vi.useFakeTimers()
+    let completions = 0
+    const { stop, trigger } = startCountdown({
+      durationMs: 1_000,
+      intervalMs: 250,
+      onTick: () => {},
+      onComplete: () => {
+        completions += 1
+      },
+    })
+    stop()
+    trigger()
+    expect(completions).toBe(0)
   })
 })

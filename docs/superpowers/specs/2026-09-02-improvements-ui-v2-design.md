@@ -33,7 +33,8 @@ largeurs) est déjà implémenté. Ce lot porte uniquement sur l'UI et la config
 - Deux rendus du même état :
   - header centre : `<RefreshButton ... className="hidden md:block" />` ;
   - sous le select (mobile) : `<RefreshButton ... className="md:hidden w-full" />`.
-- Le clic sur l'un ou l'autre relance le **même** compte-à-rebours (via `restart`).
+- Le clic sur l'un ou l'autre déclenche un **rafraîchissement immédiat** puis
+  relance le **même** compte-à-rebours (via `refreshNow`).
 
 ### `useAutoRefresh` (hook)
 
@@ -41,11 +42,13 @@ largeurs) est déjà implémenté. Ce lot porte uniquement sur l'UI et la config
 function useAutoRefresh(opts: {
   intervalMs: number
   onRefresh: () => void
-}): { remainingMs: number; restart: () => void }
+}): { remainingMs: number; restart: () => void; refreshNow: () => void }
 ```
 
 - utilise `startCountdown` (`utils/countdown.ts`) ;
 - `restart()` = stop + relance depuis `intervalMs` et remet `remainingMs` ;
+- `refreshNow()` = `onRefresh` **immédiat** + remise à zéro du compte-à-rebours
+  (`trigger()` du contrôleur) ;
 - l'effet redémarre quand `intervalMs` change (nouveau réglage de config).
 
 ## 2. Bouton partager = icône

@@ -5,36 +5,57 @@ export interface CountdownOptions {
   onComplete: () => void
 }
 
+export interface CountdownController {
+  stop: () => void
+  trigger: () => void
+}
+
 export function startCountdown({
   durationMs,
   intervalMs,
   onTick,
   onComplete,
-}: CountdownOptions): () => void {
+}: CountdownOptions): CountdownController {
   let remainingMs = durationMs
   let stopped = false
   let timer: ReturnType<typeof setTimeout> | null = null
 
   onTick(remainingMs)
 
+  const scheduleNextTick = () => {
+    timer = setTimeout(tick, intervalMs)
+  }
+
+  const completeAndRestart = () => {
+    onTick(0)
+    onComplete()
+    remainingMs = durationMs
+    onTick(remainingMs)
+    scheduleNextTick()
+  }
+
   const tick = () => {
     if (stopped) return
     remainingMs -= intervalMs
     if (remainingMs <= 0) {
-      onTick(0)
-      onComplete()
-      remainingMs = durationMs
-      onTick(remainingMs)
+      completeAndRestart()
     } else {
       onTick(remainingMs)
+      scheduleNextTick()
     }
-    timer = setTimeout(tick, intervalMs)
   }
 
-  timer = setTimeout(tick, intervalMs)
+  scheduleNextTick()
 
-  return () => {
-    stopped = true
-    if (timer !== null) clearTimeout(timer)
+  return {
+    stop: () => {
+      stopped = true
+      if (timer !== null) clearTimeout(timer)
+    },
+    trigger: () => {
+      if (stopped) return
+      if (timer !== null) clearTimeout(timer)
+      completeAndRestart()
+    },
   }
 }
