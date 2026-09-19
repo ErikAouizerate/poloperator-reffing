@@ -1,7 +1,7 @@
 import type { Match } from "../types/poloperator";
 import type { RefereeTeams } from "../services/prediction/refereeTeams";
 import { isMatchStarted } from "../services/prediction/timeline";
-import { formatRemaining, matchClock } from "../services/prediction/matchClock";
+import { formatRemaining, matchElapsedSec } from "../services/prediction/matchClock";
 import { useNow } from "../hooks";
 
 interface LiveMatchesProps {
@@ -51,13 +51,7 @@ export function LiveMatches({
           const hasScore = match.scoreA !== null || match.scoreB !== null;
           const started = isMatchStarted(match, now);
           const remaining = formatRemaining(
-            started
-              ? match.events.length > 0
-                ? matchClock(match.events, now).clockSec
-                : Math.floor(
-                    (now.getTime() - new Date(match.startAt).getTime()) / 1000,
-                  )
-              : 0,
+            started ? matchElapsedSec(match, now) : 0,
             gameDurationMin,
           );
           const refereeTeamByRole = refereeTeamsByMatch(match);

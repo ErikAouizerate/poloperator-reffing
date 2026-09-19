@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import type { MatchEvent } from '../../types/poloperator'
-import { formatRemaining, matchClock } from './matchClock'
+import type { Match, MatchEvent } from '../../types/poloperator'
+import { formatRemaining, matchClock, matchElapsedSec } from './matchClock'
 
 function event(
   type: string,
@@ -8,6 +8,26 @@ function event(
   matchClockSec: number,
 ): MatchEvent {
   return { type, createdAt, matchClockSec }
+}
+
+function match(overrides: Partial<Match> = {}): Match {
+  return {
+    id: 'm1',
+    startAt: '2026-09-19T15:24:23.794Z',
+    courtName: 'Court 1',
+    status: 'SCHEDULED',
+    phase: null,
+    teamAId: 'a',
+    teamBId: 'b',
+    scoreA: 0,
+    scoreB: 0,
+    refereePlayerId: null,
+    refereeName: null,
+    coRefereePlayerId: null,
+    coRefereeName: null,
+    events: [],
+    ...overrides,
+  }
 }
 
 const T0 = new Date('2026-09-19T15:24:23.794Z')
@@ -49,6 +69,38 @@ describe('matchClock', () => {
     ]
     const now = new Date('2026-09-19T16:00:00.000Z')
     expect(matchClock(events, now)).toEqual({ clockSec: 636, paused: true })
+  })
+})
+
+describe('matchElapsedSec', () => {
+  it('reports zero before the scheduled start, never more than the game duration', () => {
+    const m = match({ startAt: '2026-09-19T15:24:23.794Z' })
+    const now = new Date('2026-09-19T15:20:00.000Z')
+    expect(matchElapsedSec(m, now)).toBe(0)
+    expect(formatRemaining(matchElapsedSec(m, now), 10)).toEqual({
+      text: '10:00',
+      overtime: false,
+    })
+  })
+
+  it('counts wall-clock elapsed after startAt when no event is available', () => {
+    const m = match({ startAt: '2026-09-19T15:24:23.794Z' })
+    const now = new Date('2026-09-19T15:25:00.000Z')
+    expect(matchElapsedSec(m, now)).toBe(36)
+  })
+
+  it('prefers the event clock when events exist, even before startAt', () => {
+    const m = match({
+      startAt: '2026-09-19T15:24:23.794Z',
+      events: [event('START', '2026-09-19T15:23:00.000Z', 0)],
+    })
+    const now = new Date('2026-09-19T15:23:30.000Z')
+    expect(matchElapsedSec(m, now)).toBe(30)
+  })
+
+  it('reports zero when startAt is missing or invalid', () => {
+    const m = match({ startAt: '' })
+    expect(matchElapsedSec(m, T0)).toBe(0)
   })
 })
 

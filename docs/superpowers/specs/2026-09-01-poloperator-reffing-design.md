@@ -100,7 +100,8 @@ the overtime as `+mm:ss` in red. Matches in the current wave that have not
 started yet show the full match duration frozen (e.g. `10:00`) in a muted
 style — no "En direct" badge — and start ticking once `startAt` passes. When a
 started match carries no `events[]`, the countdown falls back to `now −
-startAt`.
+startAt`, clamped at 0: a match flagged `LIVE` before its `startAt` shows the
+full `gameDurationMin`, never more.
 
 ## Validation (Montpellier Mixed #3, finished tournament)
 

@@ -1,4 +1,4 @@
-import type { MatchEvent } from '../../types/poloperator'
+import type { Match, MatchEvent } from '../../types/poloperator'
 
 export interface MatchClock {
   clockSec: number
@@ -33,6 +33,20 @@ export function matchClock(events: MatchEvent[], now: Date): MatchClock {
     return { clockSec: anchorSec + Math.max(0, elapsed), paused: false }
   }
   return { clockSec: frozenSec, paused: true }
+}
+
+/**
+ * Elapsed match seconds for display. The event log wins when present
+ * (poloperator starts the clock at the START event); otherwise fall back to
+ * wall-clock time since `startAt`, clamped at 0 so a match that has not
+ * started yet reports 0 — full game duration remaining — instead of a value
+ * beyond `gameDurationMin`.
+ */
+export function matchElapsedSec(match: Match, now: Date): number {
+  if (match.events.length > 0) return matchClock(match.events, now).clockSec
+  const startMs = new Date(match.startAt).getTime()
+  if (!Number.isFinite(startMs)) return 0
+  return Math.max(0, Math.floor((now.getTime() - startMs) / 1000))
 }
 
 export interface Remaining {
