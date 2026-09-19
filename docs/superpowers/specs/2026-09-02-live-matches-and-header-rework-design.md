@@ -154,3 +154,12 @@ Existing tests (`pnpm test`), `pnpm run build`, and `pnpm run lint` must pass.
 - Backend / NestJS work.
 - Dark theme or other kit tokens.
 - Re-ordering cards differently from the approved "à venir" → "en cours" order.
+
+## Amendment — 2026-09-18
+
+`buildPrediction` no longer passes `skipAssigned: true`: an upcoming match that
+already has a recorded referee now also gets suggestions, and `UpcomingMatches`
+displays the assigned referee(s) above them. This supersedes the "prediction
+engine ... not modified" and "changing the prediction engine" lines above; the
+tier logic is still untouched. See
+`2026-09-18-assigned-referee-in-upcoming-design.md`.

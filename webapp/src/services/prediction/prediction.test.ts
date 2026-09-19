@@ -243,6 +243,17 @@ describe('suggestForSlot (synthetic, rule correctness)', () => {
     expect(result.upcomingMatches.map((m) => m.id).sort()).toEqual(['m2', 'm3', 'm4', 'm5'])
     expect(Object.keys(result.suggestionsByMatch).sort()).toEqual(['m2', 'm3', 'm4', 'm5'])
   })
+
+  it('still suggests referees for a scheduled match that already has one assigned', () => {
+    const withReferee = matches.map((x) =>
+      x.id === 'm2'
+        ? { ...x, refereePlayerId: 'A-p1', refereeName: 'ref-A' }
+        : x,
+    )
+    const result = buildPrediction(teams, withReferee)
+    expect(result.suggestionsByMatch['m2']).toBeDefined()
+    expect(result.suggestionsByMatch['m2'].length).toBeGreaterThan(0)
+  })
 })
 
 describe('suggestForSlot (end of round, future unknown)', () => {

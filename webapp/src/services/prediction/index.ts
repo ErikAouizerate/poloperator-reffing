@@ -283,9 +283,7 @@ export function buildPrediction(
 
   const suggestionsByMatch: Record<string, RefereeSuggestion[]> = {}
   for (const slotIndex of upcomingSlots) {
-    const { suggestionsByMatch: perSlot } = suggestForSlot(model, slotIndex, {
-      skipAssigned: true,
-    })
+    const { suggestionsByMatch: perSlot } = suggestForSlot(model, slotIndex)
     for (const [matchId, list] of perSlot) {
       suggestionsByMatch[matchId] = list
     }

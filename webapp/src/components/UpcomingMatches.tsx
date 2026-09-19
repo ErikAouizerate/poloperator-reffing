@@ -70,6 +70,11 @@ export function UpcomingMatches({
     return names.length > 0 ? names.join(" · ") : undefined;
   };
 
+  const assignedReferees = (match: UpcomingWithHorizon["match"]) =>
+    [match.refereeName, match.coRefereeName].filter(
+      (name): name is string => Boolean(name),
+    );
+
   if (matches.length === 0) {
     return (
       <p className="text-sm text-muted">
@@ -129,6 +134,11 @@ export function UpcomingMatches({
                 {teamNameById(entry.match.teamBId)}
               </span>
             </div>
+            {assignedReferees(entry.match).length > 0 ? (
+              <p className="mt-2 text-xs text-muted">
+                Arbitre assigné : {assignedReferees(entry.match).join(" · ")}
+              </p>
+            ) : null}
             <div className="mt-3">
               <p className="mb-1 text-[11px] uppercase tracking-[0.14em] text-muted">
                 Arbitres suggérés
