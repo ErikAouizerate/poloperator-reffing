@@ -1,4 +1,4 @@
-import type { Match, Team, TournamentSummary } from '../../types/poloperator'
+import type { Match, MatchEvent, Team, TournamentSummary } from '../../types/poloperator'
 import { isContinentCode } from '../../types/poloperator'
 
 /**
@@ -101,6 +101,21 @@ function isTournamentShape(obj: RawObject): boolean {
   )
 }
 
+function normalizeEvents(value: unknown): MatchEvent[] {
+  if (!Array.isArray(value)) return []
+  const events: MatchEvent[] = []
+  for (const entry of value) {
+    if (!isRecord(entry)) continue
+    if (typeof entry.type !== 'string') continue
+    events.push({
+      type: entry.type,
+      createdAt: toIsoDate(entry.createdAt) ?? '',
+      matchClockSec: toNullableNumber(entry.matchClockSec) ?? 0,
+    })
+  }
+  return events
+}
+
 function normalizeMatch(obj: RawObject): Match {
   const referee =
     isRecord(obj.referee) && typeof obj.referee.name === 'string'
@@ -124,6 +139,7 @@ function normalizeMatch(obj: RawObject): Match {
     refereeName: toNullableString(referee),
     coRefereePlayerId: toNullableString(obj.coRefereePlayerId),
     coRefereeName: toNullableString(coReferee),
+    events: normalizeEvents(obj.events),
   }
 }
 
@@ -186,6 +202,8 @@ export function extractTournaments(values: RscValue[]): TournamentSummary[] {
 export interface TournamentRosters {
   teams: Team[]
   matches: Match[]
+  /** Match duration in minutes, from the tournament settings (default 15). */
+  gameDurationMin: number
 }
 
 /** Extract teams (with rosters) and matches from a tournament page payload. */
@@ -194,6 +212,7 @@ export function extractTournamentRosters(
 ): TournamentRosters {
   const teamsById = new Map<string, Team>()
   const matchesById = new Map<string, Match>()
+  let gameDurationMin: number | null = null
   walkAll(values, (obj) => {
     if (isTeamShape(obj)) {
       if (!isParticipatingTeam(obj)) return
@@ -203,6 +222,13 @@ export function extractTournamentRosters(
       const match = normalizeMatch(obj)
       if (match.id && !matchesById.has(match.id)) matchesById.set(match.id, match)
     }
+    if (gameDurationMin === null && typeof obj.gameDurationMin === 'number') {
+      gameDurationMin = obj.gameDurationMin
+    }
   })
-  return { teams: [...teamsById.values()], matches: [...matchesById.values()] }
+  return {
+    teams: [...teamsById.values()],
+    matches: [...matchesById.values()],
+    gameDurationMin: gameDurationMin ?? 15,
+  }
 }

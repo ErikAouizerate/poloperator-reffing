@@ -1,10 +1,14 @@
 import type { Match } from "../types/poloperator";
 import type { RefereeTeams } from "../services/prediction/refereeTeams";
+import { isMatchStarted } from "../services/prediction/timeline";
+import { formatRemaining, matchClock } from "../services/prediction/matchClock";
+import { useNow } from "../hooks";
 
 interface LiveMatchesProps {
   matches: Match[];
   teamNameById: (teamId: string | null) => string;
   refereeTeamsByMatch: (match: Match) => RefereeTeams;
+  gameDurationMin: number;
 }
 
 function formatMatchDate(iso: string): string {
@@ -27,7 +31,10 @@ export function LiveMatches({
   matches,
   teamNameById,
   refereeTeamsByMatch,
+  gameDurationMin,
 }: LiveMatchesProps) {
+  const now = useNow(1000);
+
   if (matches.length === 0) return null;
 
   const sorted = [...matches].sort((a, b) =>
@@ -42,6 +49,17 @@ export function LiveMatches({
       <ul className="space-y-3">
         {sorted.map((match) => {
           const hasScore = match.scoreA !== null || match.scoreB !== null;
+          const started = isMatchStarted(match, now);
+          const remaining = formatRemaining(
+            started
+              ? match.events.length > 0
+                ? matchClock(match.events, now).clockSec
+                : Math.floor(
+                    (now.getTime() - new Date(match.startAt).getTime()) / 1000,
+                  )
+              : 0,
+            gameDurationMin,
+          );
           const refereeTeamByRole = refereeTeamsByMatch(match);
           const referees = [
             { name: match.refereeName, teamName: refereeTeamByRole.referee },
@@ -62,8 +80,22 @@ export function LiveMatches({
                 <span className="font-medium text-ink">
                   {formatMatchTime(match.startAt)}
                 </span>
-                <span className="rounded-md border-2 border-red bg-surface px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.08em] text-ink">
-                  En direct
+                {started ? (
+                  <span className="rounded-md border-2 border-red bg-surface px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.08em] text-ink">
+                    En direct
+                  </span>
+                ) : null}
+                <span
+                  title={started ? "Temps restant" : "Temps de match"}
+                  className={`rounded-md border-2 border-ink px-2 py-0.5 text-[10px] font-bold tabular-nums tracking-[0.08em] ${
+                    !started
+                      ? "bg-chip text-muted"
+                      : remaining.overtime
+                        ? "bg-yellow text-red"
+                        : "bg-yellow text-ink"
+                  }`}
+                >
+                  {remaining.text}
                 </span>
                 {match.courtName ? (
                   <span className="rounded-md border-2 border-ink bg-chip px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.08em] text-ink">

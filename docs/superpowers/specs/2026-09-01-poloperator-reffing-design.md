@@ -34,7 +34,10 @@ public pages work **without authentication**:
 - `GET /fr/tournaments` — list of all tournaments (slug, name, city, dates…).
 - `GET /fr/tournament/<slug>?tab=schedule` — matches AND team rosters.
   - Match fields: `id`, `startAt`, `courtName`, `status`, `phase`, `teamAId`,
-    `teamBId`, `scoreA`, `scoreB`, `refereePlayerId`, `referee.name`.
+    `teamBId`, `scoreA`, `scoreB`, `refereePlayerId`, `referee.name`,
+    `events[]` (`type`, `createdAt`, `matchClockSec`).
+  - Tournament fields: `gameDurationMin` (match duration in minutes; 15 by
+    default when absent).
   - Rosters: team objects with a `players` array of `TeamPlayer` entries; the
     real player id is `playerId` (not the entry `id`).
 - **Referee → team matching is done by player id** (`refereePlayerId` against
@@ -60,6 +63,7 @@ src/
   services/poloperator/fetch.ts     — HTTP client, proxy-aware
   services/poloperator/parseRsc.ts  — RSC stream parser + shape extractors
   services/prediction/slots.ts      — time-wave clustering (10 min tolerance)
+  services/prediction/matchClock.ts — event-log match clock + remaining time
   services/prediction/index.ts      — model, suggestForSlot, refereeCounts
   store/                           — classic Redux + apiMiddleware registry
   components/                       — TournamentPicker, UpcomingMatches, RefereeCounts
@@ -84,6 +88,19 @@ Matches are clustered by `startAt`: a new slot starts when a match begins more
 than `SLOT_TOLERANCE_MINUTES` (10) after the first match of the current wave.
 Real courts run staggered waves (3 then 2 matches), so a 10-min window is a
 good compromise on the sample data.
+
+## Live match countdown
+
+Mirrors poloperator.com's own match clock. `matchClock(events, now)` rebuilds
+the elapsed match time from the event log: the last `START` anchors the clock
+(its `matchClockSec` offset plus real time since `createdAt`); a `PAUSE` or
+`END` freezes it on that event's `matchClockSec`. `formatRemaining(clockSec,
+gameDurationMin)` then counts down the regulation time and, once over, shows
+the overtime as `+mm:ss` in red. Matches in the current wave that have not
+started yet show the full match duration frozen (e.g. `10:00`) in a muted
+style — no "En direct" badge — and start ticking once `startAt` passes. When a
+started match carries no `events[]`, the countdown falls back to `now −
+startAt`.
 
 ## Validation (Montpellier Mixed #3, finished tournament)
 

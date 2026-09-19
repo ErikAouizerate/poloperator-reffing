@@ -293,6 +293,7 @@ function App() {
               matches={timeline.live}
               teamNameById={teamNameById}
               refereeTeamsByMatch={refereeTeamsByMatch}
+              gameDurationMin={selected.data.gameDurationMin}
             />
             <RefereeCounts counts={selected.data.refereeCounts} />
           </div>

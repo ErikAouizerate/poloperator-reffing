@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import type { Match, Slot } from '../../types/poloperator'
-import { classifyMatches } from './timeline'
+import { classifyMatches, isMatchStarted } from './timeline'
 
 function makeMatch(
   id: string,
@@ -21,6 +21,7 @@ function makeMatch(
     refereeName: null,
     coRefereePlayerId: null,
     coRefereeName: null,
+    events: [],
     ...overrides,
   }
 }
@@ -34,6 +35,25 @@ function makeSlots(...groups: Match[][]): Slot[] {
 }
 
 const NOW = new Date('2026-09-05T10:00:00.000Z')
+
+describe('isMatchStarted', () => {
+  it('is true for a live status even when startAt is in the future', () => {
+    const match = makeMatch('m1', '2026-09-05T11:00:00.000Z', {
+      status: 'LIVE',
+    })
+    expect(isMatchStarted(match, NOW)).toBe(true)
+  })
+
+  it('is true for a scheduled match whose startAt has passed', () => {
+    const match = makeMatch('m1', '2026-09-05T09:45:00.000Z')
+    expect(isMatchStarted(match, NOW)).toBe(true)
+  })
+
+  it('is false for a scheduled match whose startAt is in the future', () => {
+    const match = makeMatch('m1', '2026-09-05T10:05:00.000Z')
+    expect(isMatchStarted(match, NOW)).toBe(false)
+  })
+})
 
 describe('classifyMatches', () => {
   it('treats a match with a live status as started', () => {

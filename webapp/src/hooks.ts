@@ -6,6 +6,17 @@ import { startCountdown } from './utils/countdown'
 export const useAppDispatch = useDispatch.withTypes<AppDispatch>()
 export const useAppSelector = useSelector.withTypes<RootState>()
 
+export function useNow(intervalMs = 1000): Date {
+  const [now, setNow] = useState(() => new Date())
+
+  useEffect(() => {
+    const id = setInterval(() => setNow(new Date()), intervalMs)
+    return () => clearInterval(id)
+  }, [intervalMs])
+
+  return now
+}
+
 const TICK_MS = 250
 
 export function useAutoRefresh({

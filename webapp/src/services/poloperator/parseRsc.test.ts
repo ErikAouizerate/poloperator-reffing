@@ -213,4 +213,68 @@ describe('extractTournamentRosters (synthetic)', () => {
     expect(matches[0].startAt).toBe('2026-09-01T10:00:00.000Z')
     expect(matches[0].refereeName).toBe('Yann Pivot')
   })
+
+  it('parses the match event log and the tournament game duration', () => {
+    const stream = [
+      '0:["tree",{"children":["__PAGE__",{}]}]',
+      '1:' +
+        JSON.stringify([
+          'Jroot',
+          [
+            null,
+            {
+              tournamentId: 't',
+              initialMatches: [
+                {
+                  id: 'm1',
+                  teamAId: 'ta',
+                  teamBId: 'tb',
+                  startAt: '$D2026-09-01T10:00:00.000Z',
+                  courtName: 'Court 1',
+                  status: 'LIVE',
+                  scoreA: 2,
+                  scoreB: 1,
+                  events: [
+                    {
+                      id: 'e1',
+                      matchId: 'm1',
+                      type: 'START',
+                      createdAt: '$D2026-09-01T09:58:00.000Z',
+                      matchClockSec: 0,
+                      payload: {},
+                    },
+                    {
+                      id: 'e2',
+                      matchId: 'm1',
+                      type: 'GOAL',
+                      createdAt: '$D2026-09-01T09:58:16.000Z',
+                      matchClockSec: 16,
+                      payload: { delta: 1 },
+                    },
+                  ],
+                },
+              ],
+              gameDurationMin: 10,
+              teams: [{ id: 'ta', name: 'Team A', players: [{ playerId: 'p1' }] }],
+            },
+          ],
+        ]),
+    ].join('\n')
+    const { matches, gameDurationMin } = extractTournamentRosters(
+      parseRscStream(stream),
+    )
+    expect(gameDurationMin).toBe(10)
+    expect(matches[0].events).toEqual([
+      {
+        type: 'START',
+        createdAt: '2026-09-01T09:58:00.000Z',
+        matchClockSec: 0,
+      },
+      {
+        type: 'GOAL',
+        createdAt: '2026-09-01T09:58:16.000Z',
+        matchClockSec: 16,
+      },
+    ])
+  })
 })

@@ -184,6 +184,7 @@ describe('suggestForSlot (synthetic, rule correctness)', () => {
       refereeName: refOf ? `ref-of-${refOf}` : null,
       coRefereePlayerId: null,
       coRefereeName: null,
+      events: [],
     }
   }
 
@@ -286,6 +287,7 @@ describe('suggestForSlot (end of round, future unknown)', () => {
       refereeName: refOf ? `ref-of-${refOf}` : null,
       coRefereePlayerId: null,
       coRefereeName: null,
+      events: [],
     }
   }
 

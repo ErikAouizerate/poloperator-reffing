@@ -26,6 +26,7 @@ export const apiEffects: Record<string, Effect> = {
       upcomingMatches: prediction.upcomingMatches,
       suggestionsByMatch: prediction.suggestionsByMatch,
       refereeCounts: prediction.refereeCounts,
+      gameDurationMin: rosters.gameDurationMin,
     }
     return data
   },

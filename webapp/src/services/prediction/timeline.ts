@@ -16,6 +16,13 @@ export interface MatchTimeline {
   upcoming: UpcomingWithHorizon[]
 }
 
+export function isMatchStarted(match: Match, now: Date): boolean {
+  return (
+    LIVE_STATUSES.has(match.status) ||
+    new Date(match.startAt).getTime() <= now.getTime()
+  )
+}
+
 /**
  * Split non-finished matches into the current live wave and the upcoming
  * waves, each upcoming match labelled with its chronological wave rank
@@ -38,14 +45,13 @@ export function classifyMatches(
   }
 
   const nonFinished = upcomingMatches.filter((m) => m.status !== 'FINISHED')
-  const isStarted = (match: Match): boolean =>
-    LIVE_STATUSES.has(match.status) ||
-    new Date(match.startAt).getTime() <= now.getTime()
 
   const startedSlots = new Set<number>()
   for (const match of nonFinished) {
     const slotIndex = slotIndexByMatchId.get(match.id)
-    if (slotIndex !== undefined && isStarted(match)) startedSlots.add(slotIndex)
+    if (slotIndex !== undefined && isMatchStarted(match, now)) {
+      startedSlots.add(slotIndex)
+    }
   }
   const currentWave = startedSlots.size > 0 ? Math.max(...startedSlots) : null
 

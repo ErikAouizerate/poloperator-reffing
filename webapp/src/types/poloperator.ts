@@ -31,6 +31,12 @@ export interface Team {
   playerNames: string[]
 }
 
+export interface MatchEvent {
+  type: string
+  createdAt: string
+  matchClockSec: number
+}
+
 export interface Match {
   id: string
   startAt: string
@@ -45,6 +51,7 @@ export interface Match {
   refereeName: string | null
   coRefereePlayerId: string | null
   coRefereeName: string | null
+  events: MatchEvent[]
 }
 
 export interface Slot {
@@ -77,4 +84,5 @@ export interface TournamentData {
   upcomingMatches: Match[]
   suggestionsByMatch: Record<string, RefereeSuggestion[]>
   refereeCounts: RefereeCountEntry[]
+  gameDurationMin: number
 }
