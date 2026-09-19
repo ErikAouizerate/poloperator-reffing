@@ -45,6 +45,12 @@ Notes:
 - RSC dates are prefixed with `$D`; the parser strips it.
 - ~15 forfeit matches (a null `teamBId`) exist in the sample tournament; they
   are parsed but excluded from slotting/prediction.
+- Waiting-list teams carry the same team shape as confirmed teams (id, name,
+  `players`) but have `selected: false`. `extractTournamentRosters` keeps only
+  participating teams (`selected !== false`, so a missing flag is kept), which
+  keeps the team count, the referee-count table and the suggestions free of
+  teams that never play. `guaranteed` and `waitlistPosition` are not reliable
+  discriminators across tournaments.
 
 ## Architecture (front-only, no backend)
 

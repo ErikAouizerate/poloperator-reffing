@@ -139,6 +139,49 @@ describe('extractTournamentRosters (synthetic)', () => {
     expect(matches[0].coRefereePlayerId).toBe('p2')
   })
 
+  it('excludes waiting-list teams (selected: false)', () => {
+    const stream = [
+      '0:["tree",{"children":["__PAGE__",{}]}]',
+      '1:' +
+        JSON.stringify([
+          'Jroot',
+          [
+            null,
+            {
+              id: 't1',
+              name: 'Confirmed',
+              selected: true,
+              players: [{ playerId: 'p1' }],
+            },
+            {
+              id: 't2',
+              name: 'Waitlisted',
+              selected: false,
+              players: [{ playerId: 'p2' }],
+            },
+          ],
+        ]),
+    ].join('\n')
+    const { teams } = extractTournamentRosters(parseRscStream(stream))
+    expect(teams.map((t) => t.name)).toEqual(['Confirmed'])
+  })
+
+  it('keeps teams whose selection flag is absent', () => {
+    const stream = [
+      '0:["tree",{"children":["__PAGE__",{}]}]',
+      '1:' +
+        JSON.stringify([
+          'Jroot',
+          [
+            null,
+            { id: 't1', name: 'Legacy', players: [{ playerId: 'p1' }] },
+          ],
+        ]),
+    ].join('\n')
+    const { teams } = extractTournamentRosters(parseRscStream(stream))
+    expect(teams.map((t) => t.name)).toEqual(['Legacy'])
+  })
+
   it('finds matches and teams in a hand-crafted chunk', () => {
     const stream = [
       '0:["tree",{"children":["__PAGE__",{}]}]',

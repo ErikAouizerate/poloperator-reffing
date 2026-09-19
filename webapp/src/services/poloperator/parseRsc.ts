@@ -87,6 +87,11 @@ function isTeamShape(obj: RawObject): boolean {
   )
 }
 
+/** A tournament team on the waiting list is not selected (`selected: false`). */
+function isParticipatingTeam(obj: RawObject): boolean {
+  return obj.selected !== false
+}
+
 function isTournamentShape(obj: RawObject): boolean {
   return (
     typeof obj.slug === 'string' &&
@@ -191,6 +196,7 @@ export function extractTournamentRosters(
   const matchesById = new Map<string, Match>()
   walkAll(values, (obj) => {
     if (isTeamShape(obj)) {
+      if (!isParticipatingTeam(obj)) return
       const team = normalizeTeam(obj)
       if (!teamsById.has(team.id)) teamsById.set(team.id, team)
     } else if (isMatchShape(obj)) {
