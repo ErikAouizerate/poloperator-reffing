@@ -83,11 +83,30 @@ All rules live in a single `OVERLAY_TWEAKS_CSS` constant in
    (`rgba(15, 15, 30, 0.95)`), separated by a `1px solid #ffffff` left
    border, text 16px
    (`span[style*="font-weight:700"][style*="font-size:28px"]`).
-4. Team blocks symmetric around the score (`padding: 6px 8px`), score block
-   `padding: 4px 6px`, root `padding-top: 4px`, gaps `6px`.
+4. Team / score blocks carry no vertical padding — the score line drives the
+   card height (`padding: 0 8px` on the team blocks, `padding: 0` on the score
+   block, root `padding-top: 0`), gaps `6px`.
 5. Team names never wrap; overflow is truncated with an ellipsis
    (`white-space: nowrap; overflow: hidden; text-overflow: ellipsis`), with
    `min-width: 0` on the flex team blocks.
+6. The live pulse dot next to the clock
+   (`span[style*="background:#ef4444"]`) is hidden.
+
+## Tournament page — "Voir le stream du score" button
+
+In `App.tsx`, next to "Voir sur Poloperator", a button opens this app's
+`/overlay` page (the re-styled scoreboard) in a new tab.
+
+- The upstream RSC payload has **no courts list**, only a per-match
+  `courtName` (`"Court 2"`); courts are derived from all matches
+  (`slots.flatMap(s => s.matches)`) by `listOverlayCourts` in
+  `services/overlay/overlayParams.ts` (distinct names, sorted, overlay number
+  from the digits; a name without digits falls back to its 1-based sorted
+  position).
+- A single court renders a plain link. Several courts render one dropdown
+  button (`<details>/<summary>`, no JS state); picking a court opens its
+  overlay. `buildOverlayHref(slug, court)` builds
+  `/overlay?tournament=<slug>&court=<n>`.
 
 ## Proxy additions (dev and prod kept in sync)
 
@@ -125,8 +144,9 @@ its header/footer and makes its body transparent.
   correct layout, live scores, no 404.
 - Test as an OBS browser source: transparent background and positioning.
 - `pnpm run lint` and `pnpm run build` (typecheck is part of build).
-- No unit test: no jsdom / component test setup exists; the change is proxy
-  config plus a DOM/iframe component.
+- Unit tests cover the pure court helpers (`listOverlayCourts`,
+  `buildOverlayHref`) in `overlayParams.test.ts`; the CSS injection and the
+  dropdown have no component test (no jsdom / component test setup exists).
 
 ## Docs update
 
@@ -135,4 +155,4 @@ proxy paths and the `/overlay` route there as part of the implementation.
 
 ## Out of scope
 
-Court picker UI, backend, broad visual redesign, light theme.
+Backend, broad visual redesign, light theme.

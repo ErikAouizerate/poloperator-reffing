@@ -37,15 +37,15 @@ export const OVERLAY_TWEAKS_CSS = `
   }
   span[style*="font-weight:700"][style*="font-size:28px"] { font-size: 16px !important; }
 
-  /* Team blocks: symmetric around the score. */
+  /* Live pulse dot next to the clock: removed. */
+  span[style*="background:#ef4444"] { display: none !important; }
+
+  /* Team blocks: no vertical padding — the score line drives the height. */
   div[style*="padding:20px 24px"] {
-    padding-top: 6px !important;
-    padding-bottom: 6px !important;
-    padding-left: 8px !important;
-    padding-right: 8px !important;
+    padding: 0 8px !important;
   }
-  div[style*="padding:16px 20px"] { padding: 4px 6px !important; }
-  div[style*="padding-top:24px"] { padding-top: 4px !important; }
+  div[style*="padding:16px 20px"] { padding: 0 !important; }
+  div[style*="padding-top:24px"] { padding-top: 0 !important; }
   div[style*="gap:12px"] { gap: 6px !important; }
 
   /* Team names: single line, truncated with an ellipsis when too long. */

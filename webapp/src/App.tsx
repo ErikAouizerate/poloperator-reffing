@@ -10,6 +10,7 @@ import { UpcomingMatches } from "./components/UpcomingMatches";
 import { LiveMatches } from "./components/LiveMatches";
 import { RefereeCounts } from "./components/RefereeCounts";
 import { RefreshButton } from "./components/RefreshButton";
+import { ScoreStreamButton } from "./components/ScoreStreamButton";
 import { SettingsModal } from "./components/SettingsModal";
 import { HelpModal } from "./components/HelpModal";
 import { resolvePickerList } from "./services/poloperator/filter";
@@ -111,6 +112,12 @@ function App() {
     const teams = selected.data?.teams ?? [];
     return (match: Match) => refereeTeams(teams, match);
   }, [selected.data]);
+
+  const allMatches = useMemo(
+    () =>
+      selected.data ? selected.data.slots.flatMap((slot) => slot.matches) : [],
+    [selected.data],
+  );
 
   const timeline = selected.data
     ? classifyMatches(
@@ -264,14 +271,17 @@ function App() {
                 <h2 className="font-display text-2xl font-bold tracking-tight text-ink">
                   {summary.name}
                 </h2>
-                <a
-                  href={`https://poloperator.com/fr/tournament/${summary.slug}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-1 rounded-[10px] border-2 border-ink bg-surface px-3 py-1.5 text-xs font-bold uppercase tracking-[0.1em] text-ink shadow-kit transition-transform hover:-translate-y-0.5 hover:bg-teal"
-                >
-                  Voir sur Poloperator ↗
-                </a>
+                <div className="flex flex-wrap items-center gap-2">
+                  <ScoreStreamButton slug={summary.slug} matches={allMatches} />
+                  <a
+                    href={`https://poloperator.com/fr/tournament/${summary.slug}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1 rounded-[10px] border-2 border-ink bg-surface px-3 py-1.5 text-xs font-bold uppercase tracking-[0.1em] text-ink shadow-kit transition-transform hover:-translate-y-0.5 hover:bg-teal"
+                  >
+                    Voir sur Poloperator ↗
+                  </a>
+                </div>
               </div>
               <p className="mt-3 text-sm text-muted">
                 {formatTournamentDates(summary)} · {selected.data.teams.length}{" "}
