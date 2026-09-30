@@ -14,7 +14,8 @@ import {
  * Override with VITE_POLOPERATOR_BASE to fetch a mirror directly if CORS
  * ever becomes permissive.
  */
-const BASE = import.meta.env.VITE_POLOPERATOR_BASE ?? '/poloperator'
+export const POLOPERATOR_BASE =
+  import.meta.env.VITE_POLOPERATOR_BASE ?? '/poloperator'
 
 const RSC_HEADERS: Record<string, string> = {
   accept: '*/*',
@@ -22,7 +23,7 @@ const RSC_HEADERS: Record<string, string> = {
 }
 
 async function fetchRsc(path: string): Promise<string> {
-  const res = await fetch(`${BASE}${path}`, { headers: RSC_HEADERS })
+  const res = await fetch(`${POLOPERATOR_BASE}${path}`, { headers: RSC_HEADERS })
   if (!res.ok) {
     throw new Error(`poloperator ${path} → ${res.status} ${res.statusText}`)
   }

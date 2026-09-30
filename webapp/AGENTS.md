@@ -11,7 +11,8 @@ Stack: React 19 + Vite + TypeScript + Tailwind CSS v4 + Redux (classic)
 ## Conventions
 - Redux is classic: `combineReducers` + RTK `configureStore` with thunks disabled. No `createSlice`.
 - Async flows follow `*_REQUESTED` → `*_START` / `*_SUCCESS` / `*_ERROR` through `src/store/apiMiddleware.ts`; side effects are registered in the `apiEffects` map in `src/store/effects.ts` (keyed by action base name). New async flow = action constants (`src/store/tournamentActions.ts`) + an `apiEffects` entry.
-- poloperator.com has no CORS headers: fetch via same-origin `/poloperator` path (Vite proxy dev / `nginx.conf` prod, both to `https://poloperator.com`; `VITE_POLOPERATOR_BASE` override) — keep path prefix in sync.
+- poloperator.com has no CORS headers: fetch via same-origin `/poloperator` path (Vite proxy dev / `nginx.conf` prod, both to `https://poloperator.com`; `VITE_POLOPERATOR_BASE` override) — keep path prefix in sync. `/overlay` embeds the upstream overlay through that proxy and needs the extra asset proxies (`/_next/*`, `/icons/*`, `/icon.png`, `/apple-icon.png`, `/manifest.json`).
+  The `/overlay` iframe is same-origin, so upstream JS runs with full access to this origin's DOM and storage: never store secrets, tokens or auth state on this origin.
 - Keep `pnpm-lock.yaml` in sync (`--frozen-lockfile` in Docker). New deps with build scripts need `pnpm approve-builds`.
 
 ## Policies (content copied from Basic Memory, project "main")

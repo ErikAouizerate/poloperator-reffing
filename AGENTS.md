@@ -8,6 +8,11 @@
 ## Data source (why the proxy exists)
 - No API: the app scrapes poloperator.com (Next.js App Router) **RSC flight payloads** — requests need the `rsc: 1` header, RSC dates are prefixed `$D`, ~15 forfeit matches (null `teamBId`) are parsed but excluded from slotting. Details in the design spec above.
 - poloperator.com sends **no CORS headers**, so fetches go through a same-origin proxy: Vite `server.proxy` (dev, `vite.config.ts`) and nginx `location /poloperator/` (prod, `webapp/nginx.conf`), both targeting `https://poloperator.com` (`services/poloperator/fetch.ts`, override target with `VITE_POLOPERATOR_BASE`). Keep the `/poloperator` path prefix and rewrite in sync across both proxies and `fetch.ts`.
+  The `/overlay` route embeds the poloperator overlay page through the same
+  proxy and additionally proxies its absolute asset paths (`/_next/*`,
+  `/icons/*`, `/icon.png`, `/apple-icon.png`, `/manifest.json`) — keep those in
+  sync in `vite.config.ts` and `nginx.conf` too.
+  The `/overlay` iframe is same-origin, so upstream JS runs with full access to this origin's DOM and storage: never store secrets, tokens or auth state on this origin.
 
 ## Commands (run inside `webapp/`)
 - `pnpm install` — keep `pnpm-lock.yaml` in sync (CI/Docker install with `--frozen-lockfile`).

@@ -4,6 +4,10 @@ minimumReleaseAgeStrict: true
 blockExoticSubdeps: true
 strictDepBuilds: true
 
+# Non-interactive installs (VM agent, CI) must not abort when pnpm purges
+# node_modules after the store location changes (VM-local store vs host store).
+confirmModulesPurge: false
+
 # Allow build scripts only for vetted packages (run `pnpm approve-builds` to add)
 allowBuilds:
   esbuild: true
